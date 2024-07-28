@@ -1,11 +1,11 @@
 import { UserOutlined } from "@ant-design/icons";
-import { Avatar, Card, Col, Row, Space, Typography } from "antd";
+import { Avatar, Col, Row, Space, Typography } from "antd";
 
 import { TeacherDetailProps } from "../models/model";
 
 const TeacherDetailCard = ({ teacher }: { teacher: TeacherDetailProps }) => {
   return (
-    <Card bordered={false} style={{ width: "100%", height: "100%" }}>
+    <div style={{ width: "100%", height: "100%", padding: 24 }}>
       <Row gutter={16}>
         <Col>
           <Avatar
@@ -32,8 +32,7 @@ const TeacherDetailCard = ({ teacher }: { teacher: TeacherDetailProps }) => {
           </Space>
         </Col>
       </Row>
-      <Space direction="vertical" align="center"></Space>
-    </Card>
+    </div>
   );
 };
 

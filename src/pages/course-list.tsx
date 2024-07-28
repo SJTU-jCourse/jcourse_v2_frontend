@@ -15,7 +15,7 @@ const CourseListPage = () => {
         title="课程"
         subTitle={`共有${courses.length}个课程`}
       ></PageHeader>
-      <Row gutter={24}>
+      <Row gutter={[16, 16]}>
         <Col xs={24} sm={8}>
           <Card title="筛选" extra={<Button>筛选</Button>}>
             <CourseFullFilter></CourseFullFilter>

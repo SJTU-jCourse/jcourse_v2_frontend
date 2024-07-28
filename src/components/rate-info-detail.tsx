@@ -53,7 +53,7 @@ const RateInfoDetail = ({ rateInfo }: { rateInfo: RateInfoDetailProps }) => {
               ></Rate>
             </Row>
             <Row justify="center">
-              <Typography.Text>{rateInfo.count}个评价</Typography.Text>
+              <Typography.Text>{rateInfo.count} 评分</Typography.Text>
             </Row>
           </Col>
         </Row>
@@ -64,7 +64,7 @@ const RateInfoDetail = ({ rateInfo }: { rateInfo: RateInfoDetailProps }) => {
               <Space>
                 <Typography.Text type="secondary">{item.name}</Typography.Text>
                 <Progress
-                  style={{ width: 100 }}
+                  style={{ width: 140 }}
                   status="normal"
                   showInfo={false}
                   percent={item.percent}

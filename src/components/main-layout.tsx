@@ -28,7 +28,7 @@ const MainLayout = () => {
           display: "flex",
           alignItems: "center",
           background: colorBgContainer,
-          padding: screens.md ? "0 48px" : "0 16px",
+          padding: screens.md ? "0 96px" : "0 16px",
         }}
       >
         <div
@@ -50,7 +50,7 @@ const MainLayout = () => {
         ></Button>
         <NavBarUser></NavBarUser>
       </Header>
-      <Content style={{ padding: screens.md ? "24px 48px" : "24px 0" }}>
+      <Content style={{ padding: screens.md ? "24px 96px" : "24px 0" }}>
         <div
           style={{
             background: colorBgContainer,

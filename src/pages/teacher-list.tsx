@@ -1,4 +1,4 @@
-import { Button, Card, Col, Input, List, Row } from "antd";
+import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
 
 import PageHeader from "../components/page-header";
 import TeacherFilter from "../components/teacher-filter";
@@ -12,7 +12,7 @@ const TeacherListPage = () => {
         title="教师"
         subTitle={`共有${teacherList.length}个教师`}
       ></PageHeader>
-      <Row gutter={24}>
+      <Row gutter={[16, 16]}>
         <Col sm={8} xs={24}>
           <Card title="筛选" extra={<Button>筛选</Button>}>
             <TeacherFilter></TeacherFilter>
@@ -20,11 +20,16 @@ const TeacherListPage = () => {
         </Col>
 
         <Col sm={16} xs={24}>
-          <Row>
-            <Input.Search
-              placeholder="教师名称"
-              style={{ marginBottom: 16 }}
-            ></Input.Search>
+          <Row gutter={[16, 16]}>
+            <Col flex="auto">
+              <Input.Search
+                placeholder="教师名称/拼音"
+                style={{ marginBottom: 16 }}
+              ></Input.Search>
+            </Col>
+            <Col>
+              <Segmented options={["最多点评", "最高评分"]}></Segmented>
+            </Col>
           </Row>
           <Row>
             <List

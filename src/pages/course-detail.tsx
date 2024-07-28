@@ -2,38 +2,32 @@ import { Button, Card, Col, Divider, List, Row, Space } from "antd";
 import { Link } from "react-router-dom";
 
 import CourseDetailCard from "../components/course-detail-card";
-import MyRate from "../components/my-rate";
 import PageHeader from "../components/page-header";
-import RateInfoDetail from "../components/rate-info-detail";
+import RateInfoWithMyRate from "../components/rate-info-my-rate";
 import ReviewInCourseFilter from "../components/review-in-course-filter";
 import ReviewItem from "../components/review-item";
-import { courseDetail, reviewList, userDetail } from "../models/mock";
+import { courseDetail, reviewList } from "../models/mock";
 
 const CourseDetailPage = () => {
   const course = courseDetail;
   const reviews = reviewList;
-  const user = userDetail;
   const myRate = 5;
 
   return (
     <>
       <PageHeader
         title={`${course.code} ${course.name}（${course.main_teacher.name}）`}
-        extra={
-          <Space>
-            <Button>收藏</Button>
-          </Space>
-        }
+        extra={<Button>收藏</Button>}
       ></PageHeader>
-      <Row align="middle" justify="center">
-        <Col xs={24} sm={12}>
+      <Row align="middle">
+        <Col flex="auto">
           <CourseDetailCard course={course}></CourseDetailCard>
         </Col>
-        <Col xs={24} sm={12}>
-          <Space direction="vertical" align="center">
-            <RateInfoDetail rateInfo={course.rate_info}></RateInfoDetail>
-            <MyRate user={user} rate={myRate}></MyRate>
-          </Space>
+        <Col>
+          <RateInfoWithMyRate
+            rateInfo={course.rate_info}
+            myRate={myRate}
+          ></RateInfoWithMyRate>
         </Col>
       </Row>
       <Row gutter={[16, 16]}>

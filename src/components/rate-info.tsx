@@ -1,4 +1,4 @@
-import { Rate, Space, Typography } from "antd";
+import { Flex, Rate, Space, Typography } from "antd";
 
 import { RateInfoProps } from "../models/model";
 
@@ -8,16 +8,17 @@ const RateInfo = ({ rateInfo }: { rateInfo: RateInfoProps }) => {
   }
 
   return (
-    <Space>
+    <Space direction="vertical">
       <Rate disabled value={rateInfo.avg} style={{ fontSize: 14 }}></Rate>
-      <Typography.Text strong style={{ fontSize: 18 }}>
-        {rateInfo.avg.toFixed(1)}
-      </Typography.Text>
-      <Space direction="vertical">
-        <Typography.Text type="secondary">
-          {rateInfo.count}人评价
+      <Flex justify="space-between" align="center">
+        <Typography.Text strong style={{ fontSize: 20 }}>
+          {rateInfo.avg.toFixed(1)}
         </Typography.Text>
-      </Space>
+
+        <Typography.Text type="secondary">
+          {rateInfo.count} 评分
+        </Typography.Text>
+      </Flex>
     </Space>
   );
 };

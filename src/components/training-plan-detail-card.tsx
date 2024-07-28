@@ -1,4 +1,4 @@
-import { Card, Descriptions } from "antd";
+import { Descriptions } from "antd";
 
 import { TrainingPlanDetailProps } from "../models/model";
 
@@ -8,8 +8,8 @@ const TrainingPlanDetailCard = ({
   trainingPlan: TrainingPlanDetailProps;
 }) => {
   return (
-    <Card>
-      <Descriptions>
+    <div style={{ width: "100%", height: "100%", padding: 24 }}>
+      <Descriptions style={{ maxWidth: 600 }}>
         <Descriptions.Item label="年级">
           {trainingPlan.entry_year}
         </Descriptions.Item>
@@ -27,7 +27,7 @@ const TrainingPlanDetailCard = ({
           {trainingPlan.minimal_credits}
         </Descriptions.Item>
       </Descriptions>
-    </Card>
+    </div>
   );
 };
 

@@ -24,4 +24,4 @@ const UserDetailCard = ({ user }: { user: UserDetailProps }) => {
   );
 };
 
-export default UserDetailCard
+export default UserDetailCard;

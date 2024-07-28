@@ -1,33 +1,33 @@
-import { Col, Divider, List, Row, Space } from "antd";
+import { Col, Divider, List, Row } from "antd";
 
 import CourseItem from "../components/course-item";
 import CourseSimpleFilter from "../components/course-simple-filter";
-import MyRate from "../components/my-rate";
-import RateInfoDetail from "../components/rate-info-detail";
+import RateInfoWithMyRate from "../components/rate-info-my-rate";
 import TeacherDetailCard from "../components/teacher-detail-card";
-import { teacherDetail, userDetail } from "../models/mock";
+import { teacherDetail } from "../models/mock";
 
 const TeacherDetailPage = () => {
   const teacher = teacherDetail;
-  const user = userDetail;
   const myRate = 5;
   return (
     <>
-      <Row>
-        <Col>
+      <Row align="middle">
+        <Col flex="auto">
           <TeacherDetailCard teacher={teacher}></TeacherDetailCard>
         </Col>
         <Col>
-          <Space direction="vertical" align="center" style={{ width: "100%" }}>
-            <RateInfoDetail rateInfo={teacher.rate_info}></RateInfoDetail>
-            <MyRate user={user} rate={myRate}></MyRate>
-          </Space>
+          <RateInfoWithMyRate
+            rateInfo={teacher.rate_info}
+            myRate={myRate}
+          ></RateInfoWithMyRate>
         </Col>
       </Row>
 
       <Divider></Divider>
 
-      <CourseSimpleFilter></CourseSimpleFilter>
+      <div style={{ paddingInline: 24 }}>
+        <CourseSimpleFilter></CourseSimpleFilter>
+      </div>
 
       <Divider></Divider>
 

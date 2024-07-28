@@ -1,18 +1,10 @@
-import { Avatar, Rate, Space } from "antd";
+import { Rate, Space } from "antd";
 
-import { UserInReviewProps } from "../models/model";
-
-const MyRate = ({
-  user,
-  rate,
-}: {
-  user?: UserInReviewProps;
-  rate?: number;
-}) => {
-  if (!rate || !user) {
+const MyRate = ({ rate }: { rate?: number }) => {
+  if (!rate) {
     return (
       <Space>
-        <div>请评分</div>
+        <div>立即评分</div>
         <Rate></Rate>
       </Space>
     );
@@ -20,9 +12,7 @@ const MyRate = ({
 
   return (
     <Space>
-      <Avatar src={user.avatar} size={24}>
-        {user.username.charAt(0)}
-      </Avatar>
+      <div>我的评分</div>
       <Rate defaultValue={rate}></Rate>
     </Space>
   );

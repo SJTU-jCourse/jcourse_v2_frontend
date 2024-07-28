@@ -125,6 +125,7 @@ export const trainingPlanListItem: TrainingPlanListItemProps = {
   department: "机械与动力工程学院",
   entry_year: "2024",
   degree: "学士",
+  rate_info: rateInfo,
 };
 
 export const trainingPlanList: TrainingPlanListItemProps[] = [
@@ -150,6 +151,8 @@ export const trainingPlanDetail: TrainingPlanDetailProps = {
   courses: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(() => {
     return trainingPlanBaseCourse;
   }),
+
+  rate_info: rateInfo,
 };
 
 export const reviewListItem: ReviewProps = {

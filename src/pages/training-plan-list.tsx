@@ -1,4 +1,4 @@
-import { Button, Card, Col, Input, List, Row } from "antd";
+import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
 
 import PageHeader from "../components/page-header";
 import TrainingPlanFilter from "../components/training-plan-filter";
@@ -13,7 +13,7 @@ const TrainingPlanListPage = () => {
         title="培养计划"
         subTitle={`共有${trainingPlans.length}个培养计划`}
       ></PageHeader>
-      <Row gutter={24}>
+      <Row gutter={[16, 16]}>
         <Col xs={24} sm={8}>
           <Card title="筛选" extra={<Button>筛选</Button>}>
             <TrainingPlanFilter></TrainingPlanFilter>
@@ -21,11 +21,16 @@ const TrainingPlanListPage = () => {
         </Col>
 
         <Col xs={24} sm={16}>
-          <Row>
-            <Input.Search
-              placeholder="专业名称"
-              style={{ marginBottom: 16 }}
-            ></Input.Search>
+          <Row gutter={[16, 16]}>
+            <Col flex="auto">
+              <Input.Search
+                placeholder="专业名称"
+                style={{ marginBottom: 16 }}
+              ></Input.Search>
+            </Col>
+            <Col>
+              <Segmented options={["最多点评", "最高评分"]}></Segmented>
+            </Col>
           </Row>
           <Row>
             <List
