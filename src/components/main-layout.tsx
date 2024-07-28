@@ -7,7 +7,7 @@ import NavBarUser from "./nav-bar-user";
 const { Header, Content, Footer } = Layout;
 
 const navItems: MenuProps["items"] = [
-  { key: "推荐", label: <Link to="/">推荐</Link> },
+  // { key: "推荐", label: <Link to="/">推荐</Link> },
   { key: "点评", label: <Link to="/review">点评</Link> },
   { key: "课程", label: <Link to="/course">课程</Link> },
   { key: "教师", label: <Link to="/teacher">教师</Link> },
@@ -31,8 +31,11 @@ const MainLayout = () => {
           padding: screens.md ? "0 48px" : "0 16px",
         }}
       >
-        <div className="demo-logo" style={{ fontWeight: 800, fontSize: 20 }}>
-          SJTU 选课社区
+        <div
+          className="demo-logo"
+          style={{ fontWeight: 800, fontSize: screens.md ? 20 : 14 }}
+        >
+          {screens.md && "SJTU "}选课社区
         </div>
         <Menu
           theme="light"

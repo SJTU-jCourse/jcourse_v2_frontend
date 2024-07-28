@@ -18,7 +18,7 @@ const TeacherDetailPage = () => {
           <TeacherDetailCard teacher={teacher}></TeacherDetailCard>
         </Col>
         <Col>
-          <Space direction="vertical" align="center">
+          <Space direction="vertical" align="center" style={{ width: "100%" }}>
             <RateInfoDetail rateInfo={teacher.rate_info}></RateInfoDetail>
             <MyRate user={user} rate={myRate}></MyRate>
           </Space>

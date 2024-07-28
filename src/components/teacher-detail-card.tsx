@@ -5,7 +5,7 @@ import { TeacherDetailProps } from "../models/model";
 
 const TeacherDetailCard = ({ teacher }: { teacher: TeacherDetailProps }) => {
   return (
-    <Card bordered={false}>
+    <Card bordered={false} style={{ width: "100%", height: "100%" }}>
       <Row gutter={16}>
         <Col>
           <Avatar
