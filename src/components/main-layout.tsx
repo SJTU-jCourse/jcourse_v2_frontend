@@ -1,5 +1,5 @@
 import { OpenAIOutlined } from "@ant-design/icons";
-import { Button, Layout, Menu, MenuProps, theme } from "antd";
+import { Button, Grid, Layout, Menu, MenuProps, theme } from "antd";
 import { Link, Outlet } from "react-router-dom";
 
 import NavBarUser from "./nav-bar-user";
@@ -19,6 +19,8 @@ const MainLayout = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const screens = Grid.useBreakpoint();
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Header
@@ -26,6 +28,7 @@ const MainLayout = () => {
           display: "flex",
           alignItems: "center",
           background: colorBgContainer,
+          padding: screens.md ? "0 48px" : "0 16px",
         }}
       >
         <div className="demo-logo" style={{ fontWeight: 800, fontSize: 20 }}>
@@ -44,7 +47,7 @@ const MainLayout = () => {
         ></Button>
         <NavBarUser></NavBarUser>
       </Header>
-      <Content style={{ padding: "24px 48px" }}>
+      <Content style={{ padding: screens.md ? "24px 48px" : "16px 16px" }}>
         <div
           style={{
             background: colorBgContainer,
