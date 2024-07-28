@@ -18,7 +18,7 @@ const BaseCourseDetailPage = () => {
       <Divider></Divider>
 
       <List
-        grid={{ gutter: 16, column: 2 }}
+        grid={{ gutter: 16, xs: 1, sm: 2, column: 3 }}
         dataSource={courses}
         renderItem={(item) => {
           return (

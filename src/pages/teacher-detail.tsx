@@ -32,7 +32,7 @@ const TeacherDetailPage = () => {
       <Divider></Divider>
 
       <List
-        grid={{ gutter: 16, column: 3 }}
+        grid={{ gutter: 16, xs: 1, sm: 2, column: 3 }}
         dataSource={teacher.courses}
         renderItem={(item) => {
           return (

@@ -12,10 +12,12 @@ import {
 import {
   Avatar,
   Button,
+  Col,
   Dropdown,
   Flex,
   MenuProps,
   Rate,
+  Row,
   Space,
   Tooltip,
   Typography,
@@ -52,20 +54,19 @@ const UserInReview = ({
         {username.charAt(0)}
       </Avatar>
       <div>
-        <Space>
-          <Text strong>{username}</Text>
+        <Text strong>{username}</Text>
 
-          {showCourse && course && (
-            <>
-              <span>点评了</span>
-              <Link to={`/course/${course.id}`}>
-                <Typography.Text strong>
-                  {course.code} {course.name}（{course.main_teacher.name}）
-                </Typography.Text>
-              </Link>
-            </>
-          )}
-        </Space>
+        {showCourse && course && (
+          <>
+            <span> 点评了 </span>
+            <Link to={`/course/${course.id}`}>
+              <Typography.Text strong>
+                {course.code} {course.name}（{course.main_teacher.name}）
+              </Typography.Text>
+            </Link>
+          </>
+        )}
+
         <div>
           {updatedAt ? (
             <Tooltip
@@ -142,17 +143,17 @@ const ReviewItem = ({
         <Text type="secondary">#{review.id}</Text>
       </Flex>
 
-      <Flex align="center" gap={20}>
-        <Flex align="center">
+      <Row align="middle" gutter={[16, 16]}>
+        <Col>
           <Text>学期：</Text>
           <Text strong>{review.semester}</Text>
-        </Flex>
+        </Col>
 
-        <Flex align="center">
+        <Col>
           <Text>评分：</Text>
           <Rate disabled value={review.rate}></Rate>
-        </Flex>
-      </Flex>
+        </Col>
+      </Row>
 
       <MarkDownPreview src={review.comment}></MarkDownPreview>
 

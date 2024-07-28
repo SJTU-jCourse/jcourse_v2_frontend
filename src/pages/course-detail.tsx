@@ -25,20 +25,19 @@ const CourseDetailPage = () => {
           </Space>
         }
       ></PageHeader>
-      <Row>
-        <Col span={12}>
+      <Row align="middle" justify="center">
+        <Col xs={24} sm={12}>
           <CourseDetailCard course={course}></CourseDetailCard>
         </Col>
-        <Col span={12}>
+        <Col xs={24} sm={12}>
           <Space direction="vertical" align="center">
             <RateInfoDetail rateInfo={course.rate_info}></RateInfoDetail>
             <MyRate user={user} rate={myRate}></MyRate>
           </Space>
         </Col>
       </Row>
-      <Divider></Divider>
       <Row gutter={[16, 16]}>
-        <Col span={16}>
+        <Col xs={24} sm={24} md={16}>
           <Card
             title="所有点评"
             extra={[
@@ -63,7 +62,7 @@ const CourseDetailPage = () => {
             ></List>
           </Card>
         </Col>
-        <Col span={8}>
+        <Col xs={24} sm={24} md={8}>
           <Space direction="vertical" style={{ width: "100%" }}>
             <Card title="为你推荐"></Card>
             <Card title={`其他老师的 ${course.name}`}></Card>

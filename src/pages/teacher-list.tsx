@@ -13,13 +13,13 @@ const TeacherListPage = () => {
         subTitle={`共有${teacherList.length}个教师`}
       ></PageHeader>
       <Row gutter={24}>
-        <Col span={8}>
+        <Col sm={8} xs={24}>
           <Card title="筛选" extra={<Button>筛选</Button>}>
             <TeacherFilter></TeacherFilter>
           </Card>
         </Col>
 
-        <Col span={16}>
+        <Col sm={16} xs={24}>
           <Row>
             <Input.Search
               placeholder="教师名称"
@@ -29,7 +29,7 @@ const TeacherListPage = () => {
           <Row>
             <List
               pagination={{ align: "center" }}
-              grid={{ gutter: 16, column: 2 }}
+              grid={{ gutter: 16, xs: 1, sm: 1, column: 2 }}
               dataSource={teacherList}
               renderItem={(item) => (
                 <List.Item>

@@ -1,4 +1,4 @@
-import { Card, Descriptions, Divider, List, Tabs, TabsProps } from "antd";
+import { Card, Descriptions, Divider, Grid, List, Tabs, TabsProps } from "antd";
 
 import ReviewItem from "../components/review-item";
 import UserDetailCard from "../components/user-detail-card";
@@ -62,11 +62,12 @@ const UserDetailPage = () => {
     },
     {
       key: "5",
-      label: "个人设置",
+      label: "设置",
       children: <UserProfileTab user={user}></UserProfileTab>,
     },
   ];
 
+  const screens = Grid.useBreakpoint();
   return (
     <>
       <UserDetailCard user={user}></UserDetailCard>
@@ -74,7 +75,7 @@ const UserDetailPage = () => {
       <Divider></Divider>
 
       <Tabs
-        tabPosition="left"
+        tabPosition={screens.sm ? "left" : "top"}
         items={tabItems}
         style={{ width: "100%" }}
         centered
