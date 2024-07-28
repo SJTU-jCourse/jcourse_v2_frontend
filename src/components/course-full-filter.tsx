@@ -1,13 +1,4 @@
-import {
-  Button,
-  Card,
-  Checkbox,
-  Col,
-  Collapse,
-  CollapseProps,
-  Row,
-  Tag,
-} from "antd";
+import { Checkbox, Col, Collapse, CollapseProps, Row } from "antd";
 
 const CourseFullFilter = () => {
   const items: CollapseProps["items"] = [

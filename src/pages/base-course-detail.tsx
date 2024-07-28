@@ -1,4 +1,4 @@
-import { Card, Divider, List } from "antd";
+import { Divider, List } from "antd";
 
 import CourseItem from "../components/course-item";
 import CourseSimpleFilter from "../components/course-simple-filter";

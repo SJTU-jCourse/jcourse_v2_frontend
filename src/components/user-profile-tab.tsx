@@ -2,7 +2,7 @@ import { Button, Form, Input, Select, Upload } from "antd";
 
 import { UserDetailProps } from "../models/model";
 
-const UserProfileTab = ({ user }: { user: UserDetailProps }) => {
+const UserProfileTab = ({}: { user: UserDetailProps }) => {
   return (
     <Form layout="vertical">
       <Form.Item label="用户名">

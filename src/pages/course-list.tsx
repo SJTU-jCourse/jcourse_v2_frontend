@@ -1,4 +1,4 @@
-import { Button, Card, Col, Input, List, Radio, Row, Segmented } from "antd";
+import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
 
 import CourseFullFilter from "../components/course-full-filter";
 import CourseItem from "../components/course-item";
