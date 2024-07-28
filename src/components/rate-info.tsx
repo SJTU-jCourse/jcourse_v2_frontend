@@ -8,7 +8,7 @@ const RateInfo = ({ rateInfo }: { rateInfo: RateInfoProps }) => {
   }
 
   return (
-    <Space direction="vertical">
+    <Space direction="vertical" className="rate-info" style={{ minWidth: 80 }}>
       <Rate disabled value={rateInfo.avg} style={{ fontSize: 14 }}></Rate>
       <Flex justify="space-between" align="center">
         <Typography.Text strong style={{ fontSize: 20 }}>
