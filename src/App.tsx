@@ -1,3 +1,5 @@
+import { ConfigProvider } from "antd";
+import zhCN from "antd/locale/zh_CN";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import MainLayout from "./components/main-layout";
@@ -73,7 +75,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ConfigProvider locale={zhCN}>
+      <RouterProvider router={router} />
+    </ConfigProvider>
+  );
 }
 
 export default App;
