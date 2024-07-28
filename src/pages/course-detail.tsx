@@ -36,6 +36,7 @@ const CourseDetailPage = () => {
           </Space>
         </Col>
       </Row>
+      <Divider></Divider>
       <Row gutter={[16, 16]}>
         <Col span={16}>
           <Card

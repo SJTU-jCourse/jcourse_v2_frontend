@@ -25,12 +25,14 @@ const TeacherDetailPage = () => {
         </Col>
       </Row>
 
+      <Divider></Divider>
+
       <CourseSimpleFilter></CourseSimpleFilter>
 
       <Divider></Divider>
 
       <List
-        grid={{ gutter: 16, column: 2 }}
+        grid={{ gutter: 16, column: 3 }}
         dataSource={teacher.courses}
         renderItem={(item) => {
           return (

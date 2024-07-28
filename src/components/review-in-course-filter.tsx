@@ -1,4 +1,4 @@
-import { Button, Col, Row, Select } from "antd";
+import { Button, Select, Space } from "antd";
 
 const orderOptions = [
   "最新回复",
@@ -24,24 +24,15 @@ const rateOptions = ["5", "4", "3", "2", "1"].map((item) => {
 
 const ReviewInCourseFilter = () => {
   return (
-    <Row gutter={[16, 16]}>
-      <Col>
-        排序：
-        <Select popupMatchSelectWidth={false} options={orderOptions}></Select>
-      </Col>
-      <Col>
-        学期：
-        <Select
-          popupMatchSelectWidth={false}
-          options={semesterOptions}
-        ></Select>
-      </Col>
-      <Col>
-        评分：
-        <Select popupMatchSelectWidth={false} options={rateOptions}></Select>
-      </Col>
+    <Space>
+      排序：
+      <Select popupMatchSelectWidth={false} options={orderOptions}></Select>
+      学期：
+      <Select popupMatchSelectWidth={false} options={semesterOptions}></Select>
+      评分：
+      <Select popupMatchSelectWidth={false} options={rateOptions}></Select>
       <Button>筛选</Button>
-    </Row>
+    </Space>
   );
 };
 

@@ -8,8 +8,8 @@ const TrainingPlanDetailCard = ({
   trainingPlan: TrainingPlanDetailProps;
 }) => {
   return (
-    <Card title="基本信息">
-      <Descriptions column={1}>
+    <Card>
+      <Descriptions>
         <Descriptions.Item label="年级">
           {trainingPlan.entry_year}
         </Descriptions.Item>
