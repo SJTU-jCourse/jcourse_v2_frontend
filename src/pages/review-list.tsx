@@ -1,4 +1,4 @@
-import { Card, List } from "antd";
+import { List } from "antd";
 
 import PageHeader from "../components/page-header";
 import ReviewItem from "../components/review-item";
@@ -13,19 +13,17 @@ const ReviewListPage = () => {
         subTitle={`共有${reviews.length}个点评`}
       ></PageHeader>
 
-      <Card>
-        <List
-          pagination={{ align: "center" }}
-          dataSource={reviews}
-          renderItem={(item) => {
-            return (
-              <List.Item>
-                <ReviewItem review={item} showCourse></ReviewItem>
-              </List.Item>
-            );
-          }}
-        ></List>
-      </Card>
+      <List
+        pagination={{ align: "center" }}
+        dataSource={reviews}
+        renderItem={(item) => {
+          return (
+            <List.Item>
+              <ReviewItem review={item} showCourse></ReviewItem>
+            </List.Item>
+          );
+        }}
+      ></List>
     </>
   );
 };

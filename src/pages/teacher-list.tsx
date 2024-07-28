@@ -1,4 +1,4 @@
-import { Card, Col, Input, List, Row } from "antd";
+import { Button, Card, Col, Input, List, Row } from "antd";
 
 import PageHeader from "../components/page-header";
 import TeacherFilter from "../components/teacher-filter";
@@ -14,7 +14,7 @@ const TeacherListPage = () => {
       ></PageHeader>
       <Row gutter={24}>
         <Col span={8}>
-          <Card>
+          <Card title="筛选" extra={<Button>筛选</Button>}>
             <TeacherFilter></TeacherFilter>
           </Card>
         </Col>

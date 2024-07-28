@@ -4,7 +4,7 @@ import { CourseDetailProps } from "../models/model";
 
 const CourseDetailCard = ({ course }: { course: CourseDetailProps }) => {
   return (
-    <Card>
+    <Card bordered={false}>
       <Descriptions column={1}>
         <Descriptions.Item label="课号">{course.code}</Descriptions.Item>
         <Descriptions.Item label="学分">{course.credit}</Descriptions.Item>

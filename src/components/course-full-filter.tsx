@@ -1,4 +1,13 @@
-import { Checkbox, Col, Collapse, CollapseProps, Row, Tag } from "antd";
+import {
+  Button,
+  Card,
+  Checkbox,
+  Col,
+  Collapse,
+  CollapseProps,
+  Row,
+  Tag,
+} from "antd";
 
 const CourseFullFilter = () => {
   const items: CollapseProps["items"] = [
@@ -74,11 +83,7 @@ const CourseFullFilter = () => {
       ),
     },
   ];
-  return (
-    <>
-      <Collapse ghost items={items}></Collapse>
-    </>
-  );
+  return <Collapse ghost items={items}></Collapse>;
 };
 
 export default CourseFullFilter;

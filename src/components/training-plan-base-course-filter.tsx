@@ -25,9 +25,7 @@ const TrainingPlanBaseCourseFilter = () => {
           options={categoryOptions}
         ></Select>
       </Col>
-      <Col span={24}>
-        <Button>筛选</Button>
-      </Col>
+      <Col span={24}></Col>
     </Row>
   );
 };

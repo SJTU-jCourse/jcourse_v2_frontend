@@ -1,4 +1,4 @@
-import { Card, Col, Input, List, Radio, Row, Segmented } from "antd";
+import { Button, Card, Col, Input, List, Radio, Row, Segmented } from "antd";
 
 import CourseFullFilter from "../components/course-full-filter";
 import CourseItem from "../components/course-item";
@@ -17,7 +17,7 @@ const CourseListPage = () => {
       ></PageHeader>
       <Row gutter={24}>
         <Col span={8}>
-          <Card title="筛选">
+          <Card title="筛选" extra={<Button>筛选</Button>}>
             <CourseFullFilter></CourseFullFilter>
           </Card>
         </Col>

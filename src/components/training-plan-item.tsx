@@ -10,7 +10,7 @@ const TrainingPlanItem = ({
   trainingPlan: TrainingPlanListItemProps;
 }) => {
   return (
-    <Card>
+    <Card bordered={false}>
       <Space direction="vertical">
         <Link to={`/training-plan/${trainingPlan.id}`}>
           <Text strong style={{ fontSize: 18 }}>

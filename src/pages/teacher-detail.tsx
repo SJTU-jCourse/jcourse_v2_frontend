@@ -1,4 +1,4 @@
-import { Card, Col, List, Row, Space } from "antd";
+import { Col, Divider, List, Row, Space } from "antd";
 
 import CourseItem from "../components/course-item";
 import CourseSimpleFilter from "../components/course-simple-filter";
@@ -18,31 +18,28 @@ const TeacherDetailPage = () => {
           <TeacherDetailCard teacher={teacher}></TeacherDetailCard>
         </Col>
         <Col>
-          <Card>
-            <Space direction="vertical" align="center">
-              <RateInfoDetail rateInfo={teacher.rate_info}></RateInfoDetail>
-              <MyRate user={user} rate={myRate}></MyRate>
-            </Space>
-          </Card>
+          <Space direction="vertical" align="center">
+            <RateInfoDetail rateInfo={teacher.rate_info}></RateInfoDetail>
+            <MyRate user={user} rate={myRate}></MyRate>
+          </Space>
         </Col>
       </Row>
 
-      <Card title="筛选条件">
-        <CourseSimpleFilter></CourseSimpleFilter>
-      </Card>
-      <Card title="所有课程">
-        <List
-          grid={{ gutter: 16, column: 2 }}
-          dataSource={teacher.courses}
-          renderItem={(item) => {
-            return (
-              <List.Item>
-                <CourseItem course={item}></CourseItem>
-              </List.Item>
-            );
-          }}
-        ></List>
-      </Card>
+      <CourseSimpleFilter></CourseSimpleFilter>
+
+      <Divider></Divider>
+
+      <List
+        grid={{ gutter: 16, column: 2 }}
+        dataSource={teacher.courses}
+        renderItem={(item) => {
+          return (
+            <List.Item>
+              <CourseItem course={item}></CourseItem>
+            </List.Item>
+          );
+        }}
+      ></List>
     </>
   );
 };

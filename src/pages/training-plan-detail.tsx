@@ -1,4 +1,4 @@
-import { Card, Col, List, Row } from "antd";
+import { Button, Card, Col, List, Row } from "antd";
 
 import PageHeader from "../components/page-header";
 import TrainingPlanBaseCourse from "../components/training-plan-base-course";
@@ -16,26 +16,24 @@ const TrainingPlanDetailPage = () => {
           <TrainingPlanDetailCard
             trainingPlan={trainingPlan}
           ></TrainingPlanDetailCard>
-          <Card title="筛选条件">
+          <Card title="筛选条件" extra={<Button>筛选</Button>}>
             <TrainingPlanBaseCourseFilter></TrainingPlanBaseCourseFilter>
           </Card>
         </Col>
         <Col span={16}>
-          <Card title="所有课程">
-            <List
-              grid={{ gutter: 16, column: 2 }}
-              dataSource={trainingPlan.courses}
-              renderItem={(item) => {
-                return (
-                  <List.Item>
-                    <TrainingPlanBaseCourse
-                      trainingPlanBaseCourse={item}
-                    ></TrainingPlanBaseCourse>
-                  </List.Item>
-                );
-              }}
-            ></List>
-          </Card>
+          <List
+            grid={{ gutter: 16, column: 2 }}
+            dataSource={trainingPlan.courses}
+            renderItem={(item) => {
+              return (
+                <List.Item>
+                  <TrainingPlanBaseCourse
+                    trainingPlanBaseCourse={item}
+                  ></TrainingPlanBaseCourse>
+                </List.Item>
+              );
+            }}
+          ></List>
         </Col>
       </Row>
     </>

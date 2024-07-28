@@ -1,4 +1,4 @@
-import { Card, List } from "antd";
+import { Card, Divider, List } from "antd";
 
 import CourseItem from "../components/course-item";
 import CourseSimpleFilter from "../components/course-simple-filter";
@@ -12,22 +12,22 @@ const BaseCourseDetailPage = () => {
   return (
     <>
       <PageHeader title={`${baseCourse.code} ${baseCourse.name}`}></PageHeader>
-      <Card>
-        <CourseSimpleFilter></CourseSimpleFilter>
-      </Card>
-      <Card>
-        <List
-          grid={{ gutter: 16, column: 2 }}
-          dataSource={courses}
-          renderItem={(item) => {
-            return (
-              <List.Item>
-                <CourseItem course={item}></CourseItem>
-              </List.Item>
-            );
-          }}
-        ></List>
-      </Card>
+
+      <CourseSimpleFilter></CourseSimpleFilter>
+
+      <Divider></Divider>
+
+      <List
+        grid={{ gutter: 16, column: 2 }}
+        dataSource={courses}
+        renderItem={(item) => {
+          return (
+            <List.Item>
+              <CourseItem course={item}></CourseItem>
+            </List.Item>
+          );
+        }}
+      ></List>
     </>
   );
 };

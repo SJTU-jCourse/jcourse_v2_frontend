@@ -32,12 +32,10 @@ const CourseDetailPage = () => {
               <CourseDetailCard course={course}></CourseDetailCard>
             </Col>
             <Col span={12}>
-              <Card>
-                <Space direction="vertical" align="center">
-                  <RateInfoDetail rateInfo={course.rate_info}></RateInfoDetail>
-                  <MyRate user={user} rate={myRate}></MyRate>
-                </Space>
-              </Card>
+              <Space direction="vertical" align="center">
+                <RateInfoDetail rateInfo={course.rate_info}></RateInfoDetail>
+                <MyRate user={user} rate={myRate}></MyRate>
+              </Space>
             </Col>
           </Row>
           <Row>
@@ -49,6 +47,7 @@ const CourseDetailPage = () => {
                     <Button type="primary">写点评</Button>
                   </Link>,
                 ]}
+                bordered={false}
               >
                 <List
                   pagination={{ align: "center" }}
@@ -66,21 +65,11 @@ const CourseDetailPage = () => {
           </Row>
         </Col>
         <Col span={8}>
-          <Row gutter={[16, 16]}>
-            <Col span={24}>
-              <Card title="为你推荐"></Card>
-            </Col>
-          </Row>
-          <Row gutter={[16, 16]}>
-            <Col span={24}>
-              <Card title={`其他老师的 ${course.name}`}></Card>
-            </Col>
-          </Row>
-          <Row gutter={[16, 16]}>
-            <Col span={24}>
-              <Card title={`${course.main_teacher.name} 的其他课`}></Card>
-            </Col>
-          </Row>
+          <Space direction="vertical">
+            <Card title="为你推荐"></Card>
+            <Card title={`其他老师的 ${course.name}`}></Card>
+            <Card title={`${course.main_teacher.name} 的其他课`}></Card>
+          </Space>
         </Col>
       </Row>
     </>

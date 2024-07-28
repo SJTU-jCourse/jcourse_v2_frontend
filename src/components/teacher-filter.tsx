@@ -1,4 +1,4 @@
-import { Button, Col, Row, Select } from "antd";
+import { Select } from "antd";
 
 const departmentOptions = [
   "船舶海洋与建筑工程学院",
@@ -12,18 +12,13 @@ const departmentOptions = [
 
 const TeacherFilter = () => {
   return (
-    <Row gutter={[16, 16]}>
-      <Col span={24}>
-        学院：
-        <Select
-          popupMatchSelectWidth={false}
-          options={departmentOptions}
-        ></Select>
-      </Col>
-      <Col span={24}>
-        <Button>筛选</Button>
-      </Col>
-    </Row>
+    <>
+      学院：
+      <Select
+        popupMatchSelectWidth={false}
+        options={departmentOptions}
+      ></Select>
+    </>
   );
 };
 

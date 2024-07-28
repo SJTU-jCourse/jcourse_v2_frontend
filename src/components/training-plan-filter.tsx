@@ -1,4 +1,4 @@
-import { Button, Col, Row, Select } from "antd";
+import { Select, Space } from "antd";
 
 const gradeOptions = ["2024", "2023", "2022", "2021", "2020"].map((item) => {
   return { label: item, value: item };
@@ -15,22 +15,19 @@ const departmentOptions = [
 
 const TrainingPlanFilter = () => {
   return (
-    <Row gutter={[16, 16]}>
-      <Col span={24}>
+    <Space direction="vertical">
+      <Space>
         年级：
         <Select popupMatchSelectWidth={false} options={gradeOptions}></Select>
-      </Col>
-      <Col span={24}>
+      </Space>
+      <Space>
         学院：
         <Select
           popupMatchSelectWidth={false}
           options={departmentOptions}
         ></Select>
-      </Col>
-      <Col span={24}>
-        <Button>筛选</Button>
-      </Col>
-    </Row>
+      </Space>
+    </Space>
   );
 };
 
