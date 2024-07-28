@@ -14,13 +14,13 @@ const TrainingPlanListPage = () => {
         subTitle={`共有${trainingPlans.length}个培养计划`}
       ></PageHeader>
       <Row gutter={24}>
-        <Col span={8}>
+        <Col xs={24} sm={8}>
           <Card title="筛选" extra={<Button>筛选</Button>}>
             <TrainingPlanFilter></TrainingPlanFilter>
           </Card>
         </Col>
 
-        <Col span={16}>
+        <Col xs={24} sm={16}>
           <Row>
             <Input.Search
               placeholder="专业名称"
@@ -30,7 +30,7 @@ const TrainingPlanListPage = () => {
           <Row>
             <List
               pagination={{ align: "center" }}
-              grid={{ gutter: 16, column: 2 }}
+              grid={{ gutter: 16, xs: 1, sm: 1, column: 2 }}
               dataSource={trainingPlans}
               renderItem={(item) => (
                 <List.Item>

@@ -50,7 +50,7 @@ const MainLayout = () => {
         ></Button>
         <NavBarUser></NavBarUser>
       </Header>
-      <Content style={{ padding: screens.md ? "24px 48px" : "16px 16px" }}>
+      <Content style={{ padding: screens.md ? "24px 48px" : "24px 0" }}>
         <div
           style={{
             background: colorBgContainer,
