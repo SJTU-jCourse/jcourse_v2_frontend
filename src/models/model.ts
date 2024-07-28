@@ -12,6 +12,8 @@ export type TeacherListItemProps = {
   title: string;
   department: string;
   avatar: string;
+
+  rate_info: RateInfoProps;
 };
 
 export type TeacherDetailProps = {
@@ -25,6 +27,7 @@ export type TeacherDetailProps = {
   profile_url: string;
 
   courses: CourseListItemProps[];
+  rate_info: RateInfoDetailProps;
 };
 
 export type CourseListItemProps = {
@@ -142,4 +145,11 @@ export type UserPointDetailItemProps = {
 export type UserPointProps = {
   total: number;
   detail: UserPointDetailItemProps[];
+};
+
+export type UserSummary = {
+  review_count: number;
+  like_receive: number;
+  tip_receive: number;
+  following_course_count: number;
 };

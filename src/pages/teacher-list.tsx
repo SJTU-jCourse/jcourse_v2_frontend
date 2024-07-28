@@ -3,21 +3,9 @@ import { Card, Col, Input, List, Row } from "antd";
 import PageHeader from "../components/page-header";
 import TeacherFilter from "../components/teacher-filter";
 import TeacherItem from "../components/teacher-item";
-import { TeacherListItemProps } from "../models/model";
+import { teacherList } from "../models/mock";
 
 const TeacherListPage = () => {
-  const teacherList: TeacherListItemProps[] = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ].map(() => {
-    return {
-      code: "12345",
-      name: "张峰",
-      id: 1111,
-      department: "电子信息与电气工程学院",
-      title: "教授",
-      avatar: "",
-    };
-  });
   return (
     <>
       <PageHeader

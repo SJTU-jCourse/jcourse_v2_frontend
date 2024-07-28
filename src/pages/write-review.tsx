@@ -1,22 +1,10 @@
 import { Button, Card, Form, Input, Rate, Select, Space, Switch } from "antd";
 
 import PageHeader from "../components/page-header";
-import { CourseInReviewProps } from "../models/model";
+import { courseDetail } from "../models/mock";
 
 const WriteReviewPage = () => {
-  const course: CourseInReviewProps = {
-    id: 1,
-    code: "EE0502",
-    name: "电路实验",
-    main_teacher: {
-      id: 111,
-      code: "1111",
-      name: "张峰",
-      title: "教授",
-      department: "电子信息与电气工程学院",
-      avatar: "",
-    },
-  };
+  const course = courseDetail;
 
   return (
     <>

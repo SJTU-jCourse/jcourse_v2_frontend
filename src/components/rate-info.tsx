@@ -1,4 +1,4 @@
-import { Space, Typography } from "antd";
+import { Rate, Space, Typography } from "antd";
 
 import { RateInfoProps } from "../models/model";
 
@@ -9,6 +9,7 @@ const RateInfo = ({ rateInfo }: { rateInfo: RateInfoProps }) => {
 
   return (
     <Space>
+      <Rate disabled value={rateInfo.avg} style={{ fontSize: 14 }}></Rate>
       <Typography.Text strong style={{ fontSize: 18 }}>
         {rateInfo.avg.toFixed(1)}
       </Typography.Text>

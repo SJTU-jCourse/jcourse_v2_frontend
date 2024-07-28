@@ -3,25 +3,15 @@ import { Card, Col, Input, List, Row } from "antd";
 import PageHeader from "../components/page-header";
 import TrainingPlanFilter from "../components/training-plan-filter";
 import TrainingPlanItem from "../components/training-plan-item";
-import { TrainingPlanListItemProps } from "../models/model";
+import { trainingPlanList } from "../models/mock";
 
 const TrainingPlanListPage = () => {
-  const trainingPlanList: TrainingPlanListItemProps[] = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ].map(() => {
-    return {
-      id: 1,
-      name: "机械工程（钱学森班）",
-      department: "机械与动力工程学院",
-      entry_year: "2024",
-      degree: "学士",
-    };
-  });
+  const trainingPlans = trainingPlanList;
   return (
     <>
       <PageHeader
         title="培养计划"
-        subTitle={`共有${trainingPlanList.length}个培养计划`}
+        subTitle={`共有${trainingPlans.length}个培养计划`}
       ></PageHeader>
       <Row gutter={24}>
         <Col span={8}>
@@ -41,7 +31,7 @@ const TrainingPlanListPage = () => {
             <List
               pagination={{ align: "center" }}
               grid={{ gutter: 16, column: 2 }}
-              dataSource={trainingPlanList}
+              dataSource={trainingPlans}
               renderItem={(item) => (
                 <List.Item>
                   <TrainingPlanItem trainingPlan={item}></TrainingPlanItem>
