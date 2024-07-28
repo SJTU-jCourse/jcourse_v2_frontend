@@ -8,7 +8,10 @@ const NavBarUser = ({}) => {
       key: "1",
       label: <Link to="/user/1">个人中心</Link>,
     },
-
+    {
+      key: "2",
+      label: <Link to="/user/1">通知</Link>,
+    },
     {
       key: "4",
       danger: true,

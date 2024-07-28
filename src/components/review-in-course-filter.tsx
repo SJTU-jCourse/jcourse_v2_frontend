@@ -37,7 +37,7 @@ const ReviewInCourseFilter = () => {
         ></Select>
       </Col>
       <Col>
-        推荐指数：
+        评分：
         <Select popupMatchSelectWidth={false} options={rateOptions}></Select>
       </Col>
       <Button>筛选</Button>

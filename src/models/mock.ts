@@ -4,6 +4,7 @@ import {
   CourseListItemProps,
   RateInfoDetailProps,
   ReviewProps,
+  ReviewReplyItemProps,
   TeacherDetailProps,
   TeacherListItemProps,
   TrainingPlanBaseCourseProps,
@@ -11,7 +12,7 @@ import {
   TrainingPlanListItemProps,
   UserDetailProps,
   UserPointProps,
-  UserSummary,
+  UserSummaryProps,
 } from "./model";
 
 export const rateInfo: RateInfoDetailProps = {
@@ -181,9 +182,23 @@ export const userPointDetail: UserPointProps = {
   detail: [{ value: 10, time: "2020-07-01 11:00", description: "说明" }],
 };
 
-export const userSummaryDetail: UserSummary = {
+export const userSummaryDetail: UserSummaryProps = {
   review_count: 0,
   like_receive: 0,
   tip_receive: 0,
   following_course_count: 0,
 };
+
+export const reviewReplyListItem: ReviewReplyItemProps = {
+  id: 1,
+  user: userDetail,
+  reply_user: userDetail,
+  comment: "这里是回复正文",
+  created_at: 1722065399,
+  review_id: 0,
+  reply_to: 1,
+};
+
+export const reviewReplyList: ReviewReplyItemProps[] = [1, 2, 3].map(() => {
+  return reviewReplyListItem;
+});

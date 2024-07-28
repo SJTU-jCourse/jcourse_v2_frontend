@@ -147,9 +147,19 @@ export type UserPointProps = {
   detail: UserPointDetailItemProps[];
 };
 
-export type UserSummary = {
+export type UserSummaryProps = {
   review_count: number;
   like_receive: number;
   tip_receive: number;
   following_course_count: number;
+};
+
+export type ReviewReplyItemProps = {
+  id: number;
+  user: UserInReviewProps;
+  reply_user: UserInReviewProps | null;
+  comment: string;
+  created_at: number;
+  review_id: number;
+  reply_to: number | null;
 };

@@ -1,9 +1,10 @@
 import {
-  CommentOutlined,
   DeleteOutlined,
   EditOutlined,
   EllipsisOutlined,
   LikeOutlined,
+  MessageOutlined,
+  MessageTwoTone,
   ShareAltOutlined,
   TransactionOutlined,
   UserSwitchOutlined,
@@ -20,10 +21,13 @@ import {
   Typography,
 } from "antd";
 import dayjs from "dayjs";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { CourseInReviewProps, ReviewProps } from "../models/model";
 import MarkDownPreview from "./markdown-preview";
+import ReviewReplyList from "./review-reply-list";
+import { showReviewTipModal } from "./review-tip-modal";
 
 const { Text } = Typography;
 const UserInReview = ({
@@ -110,6 +114,8 @@ const ReviewItem = ({
     },
   ];
 
+  const [showReply, setShowReply] = useState<boolean>(false);
+
   return (
     <Space direction="vertical" style={{ width: "100%" }}>
       <Flex align="center" justify="space-between">
@@ -154,10 +160,24 @@ const ReviewItem = ({
         <Button size="small" type="text" icon={<LikeOutlined />}>
           {review.likes}
         </Button>
-        <Button size="small" type="text" icon={<CommentOutlined />}>
+        <Button
+          size="small"
+          type="text"
+          icon={showReply ? <MessageTwoTone /> : <MessageOutlined />}
+          onClick={() => {
+            setShowReply(!showReply);
+          }}
+        >
           {review.replies}
         </Button>
-        <Button size="small" type="text" icon={<TransactionOutlined />}>
+        <Button
+          size="small"
+          type="text"
+          icon={<TransactionOutlined />}
+          onClick={() => {
+            showReviewTipModal({ userPoint: 100 });
+          }}
+        >
           {review.replies}
         </Button>
         <Button size="small" type="text" icon={<ShareAltOutlined />}></Button>
@@ -165,6 +185,8 @@ const ReviewItem = ({
           <Button size="small" type="text" icon={<EllipsisOutlined />}></Button>
         </Dropdown>
       </Space>
+
+      {showReply && <ReviewReplyList />}
     </Space>
   );
 };
