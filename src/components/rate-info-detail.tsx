@@ -33,7 +33,7 @@ const RateInfoDetail = ({ rateInfo }: { rateInfo: RateInfoDetailProps }) => {
     <Row justify="space-between" align="middle" gutter={[16, 16]}>
       <Col>
         <Space direction="vertical" align="center">
-          <Typography.Text style={{ fontSize: 24, fontWeight: 600 }}>
+          <Typography.Text style={{ fontSize: 36, fontWeight: 600 }}>
             {rateInfo.avg.toFixed(1)}
           </Typography.Text>
 
