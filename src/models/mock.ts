@@ -17,7 +17,7 @@ import {
 
 export const rateInfo: RateInfoDetailProps = {
   avg: 1.0,
-  count: 103,
+  count: 12,
   rate_dist: [
     {
       rate: 1,
@@ -156,7 +156,7 @@ export const trainingPlanDetail: TrainingPlanDetailProps = {
 };
 
 export const reviewListItem: ReviewProps = {
-  id: 1,
+  id: 18666,
   user: userDetail,
   course: {
     id: 1,
@@ -171,8 +171,8 @@ export const reviewListItem: ReviewProps = {
   updated_at: 1722065399,
   is_anonymous: false,
   reactions: [],
-  replies: 22,
-  likes: 11,
+  replies: 222,
+  likes: 111,
 };
 export const reviewList: ReviewProps[] = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14,

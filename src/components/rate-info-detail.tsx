@@ -10,18 +10,15 @@ type RatePercentItemProps = {
 };
 
 const convertRateBar = (
+  total: number,
   rateBars: RateDistItemProps[]
 ): RatePercentItemProps[] => {
-  const maxCount = rateBars.reduce((max, item) => {
-    return item.count > max.count ? item : max;
-  }, rateBars[0]);
-
   return rateBars
     .map((item) => {
       return {
         rate: item.rate,
         name: `${item.rate}星`,
-        percent: (item.count * 100) / maxCount.count,
+        percent: (item.count * 100) / total,
         label: `${item.count}`,
       };
     })
@@ -31,46 +28,38 @@ const convertRateBar = (
 };
 
 const RateInfoDetail = ({ rateInfo }: { rateInfo: RateInfoDetailProps }) => {
-  const rateBars = convertRateBar(rateInfo.rate_dist);
+  const rateBars = convertRateBar(rateInfo.count, rateInfo.rate_dist);
   return (
-    <Row>
+    <Row justify="space-between" align="middle" gutter={[16, 16]}>
       <Col>
-        <Row align="middle">
-          <Col>
-            <Typography.Text
-              style={{ fontSize: 24, fontWeight: 600, marginRight: 16 }}
-            >
-              {rateInfo.avg.toFixed(1)}
-            </Typography.Text>
-          </Col>
+        <Space direction="vertical" align="center">
+          <Typography.Text style={{ fontSize: 24, fontWeight: 600 }}>
+            {rateInfo.avg.toFixed(1)}
+          </Typography.Text>
 
-          <Col flex="auto">
-            <Row justify="center">
-              <Rate
-                style={{ fontSize: 14 }}
-                disabled
-                value={rateInfo.avg}
-              ></Rate>
-            </Row>
-            <Row justify="center">
-              <Typography.Text>{rateInfo.count} 评分</Typography.Text>
-            </Row>
-          </Col>
-        </Row>
-
+          <Typography.Text type="secondary">
+            {rateInfo.count} 评分
+          </Typography.Text>
+        </Space>
+      </Col>
+      <Col>
         {rateBars.map((item) => {
           return (
             <Row>
               <Space>
-                <Typography.Text type="secondary">{item.name}</Typography.Text>
+                <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+                  {item.name}
+                </Typography.Text>
                 <Progress
-                  style={{ width: 140 }}
+                  style={{ width: 100 }}
                   status="normal"
                   showInfo={false}
                   percent={item.percent}
                   size="small"
                 ></Progress>
-                <Typography.Text type="secondary">{item.label}</Typography.Text>
+                <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+                  {item.label}
+                </Typography.Text>
               </Space>
             </Row>
           );

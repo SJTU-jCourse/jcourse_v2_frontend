@@ -139,24 +139,22 @@ const ReviewItem = ({
             showCourse={showCourse}
           />
         )}
-
-        <Text type="secondary">#{review.id}</Text>
       </Flex>
 
-      <Row align="middle" gutter={[16, 16]}>
-        <Col>
+      <Flex align="center" justify="flex-start" gap={10} wrap>
+        <div>
           <Text>学期：</Text>
           <Text strong>{review.semester}</Text>
-        </Col>
+        </div>
 
-        <Col>
+        <div>
           <Text>评分：</Text>
           <Rate disabled value={review.rate}></Rate>
-        </Col>
-      </Row>
+        </div>
+      </Flex>
 
       <MarkDownPreview src={review.comment}></MarkDownPreview>
-
+      <Text type="secondary">#{review.id}</Text>
       <Space>
         <Button size="small" type="text" icon={<LikeOutlined />}>
           {review.likes}

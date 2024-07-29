@@ -1,4 +1,4 @@
-import { Col, Divider, List, Row } from "antd";
+import { Col, Divider, List, Row, Typography } from "antd";
 
 import CourseItem from "../components/course-item";
 import CourseSimpleFilter from "../components/course-simple-filter";
@@ -24,10 +24,13 @@ const TeacherDetailPage = () => {
       </Row>
 
       <Divider></Divider>
+      <Typography.Text strong style={{ fontSize: 18 }}>
+        开设课程
+      </Typography.Text>
+      
+      <Divider></Divider>
 
-      <div style={{ paddingInline: 24 }}>
-        <CourseSimpleFilter></CourseSimpleFilter>
-      </div>
+      <CourseSimpleFilter></CourseSimpleFilter>
 
       <Divider></Divider>
 

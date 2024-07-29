@@ -1,4 +1,14 @@
-import { Button, Card, Col, Divider, List, Row, Space } from "antd";
+import {
+  Button,
+  Card,
+  Col,
+  Divider,
+  Flex,
+  List,
+  Row,
+  Space,
+  Typography,
+} from "antd";
 import { Link } from "react-router-dom";
 
 import CourseDetailCard from "../components/course-detail-card";
@@ -30,31 +40,31 @@ const CourseDetailPage = () => {
           ></RateInfoWithMyRate>
         </Col>
       </Row>
+      <Divider></Divider>
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={24} md={16}>
-          <Card
-            title="所有点评"
-            extra={[
-              <Link to="/write-review">
-                <Button type="primary">写点评</Button>
-              </Link>,
-            ]}
-            bordered={false}
-          >
-            <ReviewInCourseFilter></ReviewInCourseFilter>
-            <Divider></Divider>
-            <List
-              pagination={{ align: "center" }}
-              dataSource={reviews}
-              renderItem={(item) => {
-                return (
-                  <List.Item>
-                    <ReviewItem review={item}></ReviewItem>
-                  </List.Item>
-                );
-              }}
-            ></List>
-          </Card>
+          <Flex justify="space-between" align="center">
+            <Typography.Text strong style={{ fontSize: 18 }}>
+              所有点评
+            </Typography.Text>
+            <Link to="/write-review">
+              <Button type="primary">写点评</Button>
+            </Link>
+          </Flex>
+          <Divider></Divider>
+          <ReviewInCourseFilter></ReviewInCourseFilter>
+          <Divider></Divider>
+          <List
+            pagination={{ align: "center" }}
+            dataSource={reviews}
+            renderItem={(item) => {
+              return (
+                <List.Item>
+                  <ReviewItem review={item}></ReviewItem>
+                </List.Item>
+              );
+            }}
+          ></List>
         </Col>
         <Col xs={24} sm={24} md={8}>
           <Space direction="vertical" style={{ width: "100%" }}>

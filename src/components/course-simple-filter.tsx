@@ -1,4 +1,4 @@
-import { Button, Col, Row, Select } from "antd";
+import { Button, Flex, Select } from "antd";
 
 const orderOptions = ["最高评分", "最低评分", "最多点评", "最少点评"].map(
   (item) => {
@@ -17,20 +17,20 @@ const semesterOptions = [
 
 const CourseSimpleFilter = () => {
   return (
-    <Row gutter={[16, 16]}>
-      <Col>
+    <Flex wrap align="center" justify="flex-start" gap={8}>
+      <div>
         排序：
         <Select popupMatchSelectWidth={false} options={orderOptions}></Select>
-      </Col>
-      <Col>
+      </div>
+      <div>
         开课学期：
         <Select
           popupMatchSelectWidth={false}
           options={semesterOptions}
         ></Select>
-      </Col>
+      </div>
       <Button>筛选</Button>
-    </Row>
+    </Flex>
   );
 };
 

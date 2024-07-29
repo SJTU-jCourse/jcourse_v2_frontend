@@ -20,7 +20,7 @@ const TeacherItem = ({ teacher }: { teacher: TeacherListItemProps }) => {
         <Col flex="auto">
           <Space direction="vertical">
             <Link to={`/teacher/${teacher.id}`}>
-              <Text strong style={{ fontSize: 18 }}>
+              <Text strong style={{ fontSize: 16 }}>
                 {teacher.name}
               </Text>
               <Text> {teacher.title}</Text>

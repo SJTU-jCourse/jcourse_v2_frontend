@@ -14,7 +14,7 @@ const CourseItem = ({ course }: { course: CourseListItemProps }) => {
           <Link to={`/course/${course.id}`}>
             <Text
               strong
-              style={{ fontSize: 18 }}
+              style={{ fontSize: 16 }}
             >{`${course.code} ${course.name}（${course.main_teacher.name}）`}</Text>
           </Link>
 

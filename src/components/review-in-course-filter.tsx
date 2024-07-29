@@ -1,4 +1,4 @@
-import { Button, Select, Space } from "antd";
+import { Button, Flex, Select } from "antd";
 
 const orderOptions = [
   "最新回复",
@@ -24,15 +24,25 @@ const rateOptions = ["5", "4", "3", "2", "1"].map((item) => {
 
 const ReviewInCourseFilter = () => {
   return (
-    <Space>
-      排序：
-      <Select popupMatchSelectWidth={false} options={orderOptions}></Select>
-      学期：
-      <Select popupMatchSelectWidth={false} options={semesterOptions}></Select>
-      评分：
-      <Select popupMatchSelectWidth={false} options={rateOptions}></Select>
+    <Flex wrap align="center" justify="flex-start" gap={8}>
+      <div>
+        排序：
+        <Select popupMatchSelectWidth={false} options={orderOptions}></Select>
+      </div>
+      <div>
+        学期：
+        <Select
+          popupMatchSelectWidth={false}
+          options={semesterOptions}
+        ></Select>
+      </div>
+      <div>
+        评分：
+        <Select popupMatchSelectWidth={false} options={rateOptions}></Select>
+      </div>
+
       <Button>筛选</Button>
-    </Space>
+    </Flex>
   );
 };
 

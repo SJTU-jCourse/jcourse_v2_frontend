@@ -15,7 +15,7 @@ const TrainingPlanItem = ({
       <Flex justify="space-between">
         <Space direction="vertical">
           <Link to={`/training-plan/${trainingPlan.id}`}>
-            <Text strong style={{ fontSize: 18 }}>
+            <Text strong style={{ fontSize: 16 }}>
               {trainingPlan.name}
             </Text>
           </Link>
