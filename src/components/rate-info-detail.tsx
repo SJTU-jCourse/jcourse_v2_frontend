@@ -1,4 +1,4 @@
-import { Col, Progress, Rate, Row, Space, Typography } from "antd";
+import { Col, Progress, Row, Space, Typography } from "antd";
 
 import { RateDistItemProps, RateInfoDetailProps } from "../models/model";
 

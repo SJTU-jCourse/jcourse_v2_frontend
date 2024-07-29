@@ -12,12 +12,10 @@ import {
 import {
   Avatar,
   Button,
-  Col,
   Dropdown,
   Flex,
   MenuProps,
   Rate,
-  Row,
   Space,
   Tooltip,
   Typography,
