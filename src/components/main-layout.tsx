@@ -1,7 +1,8 @@
-import { OpenAIOutlined } from "@ant-design/icons";
-import { Button, Grid, Layout, Menu, MenuProps, theme } from "antd";
+import { OpenAIOutlined, SearchOutlined } from "@ant-design/icons";
+import { Button, Grid, Layout, Menu, MenuProps, Popover, theme } from "antd";
 import { Link, Outlet } from "react-router-dom";
 
+import MultipleSearch from "./multiple-search";
 import NavBarUser from "./nav-bar-user";
 
 const { Header, Content, Footer } = Layout;
@@ -43,11 +44,14 @@ const MainLayout = () => {
           items={navItems}
           style={{ flex: 1, minWidth: 0 }}
         />
-        <Button
-          style={{ marginInline: 10 }}
-          shape="circle"
-          icon={<OpenAIOutlined />}
-        ></Button>
+        <Popover content={<MultipleSearch></MultipleSearch>}>
+          <Button
+            style={{ marginInline: 10 }}
+            shape="circle"
+            icon={<SearchOutlined />}
+          ></Button>
+        </Popover>
+
         <NavBarUser></NavBarUser>
       </Header>
       <Content style={{ padding: screens.md ? "24px 96px" : "24px 0" }}>
