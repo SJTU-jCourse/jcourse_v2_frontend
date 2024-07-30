@@ -1,4 +1,4 @@
-import { OpenAIOutlined, SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import { Button, Grid, Layout, Menu, MenuProps, Popover, theme } from "antd";
 import { Link, Outlet } from "react-router-dom";
 
