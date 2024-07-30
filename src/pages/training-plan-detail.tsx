@@ -38,7 +38,7 @@ const TrainingPlanDetailPage = () => {
         dataSource={trainingPlan.courses}
         renderItem={(item) => {
           return (
-            <List.Item>
+            <List.Item key={item.base_course.id}>
               <TrainingPlanBaseCourse
                 trainingPlanBaseCourse={item}
               ></TrainingPlanBaseCourse>

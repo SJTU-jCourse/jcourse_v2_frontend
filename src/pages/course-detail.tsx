@@ -59,7 +59,7 @@ const CourseDetailPage = () => {
             dataSource={reviews}
             renderItem={(item) => {
               return (
-                <List.Item>
+                <List.Item key={item.id}>
                   <ReviewItem review={item}></ReviewItem>
                 </List.Item>
               );

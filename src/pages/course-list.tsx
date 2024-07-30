@@ -40,7 +40,7 @@ const CourseListPage = () => {
               grid={{ gutter: 16, xs: 1, sm: 1, column: 2 }}
               dataSource={courses}
               renderItem={(item) => (
-                <List.Item>
+                <List.Item key={item.id}>
                   <CourseItem course={item}></CourseItem>
                 </List.Item>
               )}

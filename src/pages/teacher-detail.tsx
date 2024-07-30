@@ -39,7 +39,7 @@ const TeacherDetailPage = () => {
         dataSource={teacher.courses}
         renderItem={(item) => {
           return (
-            <List.Item>
+            <List.Item key={item.id}>
               <CourseItem course={item}></CourseItem>
             </List.Item>
           );

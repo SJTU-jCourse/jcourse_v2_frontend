@@ -38,7 +38,7 @@ const TrainingPlanListPage = () => {
               grid={{ gutter: 16, xs: 1, sm: 1, column: 2 }}
               dataSource={trainingPlans}
               renderItem={(item) => (
-                <List.Item>
+                <List.Item key={item.id}>
                   <TrainingPlanItem trainingPlan={item}></TrainingPlanItem>
                 </List.Item>
               )}

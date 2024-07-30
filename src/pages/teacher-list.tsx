@@ -37,7 +37,7 @@ const TeacherListPage = () => {
               grid={{ gutter: 16, xs: 1, sm: 1, column: 2 }}
               dataSource={teacherList}
               renderItem={(item) => (
-                <List.Item>
+                <List.Item key={item.id}>
                   <TeacherItem teacher={item}></TeacherItem>
                 </List.Item>
               )}
