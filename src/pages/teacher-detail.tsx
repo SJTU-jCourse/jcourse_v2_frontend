@@ -17,7 +17,7 @@ const TeacherDetailPage = () => {
         </Col>
         <Col>
           <RateInfoWithMyRate
-            rateInfo={teacher.rate_info}
+            rateInfo={teacher.rating_info}
             myRate={myRate}
           ></RateInfoWithMyRate>
         </Col>

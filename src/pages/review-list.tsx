@@ -2,20 +2,20 @@ import { List } from "antd";
 
 import PageHeader from "../components/page-header";
 import ReviewItem from "../components/review-item";
-import { reviewList } from "../models/mock";
+import { useReviews } from "../services/review";
 
 const ReviewListPage = () => {
-  const reviews = reviewList;
+  const { data } = useReviews();
   return (
     <>
       <PageHeader
         title="点评"
-        subTitle={`共有${reviews.length}个点评`}
+        subTitle={`共有${data?.total}个点评`}
       ></PageHeader>
 
       <List
         pagination={{ align: "center" }}
-        dataSource={reviews}
+        dataSource={data?.data}
         renderItem={(item) => {
           return (
             <List.Item key={item.id}>

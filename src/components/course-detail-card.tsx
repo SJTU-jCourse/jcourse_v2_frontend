@@ -8,14 +8,20 @@ const CourseDetailCard = ({ course }: { course: CourseDetailProps }) => {
       <Descriptions column={1} style={{ maxWidth: 300 }}>
         <Descriptions.Item label="课号">{course.code}</Descriptions.Item>
         <Descriptions.Item label="学分">{course.credit}</Descriptions.Item>
-        <Descriptions.Item label="课程类型">
-          {course.categories.join(",")}
-        </Descriptions.Item>
+        {course.categories.length > 0 && (
+          <Descriptions.Item label="课程类型">
+            {course.categories.join(",")}
+          </Descriptions.Item>
+        )}
         <Descriptions.Item label="开课单位">
           {course.department}
         </Descriptions.Item>
         <Descriptions.Item label="开课学期">
-          {course.offered_semesters.join(",")}
+          {course.offered_courses
+            .map((item) => {
+              return item.grade;
+            })
+            .join(",")}
         </Descriptions.Item>
       </Descriptions>
     </div>

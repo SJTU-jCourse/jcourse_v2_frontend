@@ -24,7 +24,7 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { CourseInReviewProps, ReviewProps } from "../models/model";
+import { CourseMinimalProps, ReviewProps } from "../models/model";
 import MarkDownPreview from "./markdown-preview";
 import ReviewReplyList from "./review-reply-list";
 import { showReviewTipModal } from "./review-tip-modal";
@@ -43,7 +43,7 @@ const UserInReview = ({
   avatar: string | null;
   createdAt: number;
   updatedAt: number | null;
-  course?: CourseInReviewProps;
+  course?: CourseMinimalProps;
   showCourse?: boolean;
 }) => {
   return (

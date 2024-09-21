@@ -1,18 +1,18 @@
 import { Flex, Rate, Space, Typography } from "antd";
 
-import { RateInfoProps } from "../models/model";
+import { RatingInfoProps } from "../models/model";
 
-const RateInfo = ({ rateInfo }: { rateInfo: RateInfoProps }) => {
+const RateInfo = ({ rateInfo }: { rateInfo: RatingInfoProps }) => {
   if (rateInfo.count == 0) {
     return <Typography.Text type="secondary">暂无评分</Typography.Text>;
   }
 
   return (
     <Space direction="vertical" className="rate-info" style={{ minWidth: 80 }}>
-      <Rate disabled value={rateInfo.avg} style={{ fontSize: 14 }}></Rate>
+      <Rate disabled value={rateInfo.average} style={{ fontSize: 14 }}></Rate>
       <Flex justify="space-between" align="center">
         <Typography.Text strong style={{ fontSize: 20 }}>
-          {rateInfo.avg.toFixed(1)}
+          {rateInfo.average.toFixed(1)}
         </Typography.Text>
 
         <Typography.Text type="secondary">

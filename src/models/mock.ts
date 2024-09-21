@@ -1,24 +1,24 @@
 import {
   BaseCourseProps,
   CourseDetailProps,
-  CourseListItemProps,
-  RateInfoDetailProps,
+  CourseSummaryProps,
+  RatingInfoProps,
   ReviewProps,
   ReviewReplyItemProps,
   TeacherDetailProps,
-  TeacherListItemProps,
+  TeacherSummaryProps,
   TrainingPlanBaseCourseProps,
   TrainingPlanDetailProps,
-  TrainingPlanListItemProps,
+  TrainingPlanSummaryProps,
   UserDetailProps,
   UserPointProps,
   UserSummaryProps,
 } from "./model";
 
-export const rateInfo: RateInfoDetailProps = {
-  avg: 1.0,
+export const rateInfo: RatingInfoProps = {
+  average: 1.0,
   count: 12,
-  rate_dist: [
+  rating_dist: [
     {
       rate: 1,
       count: 1,
@@ -52,20 +52,20 @@ export const teacherDetail: TeacherDetailProps = {
   courses: [],
   email: "izf@sjtu.edu.cn",
   profile_url: "",
-  rate_info: rateInfo,
+  rating_info: rateInfo,
 };
 
-export const teacherListItem: TeacherListItemProps = {
+export const teacherListItem: TeacherSummaryProps = {
   code: "12345",
   name: "张峰",
   id: 1111,
   department: "电子信息与电气工程学院",
   title: "教授",
   avatar: "",
-  rate_info: rateInfo,
+  rating_info: rateInfo,
 };
 
-export const teacherList: TeacherListItemProps[] = [
+export const teacherList: TeacherSummaryProps[] = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
 ].map(() => {
   return teacherListItem;
@@ -79,11 +79,11 @@ export const courseDetail: CourseDetailProps = {
   main_teacher: teacherListItem,
   categories: ["必修", "工程科学与技术"],
   department: "电子信息与电气工程学院",
-  rate_info: rateInfo,
+  rating_info: rateInfo,
   offered_semesters: ["2023-2024-1", "2023-2024-2"],
 };
 
-export const courseListItem: CourseListItemProps = {
+export const courseListItem: CourseSummaryProps = {
   id: 1,
   code: "EE0502",
   name: "电路实验",
@@ -91,17 +91,18 @@ export const courseListItem: CourseListItemProps = {
   main_teacher: teacherDetail,
   categories: ["必修", "工程科学与技术"],
   department: "电子信息与电气工程学院",
-  rate_info: {
-    avg: 1.0,
+  rating_info: {
+    average: 1.0,
     count: 10,
+    rating_dist: [],
   },
 };
 
-export const courseList: CourseListItemProps[] = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9,
-].map(() => {
-  return courseListItem;
-});
+export const courseList: CourseSummaryProps[] = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(
+  () => {
+    return courseListItem;
+  }
+);
 
 teacherDetail.courses = courseList;
 
@@ -119,16 +120,16 @@ export const userDetail: UserDetailProps = {
   bio: "漫画《辉夜大小姐想让我告白～天才们的恋爱头脑战～》及其衍生作品的女主角",
 };
 
-export const trainingPlanListItem: TrainingPlanListItemProps = {
+export const trainingPlanListItem: TrainingPlanSummaryProps = {
   id: 1,
   name: "机械工程（钱学森班）",
   department: "机械与动力工程学院",
   entry_year: "2024",
   degree: "学士",
-  rate_info: rateInfo,
+  rating_info: rateInfo,
 };
 
-export const trainingPlanList: TrainingPlanListItemProps[] = [
+export const trainingPlanList: TrainingPlanSummaryProps[] = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
 ].map(() => {
   return trainingPlanListItem;
@@ -152,7 +153,7 @@ export const trainingPlanDetail: TrainingPlanDetailProps = {
     return trainingPlanBaseCourse;
   }),
 
-  rate_info: rateInfo,
+  rating_info: rateInfo,
 };
 
 export const reviewListItem: ReviewProps = {

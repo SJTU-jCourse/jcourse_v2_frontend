@@ -5,7 +5,7 @@ export type BaseCourseProps = {
   credit: number;
 };
 
-export type TeacherListItemProps = {
+export type TeacherSummaryProps = {
   id: number;
   code: string;
   name: string;
@@ -13,7 +13,7 @@ export type TeacherListItemProps = {
   department: string;
   avatar: string;
 
-  rate_info: RateInfoProps;
+  rating_info: RatingInfoProps;
 };
 
 export type TeacherDetailProps = {
@@ -26,24 +26,19 @@ export type TeacherDetailProps = {
   email: string;
   profile_url: string;
 
-  courses: CourseListItemProps[];
-  rate_info: RateInfoDetailProps;
+  courses: CourseSummaryProps[];
+  rating_info: RatingInfoProps;
 };
 
-export type CourseListItemProps = {
+export type CourseSummaryProps = {
   id: number;
   code: string;
   name: string;
   credit: number;
-  main_teacher: TeacherListItemProps;
+  main_teacher: TeacherSummaryProps;
   department: string;
   categories: string[];
-  rate_info: RateInfoProps;
-};
-
-export type RateInfoProps = {
-  count: number;
-  avg: number;
+  rating_info: RatingInfoProps;
 };
 
 export type RateDistItemProps = {
@@ -51,10 +46,10 @@ export type RateDistItemProps = {
   count: number;
 };
 
-export type RateInfoDetailProps = {
+export type RatingInfoProps = {
   count: number;
-  avg: number;
-  rate_dist: RateDistItemProps[];
+  average: number;
+  rating_dist: RateDistItemProps[];
 };
 
 export type CourseDetailProps = {
@@ -62,22 +57,30 @@ export type CourseDetailProps = {
   code: string;
   name: string;
   credit: number;
-  main_teacher: TeacherListItemProps;
-  offered_semesters: string[];
+  main_teacher: TeacherSummaryProps;
+  offered_courses: OfferedCourseProps[];
 
   department: string;
   categories: string[];
-  rate_info: RateInfoDetailProps;
+  rating_info: RatingInfoProps;
 };
 
-export type TrainingPlanListItemProps = {
+export type OfferedCourseProps = {
+  id : number;
+  semester : string;
+  grade : string[];
+  language: string;
+  teacher_group: TeacherSummaryProps[];
+}
+
+export type TrainingPlanSummaryProps = {
   id: number;
   name: string;
   department: string;
   entry_year: string;
   degree: string;
 
-  rate_info: RateInfoDetailProps;
+  rating_info: RatingInfoProps;
 };
 
 export type TrainingPlanBaseCourseProps = {
@@ -96,20 +99,20 @@ export type TrainingPlanDetailProps = {
   minimal_credits: number;
   courses: TrainingPlanBaseCourseProps[];
 
-  rate_info: RateInfoDetailProps;
+  rating_info: RatingInfoProps;
 };
 
-export type UserInReviewProps = {
+export type UserMinimalProps = {
   id: number;
   username: string;
   avatar: string;
 };
 
-export type CourseInReviewProps = {
+export type CourseMinimalProps = {
   id: number;
   code: string;
   name: string;
-  main_teacher: TeacherListItemProps;
+  main_teacher: TeacherSummaryProps;
 };
 
 export type ReviewReactionProps = {
@@ -119,8 +122,8 @@ export type ReviewReactionProps = {
 
 export type ReviewProps = {
   id: number;
-  user: UserInReviewProps;
-  course: CourseInReviewProps;
+  user: UserMinimalProps;
+  course: CourseMinimalProps;
   comment: string;
   rate: number;
   semester: string;
@@ -160,10 +163,17 @@ export type UserSummaryProps = {
 
 export type ReviewReplyItemProps = {
   id: number;
-  user: UserInReviewProps;
-  reply_user: UserInReviewProps | null;
+  user: UserMinimalProps;
+  reply_user: UserMinimalProps | null;
   comment: string;
   created_at: number;
   review_id: number;
   reply_to: number | null;
+};
+
+export type PaginationApiResult<Type> = {
+  total: number;
+  page: number;
+  page_size: number;
+  data: Type[];
 };

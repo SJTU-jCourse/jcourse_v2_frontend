@@ -1,6 +1,6 @@
 import { Col, Progress, Row, Space, Typography } from "antd";
 
-import { RateDistItemProps, RateInfoDetailProps } from "../models/model";
+import { RateDistItemProps, RatingInfoProps } from "../models/model";
 
 type RatePercentItemProps = {
   rate: number;
@@ -27,14 +27,14 @@ const convertRateBar = (
     });
 };
 
-const RateInfoDetail = ({ rateInfo }: { rateInfo: RateInfoDetailProps }) => {
-  const rateBars = convertRateBar(rateInfo.count, rateInfo.rate_dist);
+const RateInfoDetail = ({ rateInfo }: { rateInfo: RatingInfoProps }) => {
+  const rateBars = convertRateBar(rateInfo.count, rateInfo.rating_dist);
   return (
     <Row justify="space-between" align="middle" gutter={[16, 16]}>
       <Col>
         <Space direction="vertical" align="center">
           <Typography.Text style={{ fontSize: 36, fontWeight: 600 }}>
-            {rateInfo.avg.toFixed(1)}
+            {rateInfo.average.toFixed(1)}
           </Typography.Text>
 
           <Typography.Text type="secondary">

@@ -21,7 +21,7 @@ const TrainingPlanDetailPage = () => {
         </Col>
         <Col>
           <RateInfoWithMyRate
-            rateInfo={trainingPlan.rate_info}
+            rateInfo={trainingPlan.rating_info}
             myRate={myRate}
           ></RateInfoWithMyRate>
         </Col>

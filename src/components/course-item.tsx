@@ -1,12 +1,12 @@
 import { Card, Flex, Space, Tag, Typography } from "antd";
 import { Link } from "react-router-dom";
 
-import { CourseListItemProps } from "../models/model";
+import { CourseSummaryProps } from "../models/model";
 import RateInfo from "./rate-info";
 
 const { Text } = Typography;
 
-const CourseItem = ({ course }: { course: CourseListItemProps }) => {
+const CourseItem = ({ course }: { course: CourseSummaryProps }) => {
   return (
     <Card bordered={false}>
       <Flex justify="space-between">
@@ -26,7 +26,7 @@ const CourseItem = ({ course }: { course: CourseListItemProps }) => {
             })}
           </div>
         </Space>
-        <RateInfo rateInfo={course.rate_info}></RateInfo>
+        <RateInfo rateInfo={course.rating_info}></RateInfo>
       </Flex>
     </Card>
   );

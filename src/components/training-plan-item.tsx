@@ -1,14 +1,14 @@
 import { Card, Flex, Space, Typography } from "antd";
 import { Link } from "react-router-dom";
 
-import { TrainingPlanListItemProps } from "../models/model";
+import { TrainingPlanSummaryProps } from "../models/model";
 import RateInfo from "./rate-info";
 
 const { Text } = Typography;
 const TrainingPlanItem = ({
   trainingPlan,
 }: {
-  trainingPlan: TrainingPlanListItemProps;
+  trainingPlan: TrainingPlanSummaryProps;
 }) => {
   return (
     <Card bordered={false}>
@@ -25,7 +25,7 @@ const TrainingPlanItem = ({
             <Text type="secondary">{trainingPlan.department}</Text>
           </Space>
         </Space>
-        <RateInfo rateInfo={trainingPlan.rate_info}></RateInfo>
+        <RateInfo rateInfo={trainingPlan.rating_info}></RateInfo>
       </Flex>
     </Card>
   );

@@ -3,14 +3,16 @@ import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
 import PageHeader from "../components/page-header";
 import TeacherFilter from "../components/teacher-filter";
 import TeacherItem from "../components/teacher-item";
-import { teacherList } from "../models/mock";
+import { useTeachers } from "../services/teacher";
 
 const TeacherListPage = () => {
+  const { data } = useTeachers();
+
   return (
     <>
       <PageHeader
         title="教师"
-        subTitle={`共有${teacherList.length}个教师`}
+        subTitle={`共有${data?.total}个教师`}
       ></PageHeader>
       <Row gutter={[16, 16]}>
         <Col sm={8} xs={24}>
@@ -35,7 +37,7 @@ const TeacherListPage = () => {
             <List
               pagination={{ align: "center" }}
               grid={{ gutter: 16, xs: 1, sm: 1, column: 2 }}
-              dataSource={teacherList}
+              dataSource={data?.data}
               renderItem={(item) => (
                 <List.Item key={item.id}>
                   <TeacherItem teacher={item}></TeacherItem>

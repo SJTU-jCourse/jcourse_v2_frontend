@@ -1,6 +1,7 @@
 import { ConfigProvider } from "antd";
 import zhCN from "antd/locale/zh_CN";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { SWRConfig } from "swr";
 
 import MainLayout from "./components/main-layout";
 import IndexPage from "./pages";
@@ -76,9 +77,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <ConfigProvider locale={zhCN}>
-      <RouterProvider router={router} />
-    </ConfigProvider>
+    <SWRConfig value={{ shouldRetryOnError: false, revalidateOnFocus: false }}>
+      <ConfigProvider locale={zhCN}>
+        <RouterProvider router={router} />
+      </ConfigProvider>
+    </SWRConfig>
   );
 }
 

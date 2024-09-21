@@ -3,17 +3,15 @@ import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
 import CourseFullFilter from "../components/course-full-filter";
 import CourseItem from "../components/course-item";
 import PageHeader from "../components/page-header";
-import { courseList } from "../models/mock";
-import { CourseListItemProps } from "../models/model";
+import { useCourses } from "../services/course";
 
 const CourseListPage = () => {
-  const courses: CourseListItemProps[] = courseList;
-
+  const { data } = useCourses();
   return (
     <>
       <PageHeader
         title="课程"
-        subTitle={`共有${courses.length}个课程`}
+        subTitle={`共有${data?.total}个课程`}
       ></PageHeader>
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={8}>
@@ -38,7 +36,7 @@ const CourseListPage = () => {
             <List
               pagination={{ align: "center" }}
               grid={{ gutter: 16, xs: 1, sm: 1, column: 2 }}
-              dataSource={courses}
+              dataSource={data?.data}
               renderItem={(item) => (
                 <List.Item key={item.id}>
                   <CourseItem course={item}></CourseItem>

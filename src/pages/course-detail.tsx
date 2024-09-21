@@ -16,13 +16,16 @@ import PageHeader from "../components/page-header";
 import RateInfoWithMyRate from "../components/rate-info-my-rate";
 import ReviewInCourseFilter from "../components/review-in-course-filter";
 import ReviewItem from "../components/review-item";
-import { courseDetail, reviewList } from "../models/mock";
+import { reviewList } from "../models/mock";
+import { useCourseDetail } from "../services/course";
 
 const CourseDetailPage = () => {
-  const course = courseDetail;
+  const { data: course } = useCourseDetail(1);
   const reviews = reviewList;
   const myRate = 5;
-
+  if (!course) {
+    return <></>;
+  }
   return (
     <>
       <PageHeader
@@ -35,7 +38,7 @@ const CourseDetailPage = () => {
         </Col>
         <Col>
           <RateInfoWithMyRate
-            rateInfo={course.rate_info}
+            rateInfo={course.rating_info}
             myRate={myRate}
           ></RateInfoWithMyRate>
         </Col>

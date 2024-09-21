@@ -1,6 +1,6 @@
 import { Space } from "antd";
 
-import { RateInfoDetailProps } from "../models/model";
+import { RatingInfoProps } from "../models/model";
 import MyRate from "./my-rate";
 import RateInfoDetail from "./rate-info-detail";
 
@@ -8,7 +8,7 @@ const RateInfoWithMyRate = ({
   rateInfo,
   myRate,
 }: {
-  rateInfo: RateInfoDetailProps;
+  rateInfo: RatingInfoProps;
   myRate?: number;
 }) => {
   return (
