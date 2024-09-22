@@ -1,15 +1,21 @@
 import useSWR from "swr";
 
+import { TrainingPlanFilter } from "../models/filter";
 import {
+  Pagination,
   PaginationApiResult,
   TrainingPlanDetailProps,
   TrainingPlanSummaryProps,
 } from "../models/model";
 import { fetcher } from "./request";
 
-export const useTrainingPlans = () => {
+export const useTrainingPlans = (
+  pagination: Pagination,
+  filter?: TrainingPlanFilter
+) => {
+  const queryString = new URLSearchParams(filter).toString();
   const { data, error } = useSWR<PaginationApiResult<TrainingPlanSummaryProps>>(
-    "/api/training_plan",
+    `/api/training_plan?page=${pagination.page}&page_size=${pagination.page_size}&${queryString}`,
     fetcher
   );
 

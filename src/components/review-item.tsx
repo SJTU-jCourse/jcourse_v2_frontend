@@ -68,17 +68,15 @@ const UserInReview = ({
         <div>
           {updatedAt ? (
             <Tooltip
-              title={`发表于 ${dayjs
-                .unix(createdAt)
-                .format("YYYY-MM-DD HH:mm")}`}
+              title={`发表于 ${dayjs(createdAt).format("YYYY-MM-DD HH:mm")}`}
             >
               <Text type="secondary">
-                编辑于 {`${dayjs.unix(updatedAt).format("YYYY-MM-DD HH:mm")}`}
+                编辑于 {`${dayjs(updatedAt).format("YYYY-MM-DD HH:mm")}`}
               </Text>
             </Tooltip>
           ) : (
             <Text type="secondary">
-              发表于 {`${dayjs.unix(createdAt).format("YYYY-MM-DD HH:mm")}`}
+              发表于 {`${dayjs(createdAt).format("YYYY-MM-DD HH:mm")}`}
             </Text>
           )}
         </div>

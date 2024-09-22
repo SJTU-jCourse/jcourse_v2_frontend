@@ -66,12 +66,12 @@ export type CourseDetailProps = {
 };
 
 export type OfferedCourseProps = {
-  id : number;
-  semester : string;
-  grade : string[];
+  id: number;
+  semester: string;
+  grade: string[];
   language: string;
   teacher_group: TeacherSummaryProps[];
-}
+};
 
 export type TrainingPlanSummaryProps = {
   id: number;
@@ -176,4 +176,9 @@ export type PaginationApiResult<Type> = {
   page: number;
   page_size: number;
   data: Type[];
+};
+
+export type Pagination = {
+  page: number;
+  page_size: number;
 };

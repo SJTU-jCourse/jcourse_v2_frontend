@@ -9,19 +9,22 @@ import {
   Space,
   Typography,
 } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import CourseDetailCard from "../components/course-detail-card";
 import PageHeader from "../components/page-header";
 import RateInfoWithMyRate from "../components/rate-info-my-rate";
 import ReviewInCourseFilter from "../components/review-in-course-filter";
 import ReviewItem from "../components/review-item";
-import { reviewList } from "../models/mock";
+import usePagination from "../hooks/usePagination";
 import { useCourseDetail } from "../services/course";
+import { useReviews } from "../services/review";
 
 const CourseDetailPage = () => {
-  const { data: course } = useCourseDetail(1);
-  const reviews = reviewList;
+  const { id } = useParams();
+  const { data: course } = useCourseDetail(Number(id));
+  const { pagination, handlePageChange } = usePagination();
+  const { data: reviews } = useReviews(pagination, { course_id: course?.id });
   const myRate = 5;
   if (!course) {
     return <></>;
@@ -58,8 +61,15 @@ const CourseDetailPage = () => {
           <ReviewInCourseFilter></ReviewInCourseFilter>
           <Divider></Divider>
           <List
-            pagination={{ align: "center" }}
-            dataSource={reviews}
+            pagination={{
+              align: "center",
+              onChange: handlePageChange,
+              total: reviews?.total,
+              current: pagination?.page,
+              pageSize: pagination?.page_size,
+              hideOnSinglePage: true,
+            }}
+            dataSource={reviews?.data}
             renderItem={(item) => {
               return (
                 <List.Item key={item.id}>

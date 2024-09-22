@@ -17,11 +17,7 @@ const CourseDetailCard = ({ course }: { course: CourseDetailProps }) => {
           {course.department}
         </Descriptions.Item>
         <Descriptions.Item label="开课学期">
-          {course.offered_courses
-            .map((item) => {
-              return item.grade;
-            })
-            .join(",")}
+          {course.offered_courses.map((item) => item.semester).join(",")}
         </Descriptions.Item>
       </Descriptions>
     </div>

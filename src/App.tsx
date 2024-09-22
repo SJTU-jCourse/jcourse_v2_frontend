@@ -44,7 +44,7 @@ const router = createBrowserRouter([
         element: <ReviewListPage />,
       },
       {
-        path: "base-course/:id",
+        path: "base-course/:code",
         element: <BaseCourseDetailPage />,
       },
       {

@@ -3,15 +3,17 @@ import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
 import CourseFullFilter from "../components/course-full-filter";
 import CourseItem from "../components/course-item";
 import PageHeader from "../components/page-header";
+import usePagination from "../hooks/usePagination";
 import { useCourses } from "../services/course";
 
 const CourseListPage = () => {
-  const { data } = useCourses();
+  const { pagination, handlePageChange } = usePagination();
+  const { data, loading } = useCourses(pagination);
   return (
     <>
       <PageHeader
         title="课程"
-        subTitle={`共有${data?.total}个课程`}
+        subTitle={`共有${data ? data.total : 0}个课程`}
       ></PageHeader>
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={8}>
@@ -34,7 +36,15 @@ const CourseListPage = () => {
           </Row>
           <Row>
             <List
-              pagination={{ align: "center" }}
+              loading={loading}
+              pagination={{
+                align: "center",
+                onChange: handlePageChange,
+                total: data?.total,
+                current: pagination?.page,
+                pageSize: pagination?.page_size,
+                hideOnSinglePage: true,
+              }}
               grid={{ gutter: 16, xs: 1, sm: 1, column: 2 }}
               dataSource={data?.data}
               renderItem={(item) => (

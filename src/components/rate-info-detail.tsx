@@ -13,6 +13,11 @@ const convertRateBar = (
   total: number,
   rateBars: RateDistItemProps[]
 ): RatePercentItemProps[] => {
+  if (!rateBars || rateBars.length == 0) {
+    return [5, 4, 3, 2, 1].map((item) => {
+      return { rate: item, name: `${item}星`, percent: 0, label: `0` };
+    });
+  }
   return rateBars
     .map((item) => {
       return {
@@ -45,7 +50,7 @@ const RateInfoDetail = ({ rateInfo }: { rateInfo: RatingInfoProps }) => {
       <Col>
         {rateBars.map((item) => {
           return (
-            <Row>
+            <Row key={item.rate}>
               <Space>
                 <Typography.Text type="secondary" style={{ fontSize: 12 }}>
                   {item.name}

@@ -19,12 +19,13 @@ const CourseItem = ({ course }: { course: CourseSummaryProps }) => {
           </Link>
 
           <Text type="secondary">{`${course.credit} 学分 ${course.department}`}</Text>
-
-          <div>
-            {course.categories.map((category) => {
-              return <Tag color="green">{category}</Tag>;
-            })}
-          </div>
+          {course.categories.length > 0 && (
+            <div>
+              {course.categories.map((category) => {
+                return <Tag color="green">{category}</Tag>;
+              })}
+            </div>
+          )}
         </Space>
         <RateInfo rateInfo={course.rating_info}></RateInfo>
       </Flex>

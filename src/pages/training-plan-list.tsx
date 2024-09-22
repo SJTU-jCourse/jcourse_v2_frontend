@@ -3,15 +3,17 @@ import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
 import PageHeader from "../components/page-header";
 import TrainingPlanFilter from "../components/training-plan-filter";
 import TrainingPlanItem from "../components/training-plan-item";
+import usePagination from "../hooks/usePagination";
 import { useTrainingPlans } from "../services/training_plan";
 
 const TrainingPlanListPage = () => {
-  const { data } = useTrainingPlans();
+  const { pagination, handlePageChange } = usePagination();
+  const { data } = useTrainingPlans(pagination);
   return (
     <>
       <PageHeader
         title="培养计划"
-        subTitle={`共有${data?.total}个培养计划`}
+        subTitle={`共有${data ? data.total : 0}个培养计划`}
       ></PageHeader>
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={8}>
@@ -34,7 +36,14 @@ const TrainingPlanListPage = () => {
           </Row>
           <Row>
             <List
-              pagination={{ align: "center" }}
+              pagination={{
+                align: "center",
+                onChange: handlePageChange,
+                total: data?.total,
+                current: pagination?.page,
+                pageSize: pagination?.page_size,
+                hideOnSinglePage: true,
+              }}
               grid={{ gutter: 16, xs: 1, sm: 1, column: 2 }}
               dataSource={data?.data}
               renderItem={(item) => (

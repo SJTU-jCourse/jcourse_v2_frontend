@@ -1,15 +1,18 @@
 import useSWR from "swr";
 
+import { TeacherFilter } from "../models/filter";
 import {
+  Pagination,
   PaginationApiResult,
   TeacherDetailProps,
   TeacherSummaryProps,
 } from "../models/model";
 import { fetcher } from "./request";
 
-export const useTeachers = () => {
+export const useTeachers = (pagination: Pagination, filter?: TeacherFilter) => {
+  const queryString = new URLSearchParams(filter).toString();
   const { data, error } = useSWR<PaginationApiResult<TeacherSummaryProps>>(
-    "/api/teacher",
+    `/api/teacher?page=${pagination.page}&page_size=${pagination.page_size}&${queryString}`,
     fetcher
   );
 
