@@ -170,3 +170,8 @@ export type ReviewReplyItemProps = {
   review_id: number;
   reply_to: number | null;
 };
+
+export type SettingProps = {
+  key: string;
+  value: string | number | boolean;
+};

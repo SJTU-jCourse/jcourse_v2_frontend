@@ -11,7 +11,7 @@ const BaseCourseDetailPage = () => {
   const { code } = useParams();
   const { data: baseCourse } = useBaseCourseDetail(String(code));
   const { pagination, handlePageChange } = usePagination();
-  const { data: courses } = useCourses(pagination, { code: code });
+  const { data: courses } = useCourses(pagination, { code: code || "" });
   return (
     <>
       <PageHeader

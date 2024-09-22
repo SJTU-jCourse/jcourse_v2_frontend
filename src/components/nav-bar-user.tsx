@@ -1,21 +1,28 @@
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Badge, Dropdown, MenuProps } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const NavBarUser = ({}) => {
+import { UserDetailProps } from "../models/model";
+import { logout } from "../services/auth";
+
+const NavBarUser = ({ user }: { user?: UserDetailProps }) => {
+  const navigate = useNavigate();
+  const clickLogout = () => {
+    logout().then(() => {
+      navigate("/login");
+    });
+  };
+
   const items: MenuProps["items"] = [
     {
-      key: "1",
-      label: <Link to="/user/1">个人中心</Link>,
+      key: "home",
+      label: <Link to={`/user/${user?.id}`}>个人中心</Link>,
     },
     {
-      key: "2",
-      label: <Link to="/user/1">通知</Link>,
-    },
-    {
-      key: "4",
+      key: "logout",
       danger: true,
       label: "登出",
+      onClick: clickLogout,
     },
   ];
 
