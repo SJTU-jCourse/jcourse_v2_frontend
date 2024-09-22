@@ -16,7 +16,7 @@ import PageHeader from "../components/page-header";
 import RateInfoWithMyRate from "../components/rate-info-my-rate";
 import ReviewInCourseFilter from "../components/review-in-course-filter";
 import ReviewItem from "../components/review-item";
-import usePagination from "../hooks/usePagination";
+import usePagination from "../libs/usePagination";
 import { useCourseDetail } from "../services/course";
 import { useReviews } from "../services/review";
 

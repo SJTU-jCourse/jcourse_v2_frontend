@@ -125,7 +125,7 @@ export type ReviewProps = {
   user: UserMinimalProps;
   course: CourseMinimalProps;
   comment: string;
-  rate: number;
+  rating: number;
   semester: string;
   created_at: number;
   updated_at: number | null;
@@ -169,16 +169,4 @@ export type ReviewReplyItemProps = {
   created_at: number;
   review_id: number;
   reply_to: number | null;
-};
-
-export type PaginationApiResult<Type> = {
-  total: number;
-  page: number;
-  page_size: number;
-  data: Type[];
-};
-
-export type Pagination = {
-  page: number;
-  page_size: number;
 };

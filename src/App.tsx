@@ -8,6 +8,7 @@ import IndexPage from "./pages";
 import BaseCourseDetailPage from "./pages/base-course-detail";
 import CourseDetailPage from "./pages/course-detail";
 import CourseListPage from "./pages/course-list";
+import LoginPage from "./pages/login";
 import RankPage from "./pages/rank";
 import ReviewListPage from "./pages/review-list";
 import TeacherDetailPage from "./pages/teacher-detail";
@@ -18,6 +19,10 @@ import UserDetailPage from "./pages/user-detail";
 import WriteReviewPage from "./pages/write-review";
 
 const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
   {
     path: "/",
     element: <MainLayout />,

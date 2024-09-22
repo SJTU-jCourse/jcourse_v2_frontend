@@ -145,7 +145,7 @@ const ReviewItem = ({
 
         <div>
           <Text>评分：</Text>
-          <Rate disabled value={review.rate}></Rate>
+          <Rate disabled value={review.rating}></Rate>
         </div>
       </Flex>
 

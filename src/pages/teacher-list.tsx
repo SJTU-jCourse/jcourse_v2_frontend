@@ -3,7 +3,7 @@ import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
 import PageHeader from "../components/page-header";
 import TeacherFilter from "../components/teacher-filter";
 import TeacherItem from "../components/teacher-item";
-import usePagination from "../hooks/usePagination";
+import usePagination from "../libs/usePagination";
 import { useTeachers } from "../services/teacher";
 
 const TeacherListPage = () => {

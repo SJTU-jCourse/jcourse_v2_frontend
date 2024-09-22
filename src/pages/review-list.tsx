@@ -2,7 +2,7 @@ import { List } from "antd";
 
 import PageHeader from "../components/page-header";
 import ReviewItem from "../components/review-item";
-import usePagination from "../hooks/usePagination";
+import usePagination from "../libs/usePagination";
 import { useReviews } from "../services/review";
 
 const ReviewListPage = () => {

@@ -80,7 +80,7 @@ export const courseDetail: CourseDetailProps = {
   categories: ["必修", "工程科学与技术"],
   department: "电子信息与电气工程学院",
   rating_info: rateInfo,
-  offered_semesters: ["2023-2024-1", "2023-2024-2"],
+  offered_courses: []
 };
 
 export const courseListItem: CourseSummaryProps = {
@@ -166,7 +166,7 @@ export const reviewListItem: ReviewProps = {
     main_teacher: teacherListItem,
   },
   comment: "这里是点评正文",
-  rate: 1,
+  rating: 1,
   semester: "2024-2025-1",
   created_at: 1722065399,
   updated_at: 1722065399,

@@ -1,12 +1,8 @@
 import useSWR from "swr";
 
+import { Pagination, PaginationApiResult } from "../models/dto";
 import { TeacherFilter } from "../models/filter";
-import {
-  Pagination,
-  PaginationApiResult,
-  TeacherDetailProps,
-  TeacherSummaryProps,
-} from "../models/model";
+import { TeacherDetailProps, TeacherSummaryProps } from "../models/model";
 import { fetcher } from "./request";
 
 export const useTeachers = (pagination: Pagination, filter?: TeacherFilter) => {

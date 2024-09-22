@@ -13,7 +13,7 @@ const navItems: MenuProps["items"] = [
   { key: "课程", label: <Link to="/course">课程</Link> },
   { key: "教师", label: <Link to="/teacher">教师</Link> },
   { key: "培养计划", label: <Link to="/training-plan">培养计划</Link> },
-  { key: "排行榜", label: <Link to="/rank">排行榜</Link> },
+  // { key: "排行榜", label: <Link to="/rank">排行榜</Link> },
 ];
 
 const MainLayout = () => {
@@ -36,7 +36,9 @@ const MainLayout = () => {
           className="demo-logo"
           style={{ fontWeight: 800, fontSize: screens.md ? 20 : 14 }}
         >
-          {screens.md && "SJTU "}选课社区
+          {screens.md
+            ? import.meta.env.VITE_FULL_SITE_NAME
+            : import.meta.env.VITE_SHORT_SITE_NAME}
         </div>
         <Menu
           theme="light"
@@ -67,7 +69,7 @@ const MainLayout = () => {
         </div>
       </Content>
       <Footer style={{ textAlign: "center" }}>
-        SJTU 选课社区 ©{new Date().getFullYear()}
+        {import.meta.env.VITE_FULL_SITE_NAME} ©{new Date().getFullYear()}
       </Footer>
     </Layout>
   );

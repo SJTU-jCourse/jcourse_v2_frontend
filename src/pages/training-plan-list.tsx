@@ -3,7 +3,7 @@ import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
 import PageHeader from "../components/page-header";
 import TrainingPlanFilter from "../components/training-plan-filter";
 import TrainingPlanItem from "../components/training-plan-item";
-import usePagination from "../hooks/usePagination";
+import usePagination from "../libs/usePagination";
 import { useTrainingPlans } from "../services/training_plan";
 
 const TrainingPlanListPage = () => {

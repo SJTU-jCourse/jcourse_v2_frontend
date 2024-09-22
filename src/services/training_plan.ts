@@ -1,9 +1,8 @@
 import useSWR from "swr";
 
+import { Pagination, PaginationApiResult } from "../models/dto";
 import { TrainingPlanFilter } from "../models/filter";
 import {
-  Pagination,
-  PaginationApiResult,
   TrainingPlanDetailProps,
   TrainingPlanSummaryProps,
 } from "../models/model";

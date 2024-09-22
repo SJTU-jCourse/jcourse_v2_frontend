@@ -1,12 +1,11 @@
 import useSWR from "swr";
 
+import { Pagination, PaginationApiResult } from "../models/dto";
 import { CourseFilter } from "../models/filter";
 import {
   BaseCourseProps,
   CourseDetailProps,
   CourseSummaryProps,
-  Pagination,
-  PaginationApiResult,
 } from "../models/model";
 import { fetcher } from "./request";
 

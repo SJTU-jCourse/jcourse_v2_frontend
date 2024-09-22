@@ -1,7 +1,8 @@
 import useSWR from "swr";
 
+import { Pagination, PaginationApiResult } from "../models/dto";
 import { ReviewFilter } from "../models/filter";
-import { Pagination, PaginationApiResult, ReviewProps } from "../models/model";
+import { ReviewProps } from "../models/model";
 import { fetcher } from "./request";
 
 export const useReviews = (pagination: Pagination, filter?: ReviewFilter) => {

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import CourseItem from "../components/course-item";
 import CourseSimpleFilter from "../components/course-simple-filter";
 import PageHeader from "../components/page-header";
-import usePagination from "../hooks/usePagination";
+import usePagination from "../libs/usePagination";
 import { useBaseCourseDetail, useCourses } from "../services/course";
 
 const BaseCourseDetailPage = () => {

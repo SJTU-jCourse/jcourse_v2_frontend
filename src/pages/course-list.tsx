@@ -3,7 +3,7 @@ import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
 import CourseFullFilter from "../components/course-full-filter";
 import CourseItem from "../components/course-item";
 import PageHeader from "../components/page-header";
-import usePagination from "../hooks/usePagination";
+import usePagination from "../libs/usePagination";
 import { useCourses } from "../services/course";
 
 const CourseListPage = () => {
