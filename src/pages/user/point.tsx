@@ -1,8 +1,9 @@
 import { Descriptions, Table, Typography } from "antd";
 
-import { UserPointProps } from "../models/model";
+import { userPointDetail } from "../../models/mock";
 
-const UserPointTab = ({ userPoint }: { userPoint: UserPointProps }) => {
+const UserPointSubPage = () => {
+  const userPoint = userPointDetail;
   const columns = [
     {
       title: "时间",
@@ -46,4 +47,4 @@ const UserPointTab = ({ userPoint }: { userPoint: UserPointProps }) => {
   );
 };
 
-export default UserPointTab;
+export default UserPointSubPage;

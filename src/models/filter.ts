@@ -3,7 +3,8 @@ export type CourseFilter = {
 };
 
 export type ReviewFilter = {
-  course_id?: number;
+  user_id?: string;
+  course_id?: string;
 };
 
 export type TrainingPlanFilter = {};

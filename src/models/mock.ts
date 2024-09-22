@@ -12,7 +12,7 @@ import {
   TrainingPlanSummaryProps,
   UserDetailProps,
   UserPointProps,
-  UserSummaryProps,
+  UserActivityProps,
 } from "./model";
 
 export const rateInfo: RatingInfoProps = {
@@ -185,7 +185,7 @@ export const userPointDetail: UserPointProps = {
   detail: [{ value: 10, time: "2020-07-01 11:00", description: "说明" }],
 };
 
-export const userSummaryDetail: UserSummaryProps = {
+export const userActivityDetail: UserActivityProps = {
   review_count: 0,
   like_receive: 0,
   tip_receive: 0,

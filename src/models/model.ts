@@ -137,9 +137,15 @@ export type ReviewProps = {
 
 export type UserDetailProps = {
   id: number;
+  email: string;
+  type: string;
+  role: string;
   username: string;
   avatar: string;
   bio: string;
+  grade: string;
+  department: string;
+  major: string;
 };
 
 export type UserPointDetailItemProps = {
@@ -153,7 +159,7 @@ export type UserPointProps = {
   detail: UserPointDetailItemProps[];
 };
 
-export type UserSummaryProps = {
+export type UserActivityProps = {
   review_count: number;
   like_receive: number;
   tip_receive: number;

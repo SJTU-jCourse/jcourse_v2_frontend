@@ -24,7 +24,9 @@ const CourseDetailPage = () => {
   const { id } = useParams();
   const { data: course } = useCourseDetail(Number(id));
   const { pagination, handlePageChange } = usePagination();
-  const { data: reviews } = useReviews(pagination, { course_id: course?.id });
+  const { data: reviews } = useReviews(pagination, {
+    course_id: String(course?.id),
+  });
   const myRate = 5;
   if (!course) {
     return <></>;

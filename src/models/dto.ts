@@ -20,3 +20,13 @@ export type RegisterRequest = {
   password: string;
   code: string;
 };
+
+export type UserProfileRequest = {
+  username: string;
+  avatar: string;
+  type: string;
+  department: string;
+  major: string;
+  grade: string;
+  bio: string;
+};

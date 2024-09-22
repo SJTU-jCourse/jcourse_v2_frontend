@@ -16,6 +16,10 @@ import TeacherListPage from "./pages/teacher-list";
 import TrainingPlanDetailPage from "./pages/training-plan-detail";
 import TrainingPlanListPage from "./pages/training-plan-list";
 import UserDetailPage from "./pages/user-detail";
+import UserActivitySubPage from "./pages/user/activity";
+import UserPointSubPage from "./pages/user/point";
+import UserProfileSubPage from "./pages/user/profile";
+import UserReviewSubPage from "./pages/user/review";
 import WriteReviewPage from "./pages/write-review";
 
 const router = createBrowserRouter([
@@ -37,8 +41,14 @@ const router = createBrowserRouter([
         element: <RankPage />,
       },
       {
-        path: "user/:id",
+        path: "user/:id/",
         element: <UserDetailPage />,
+        children: [
+          { path: "activity", element: <UserActivitySubPage /> },
+          { path: "point", element: <UserPointSubPage /> },
+          { path: "profile", element: <UserProfileSubPage /> },
+          { path: "review", element: <UserReviewSubPage /> },
+        ],
       },
       {
         path: "write-review",
