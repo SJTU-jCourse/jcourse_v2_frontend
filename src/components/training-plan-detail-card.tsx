@@ -21,10 +21,10 @@ const TrainingPlanDetailCard = ({
           {trainingPlan.degree}
         </Descriptions.Item>
         <Descriptions.Item label="课程数">
-          {trainingPlan.course_count}
+          {trainingPlan.courses.length}
         </Descriptions.Item>
         <Descriptions.Item label="毕业最低学分">
-          {trainingPlan.minimal_credits}
+          {trainingPlan.min_credits}
         </Descriptions.Item>
       </Descriptions>
     </div>

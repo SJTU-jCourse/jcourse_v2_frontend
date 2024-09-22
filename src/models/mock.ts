@@ -137,7 +137,7 @@ export const trainingPlanList: TrainingPlanSummaryProps[] = [
 
 export const trainingPlanBaseCourse: TrainingPlanBaseCourseProps = {
   base_course: baseCourseDetail,
-  semester: "2024-2025-1",
+  suggest_semester: "2024-2025-1",
   category: "必修",
 };
 
@@ -147,8 +147,7 @@ export const trainingPlanDetail: TrainingPlanDetailProps = {
   department: "机械与动力工程学院",
   entry_year: "2024",
   degree: "本科",
-  course_count: 93,
-  minimal_credits: 183,
+  min_credits: 183,
   courses: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(() => {
     return trainingPlanBaseCourse;
   }),

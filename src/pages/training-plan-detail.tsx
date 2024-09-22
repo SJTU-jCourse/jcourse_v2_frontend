@@ -1,15 +1,20 @@
 import { Col, Divider, List, Row } from "antd";
+import { useParams } from "react-router-dom";
 
 import PageHeader from "../components/page-header";
 import RateInfoWithMyRate from "../components/rate-info-my-rate";
 import TrainingPlanBaseCourse from "../components/training-plan-base-course";
 import TrainingPlanBaseCourseFilter from "../components/training-plan-base-course-filter";
 import TrainingPlanDetailCard from "../components/training-plan-detail-card";
-import { trainingPlanDetail } from "../models/mock";
+import { useTrainingPlanDetail } from "../services/training_plan";
 
 const TrainingPlanDetailPage = () => {
-  const trainingPlan = trainingPlanDetail;
+  const { id } = useParams();
+  const { data: trainingPlan } = useTrainingPlanDetail(Number(id));
   const myRate = 5;
+  if (!trainingPlan) {
+    return <></>;
+  }
   return (
     <>
       <PageHeader title={`${trainingPlan.name} 专业`}></PageHeader>

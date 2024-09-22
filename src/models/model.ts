@@ -85,7 +85,7 @@ export type TrainingPlanSummaryProps = {
 
 export type TrainingPlanBaseCourseProps = {
   base_course: BaseCourseProps;
-  semester: string;
+  suggest_semester: string;
   category: string;
 };
 
@@ -95,8 +95,7 @@ export type TrainingPlanDetailProps = {
   department: string;
   entry_year: string;
   degree: string;
-  course_count: number;
-  minimal_credits: number;
+  min_credits: number;
   courses: TrainingPlanBaseCourseProps[];
 
   rating_info: RatingInfoProps;
