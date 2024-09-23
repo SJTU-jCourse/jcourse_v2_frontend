@@ -66,7 +66,7 @@ const UserInReview = ({
         )}
 
         <div>
-          {updatedAt ? (
+          {updatedAt && updatedAt != createdAt ? (
             <Tooltip
               title={`发表于 ${dayjs(createdAt).format("YYYY-MM-DD HH:mm")}`}
             >

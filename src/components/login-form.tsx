@@ -27,13 +27,27 @@ const LoginForm = () => {
       onFinish={onFinish}
     >
       {contextHolder}
-      <Form.Item name="email">
+      <Form.Item
+        name="email"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
         <Input
           placeholder="邮箱"
           addonAfter={`@${import.meta.env.VITE_EMAIL_SUFFIX}`}
         ></Input>
       </Form.Item>
-      <Form.Item name="password">
+      <Form.Item
+        name="password"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
         <Input.Password placeholder="密码" type="password"></Input.Password>
       </Form.Item>
       <Form.Item>
