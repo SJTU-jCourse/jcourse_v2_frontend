@@ -42,7 +42,7 @@ export type CourseSummaryProps = {
 };
 
 export type RateDistItemProps = {
-  rate: number;
+  rating: number;
   count: number;
 };
 

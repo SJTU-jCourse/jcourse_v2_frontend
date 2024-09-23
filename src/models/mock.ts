@@ -20,23 +20,23 @@ export const rateInfo: RatingInfoProps = {
   count: 12,
   rating_dist: [
     {
-      rate: 1,
+      rating: 1,
       count: 1,
     },
     {
-      rate: 2,
+      rating: 2,
       count: 2,
     },
     {
-      rate: 3,
+      rating: 3,
       count: 3,
     },
     {
-      rate: 4,
+      rating: 4,
       count: 5,
     },
     {
-      rate: 5,
+      rating: 5,
       count: 1,
     },
   ],

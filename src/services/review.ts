@@ -1,9 +1,9 @@
 import useSWR from "swr";
 
-import { Pagination, PaginationApiResult } from "../models/dto";
+import { Pagination, PaginationApiResult, ReviewRequest } from "../models/dto";
 import { ReviewFilter } from "../models/filter";
 import { ReviewProps } from "../models/model";
-import { fetcher } from "./request";
+import { fetcher, request } from "./request";
 
 export const useReviews = (pagination?: Pagination, filter?: ReviewFilter) => {
   const paginationString = pagination
@@ -20,4 +20,9 @@ export const useReviews = (pagination?: Pagination, filter?: ReviewFilter) => {
     loading: !error && !data,
     error,
   };
+};
+
+export const writeReview = async (r: ReviewRequest) => {
+  const resp = await request("/api/review", { method: "post", data: { ...r } });
+  return resp.data
 };

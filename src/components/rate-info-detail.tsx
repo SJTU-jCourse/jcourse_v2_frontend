@@ -13,23 +13,16 @@ const convertRateBar = (
   total: number,
   rateBars: RateDistItemProps[]
 ): RatePercentItemProps[] => {
-  if (!rateBars || rateBars.length == 0) {
-    return [5, 4, 3, 2, 1].map((item) => {
-      return { rate: item, name: `${item}星`, percent: 0, label: `0` };
-    });
-  }
-  return rateBars
-    .map((item) => {
-      return {
-        rate: item.rate,
-        name: `${item.rate}星`,
-        percent: (item.count * 100) / total,
-        label: `${item.count}`,
-      };
-    })
-    .sort((a, b) => {
-      return b.rate - a.rate;
-    });
+  const rates = [5, 4, 3, 2, 1].map((item) => {
+    return { rate: item, name: `${item}星`, percent: 0, label: `0` };
+  });
+
+  rateBars.forEach((item) => {
+    console.log(item)
+    rates[5 - item.rating].percent = item.count * 100 / total;
+  });
+
+  return rates;
 };
 
 const RateInfoDetail = ({ rateInfo }: { rateInfo: RatingInfoProps }) => {

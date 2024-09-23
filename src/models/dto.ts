@@ -30,3 +30,11 @@ export type UserProfileRequest = {
   grade: string;
   bio: string;
 };
+
+export type ReviewRequest = {
+  rating: number;
+  grade: string;
+  comment: string;
+  is_anonymous: boolean;
+  course_id: number;
+}
