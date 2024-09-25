@@ -1,22 +1,52 @@
-import { Checkbox, Col, Collapse, CollapseProps, Row } from "antd";
+import { Checkbox, Col, Collapse, CollapseProps, Row, Tag } from "antd";
+import { useState } from "react";
 
-const CourseFullFilter = () => {
+import { CourseFilterForQuery } from "../models/filter";
+import { CourseFilter, FilterItem } from "../models/model";
+
+const FilterItemElement = ({ item }: { item: FilterItem }) => {
+  return (
+    <Col span={24} key={item.value}>
+      <Checkbox value={item.value}>
+        {item.value} <Tag>{item.count}</Tag>
+      </Checkbox>
+    </Col>
+  );
+};
+
+const CourseFullFilter = ({
+  filter,
+  onChange,
+}: {
+  filter?: CourseFilter;
+  onChange?: (value: CourseFilterForQuery) => void;
+}) => {
+  const [filterForQuery, setFilterForQuery] = useState<CourseFilterForQuery>();
+
+  if (!filter) {
+    return <></>;
+  }
+
   const items: CollapseProps["items"] = [
-    {
-      key: "reviews",
-      label: "点评",
-      children: <Checkbox>仅显示有点评的课程</Checkbox>,
-    },
     {
       key: "categories",
       label: "课程类别",
       children: (
-        <Checkbox.Group>
+        <Checkbox.Group
+          onChange={(value: string[]) => {
+            const newValue: CourseFilterForQuery = {
+              ...filterForQuery,
+              categories: value,
+            };
+            setFilterForQuery(newValue);
+            if (onChange) {
+              onChange(newValue);
+            }
+          }}
+        >
           <Row>
-            {["人文科学", "自然科学"].map((item) => (
-              <Col span={24} key={item}>
-                <Checkbox value={item}>{item}</Checkbox>
-              </Col>
+            {filter.categories.sort().map((item) => (
+              <FilterItemElement item={item}></FilterItemElement>
             ))}
           </Row>
         </Checkbox.Group>
@@ -26,12 +56,21 @@ const CourseFullFilter = () => {
       key: "departments",
       label: "开课单位",
       children: (
-        <Checkbox.Group>
+        <Checkbox.Group
+          onChange={(value: string[]) => {
+            const newValue: CourseFilterForQuery = {
+              ...filterForQuery,
+              departments: value,
+            };
+            setFilterForQuery(newValue);
+            if (onChange) {
+              onChange(newValue);
+            }
+          }}
+        >
           <Row>
-            {["船舶海洋与建筑工程学院", "机械与动力工程学院"].map((item) => (
-              <Col span={24} key={item}>
-                <Checkbox value={item}>{item}</Checkbox>
-              </Col>
+            {filter.departments.sort().map((item) => (
+              <FilterItemElement item={item}></FilterItemElement>
             ))}
           </Row>
         </Checkbox.Group>
@@ -41,33 +80,49 @@ const CourseFullFilter = () => {
       key: "credits",
       label: "学分",
       children: (
-        <Checkbox.Group>
+        <Checkbox.Group
+          onChange={(value: string[]) => {
+            const newValue: CourseFilterForQuery = {
+              ...filterForQuery,
+              credits: value,
+            };
+            setFilterForQuery(newValue);
+            if (onChange) {
+              onChange(newValue);
+            }
+          }}
+        >
           <Row>
-            {[1, 2, 3, 4, 5].map((item) => (
-              <Col span={24} key={item}>
-                <Checkbox value={item}>{item}</Checkbox>
-              </Col>
-            ))}
+            {filter.credits
+              .sort((a, b) => {
+                return Number(a.value) - Number(b.value);
+              })
+              .map((item) => (
+                <FilterItemElement item={item}></FilterItemElement>
+              ))}
           </Row>
         </Checkbox.Group>
       ),
     },
     {
-      key: "semester",
+      key: "semesters",
       label: "开课学期",
       children: (
-        <Checkbox.Group>
+        <Checkbox.Group
+          onChange={(value: string[]) => {
+            const newValue: CourseFilterForQuery = {
+              ...filterForQuery,
+              semesters: value,
+            };
+            setFilterForQuery(newValue);
+            if (onChange) {
+              onChange(newValue);
+            }
+          }}
+        >
           <Row>
-            {[
-              "2023-2024-1",
-              "2023-2024-2",
-              "2023-2024-3",
-              "2024-2025-1",
-              "2024-2025-2",
-            ].map((item) => (
-              <Col span={24} key={item}>
-                <Checkbox value={item}>{item}</Checkbox>
-              </Col>
+            {filter.semesters.sort().map((item) => (
+              <FilterItemElement item={item}></FilterItemElement>
             ))}
           </Row>
         </Checkbox.Group>

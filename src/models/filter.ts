@@ -1,14 +1,18 @@
-export type CourseFilter = {
-  code: string;
+export type CourseFilterForQuery = {
+  code?: string;
+  departments?: string[];
+  credits?: string[];
+  semesters?: string[];
+  categories?: string[];
 };
 
-export type ReviewFilter = {
+export type ReviewFilterForQuery = {
   user_id?: string;
   course_id?: string;
 };
 
-export type TrainingPlanFilter = {};
+export type TrainingPlanFilterForQuery = {};
 
-export type TeacherFilter = {
+export type TeacherFilterForQuery = {
   department: string;
 };

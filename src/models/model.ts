@@ -180,3 +180,15 @@ export type SettingProps = {
   key: string;
   value: string | number | boolean;
 };
+
+export type FilterItem = {
+  value: string;
+  count: number;
+};
+
+export type CourseFilter = {
+  departments: FilterItem[];
+  categories: FilterItem[];
+  credits: FilterItem[];
+  semesters: FilterItem[];
+};
