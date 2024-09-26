@@ -1,20 +1,11 @@
-import { Checkbox, Col, Collapse, CollapseProps, Row, Tag } from "antd";
+import { Checkbox, Collapse, CollapseProps, Row } from "antd";
 import { useState } from "react";
 
 import { CourseFilterForQuery } from "../models/filter";
-import { CourseFilter, FilterItem } from "../models/model";
+import { CourseFilter } from "../models/model";
+import FilterItemElement from "./filter-item";
 
-const FilterItemElement = ({ item }: { item: FilterItem }) => {
-  return (
-    <Col span={24} key={item.value}>
-      <Checkbox value={item.value}>
-        {item.value} <Tag>{item.count}</Tag>
-      </Checkbox>
-    </Col>
-  );
-};
-
-const CourseFullFilter = ({
+const CourseFilterView = ({
   filter,
   onChange,
 }: {
@@ -45,9 +36,13 @@ const CourseFullFilter = ({
           }}
         >
           <Row>
-            {filter.categories.sort().map((item) => (
-              <FilterItemElement item={item}></FilterItemElement>
-            ))}
+            {filter.categories
+              .sort((a, b) => {
+                return b.value.localeCompare(a.value);
+              })
+              .map((item) => (
+                <FilterItemElement item={item}></FilterItemElement>
+              ))}
           </Row>
         </Checkbox.Group>
       ),
@@ -69,9 +64,13 @@ const CourseFullFilter = ({
           }}
         >
           <Row>
-            {filter.departments.sort().map((item) => (
-              <FilterItemElement item={item}></FilterItemElement>
-            ))}
+            {filter.departments
+              .sort((a, b) => {
+                return b.value.localeCompare(a.value);
+              })
+              .map((item) => (
+                <FilterItemElement item={item}></FilterItemElement>
+              ))}
           </Row>
         </Checkbox.Group>
       ),
@@ -121,9 +120,13 @@ const CourseFullFilter = ({
           }}
         >
           <Row>
-            {filter.semesters.sort().map((item) => (
-              <FilterItemElement item={item}></FilterItemElement>
-            ))}
+            {filter.semesters
+              .sort((a, b) => {
+                return b.value.localeCompare(a.value);
+              })
+              .map((item) => (
+                <FilterItemElement item={item}></FilterItemElement>
+              ))}
           </Row>
         </Checkbox.Group>
       ),
@@ -132,4 +135,4 @@ const CourseFullFilter = ({
   return <Collapse ghost items={items}></Collapse>;
 };
 
-export default CourseFullFilter;
+export default CourseFilterView;

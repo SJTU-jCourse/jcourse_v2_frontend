@@ -1,14 +1,21 @@
 import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
 
 import PageHeader from "../components/page-header";
-import TrainingPlanFilter from "../components/training-plan-filter";
+import TrainingPlanFilterView from "../components/training-plan-filter";
 import TrainingPlanItem from "../components/training-plan-item";
 import usePagination from "../libs/usePagination";
-import { useTrainingPlans } from "../services/training_plan";
+import {
+  useTrainingPlanFilter,
+  useTrainingPlanFilterForQuery,
+  useTrainingPlans,
+} from "../services/training_plan";
 
 const TrainingPlanListPage = () => {
   const { pagination, handlePageChange } = usePagination();
-  const { data } = useTrainingPlans(pagination);
+  const { filterForQuery, onFilterChange, doFilter } =
+    useTrainingPlanFilterForQuery();
+  const { data: filter } = useTrainingPlanFilter();
+  const { data } = useTrainingPlans(pagination, filterForQuery);
   return (
     <>
       <PageHeader
@@ -17,8 +24,11 @@ const TrainingPlanListPage = () => {
       ></PageHeader>
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={8}>
-          <Card title="筛选" extra={<Button>筛选</Button>}>
-            <TrainingPlanFilter></TrainingPlanFilter>
+          <Card title="筛选" extra={<Button onClick={doFilter}>筛选</Button>}>
+            <TrainingPlanFilterView
+              filter={filter}
+              onChange={onFilterChange}
+            ></TrainingPlanFilterView>
           </Card>
         </Col>
 

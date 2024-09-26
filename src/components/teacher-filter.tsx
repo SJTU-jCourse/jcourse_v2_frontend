@@ -1,25 +1,82 @@
-import { Select } from "antd";
+import { Checkbox, Collapse, CollapseProps, Row } from "antd";
+import { useState } from "react";
 
-const departmentOptions = [
-  "船舶海洋与建筑工程学院",
-  "机械与动力工程学院",
-  "电子信息与电气工程学院",
-  "材料科学与工程学院",
-  "生物医学工程学院",
-].map((item) => {
-  return { label: item, value: item };
-});
+import { TeacherFilterForQuery } from "../models/filter";
+import { TeacherFilter } from "../models/model";
+import FilterItemElement from "./filter-item";
 
-const TeacherFilter = () => {
-  return (
-    <>
-      学院：
-      <Select
-        popupMatchSelectWidth={false}
-        options={departmentOptions}
-      ></Select>
-    </>
-  );
+const TeacherFilterView = ({
+  filter,
+  onChange,
+}: {
+  filter?: TeacherFilter;
+  onChange?: (value: TeacherFilterForQuery) => void;
+}) => {
+  const [filterForQuery, setFilterForQuery] = useState<TeacherFilterForQuery>();
+
+  if (!filter) {
+    return <></>;
+  }
+
+  const items: CollapseProps["items"] = [
+    {
+      key: "departments",
+      label: "单位",
+      children: (
+        <Checkbox.Group
+          onChange={(value: string[]) => {
+            const newValue: TeacherFilterForQuery = {
+              ...filterForQuery,
+              departments: value,
+            };
+            setFilterForQuery(newValue);
+            if (onChange) {
+              onChange(newValue);
+            }
+          }}
+        >
+          <Row>
+            {filter.departments
+              .sort((a, b) => {
+                return b.value.localeCompare(a.value);
+              })
+              .map((item) => (
+                <FilterItemElement item={item}></FilterItemElement>
+              ))}
+          </Row>
+        </Checkbox.Group>
+      ),
+    },
+    {
+      key: "titles",
+      label: "职称",
+      children: (
+        <Checkbox.Group
+          onChange={(value: string[]) => {
+            const newValue: TeacherFilterForQuery = {
+              ...filterForQuery,
+              titles: value,
+            };
+            setFilterForQuery(newValue);
+            if (onChange) {
+              onChange(newValue);
+            }
+          }}
+        >
+          <Row>
+            {filter.titles
+              .sort((a, b) => {
+                return b.value.localeCompare(a.value);
+              })
+              .map((item) => (
+                <FilterItemElement item={item}></FilterItemElement>
+              ))}
+          </Row>
+        </Checkbox.Group>
+      ),
+    },
+  ];
+  return <Collapse ghost items={items}></Collapse>;
 };
 
-export default TeacherFilter;
+export default TeacherFilterView;

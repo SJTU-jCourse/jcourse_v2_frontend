@@ -1,34 +1,110 @@
-import { Select, Space } from "antd";
+import { Checkbox, Collapse, CollapseProps, Row } from "antd";
+import { useState } from "react";
 
-const gradeOptions = ["2024", "2023", "2022", "2021", "2020"].map((item) => {
-  return { label: item, value: item };
-});
-const departmentOptions = [
-  "船舶海洋与建筑工程学院",
-  "机械与动力工程学院",
-  "电子信息与电气工程学院",
-  "材料科学与工程学院",
-  "生物医学工程学院",
-].map((item) => {
-  return { label: item, value: item };
-});
+import { TrainingPlanFilterForQuery } from "../models/filter";
+import { TrainingPlanFilter } from "../models/model";
+import FilterItemElement from "./filter-item";
 
-const TrainingPlanFilter = () => {
-  return (
-    <Space direction="vertical">
-      <div>
-        年级：
-        <Select popupMatchSelectWidth={false} options={gradeOptions}></Select>
-      </div>
-      <div>
-        学院：
-        <Select
-          popupMatchSelectWidth={false}
-          options={departmentOptions}
-        ></Select>
-      </div>
-    </Space>
-  );
+const TrainingPlanFilterView = ({
+  filter,
+  onChange,
+}: {
+  filter?: TrainingPlanFilter;
+  onChange?: (value: TrainingPlanFilterForQuery) => void;
+}) => {
+  const [filterForQuery, setFilterForQuery] =
+    useState<TrainingPlanFilterForQuery>();
+
+  if (!filter) {
+    return <></>;
+  }
+  const items: CollapseProps["items"] = [
+    {
+      key: "departments",
+      label: "培养单位",
+      children: (
+        <Checkbox.Group
+          onChange={(value: string[]) => {
+            const newValue: TrainingPlanFilterForQuery = {
+              ...filterForQuery,
+              departments: value,
+            };
+            setFilterForQuery(newValue);
+            if (onChange) {
+              onChange(newValue);
+            }
+          }}
+        >
+          <Row>
+            {filter.departments
+              .sort((a, b) => {
+                return b.value.localeCompare(a.value);
+              })
+              .map((item) => (
+                <FilterItemElement item={item}></FilterItemElement>
+              ))}
+          </Row>
+        </Checkbox.Group>
+      ),
+    },
+    {
+      key: "degrees",
+      label: "学历层次",
+      children: (
+        <Checkbox.Group
+          onChange={(value: string[]) => {
+            const newValue: TrainingPlanFilterForQuery = {
+              ...filterForQuery,
+              degrees: value,
+            };
+            setFilterForQuery(newValue);
+            if (onChange) {
+              onChange(newValue);
+            }
+          }}
+        >
+          <Row>
+            {filter.degrees
+              .sort((a, b) => {
+                return b.value.localeCompare(a.value);
+              })
+              .map((item) => (
+                <FilterItemElement item={item}></FilterItemElement>
+              ))}
+          </Row>
+        </Checkbox.Group>
+      ),
+    },
+    {
+      key: "entry_years",
+      label: "年级",
+      children: (
+        <Checkbox.Group
+          onChange={(value: string[]) => {
+            const newValue: TrainingPlanFilterForQuery = {
+              ...filterForQuery,
+              entry_years: value,
+            };
+            setFilterForQuery(newValue);
+            if (onChange) {
+              onChange(newValue);
+            }
+          }}
+        >
+          <Row>
+            {filter.entry_years
+              .sort((a, b) => {
+                return b.value.localeCompare(a.value);
+              })
+              .map((item) => (
+                <FilterItemElement item={item}></FilterItemElement>
+              ))}
+          </Row>
+        </Checkbox.Group>
+      ),
+    },
+  ];
+  return <Collapse ghost items={items}></Collapse>;
 };
 
-export default TrainingPlanFilter;
+export default TrainingPlanFilterView;

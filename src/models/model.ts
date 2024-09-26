@@ -192,3 +192,14 @@ export type CourseFilter = {
   credits: FilterItem[];
   semesters: FilterItem[];
 };
+
+export type TeacherFilter = {
+  departments: FilterItem[];
+  titles: FilterItem[];
+};
+
+export type TrainingPlanFilter = {
+  departments: FilterItem[];
+  entry_years: FilterItem[];
+  degrees: FilterItem[];
+};

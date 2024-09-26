@@ -1,7 +1,6 @@
 import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
-import { useEffect, useState } from "react";
 
-import CourseFullFilter from "../components/course-full-filter";
+import CourseFilterView from "../components/course-filter";
 import CourseItem from "../components/course-item";
 import PageHeader from "../components/page-header";
 import usePagination from "../libs/usePagination";
@@ -14,11 +13,11 @@ import {
 
 const CourseListPage = () => {
   const { pagination, handlePageChange } = usePagination();
-  const { filterForQuery, onFilterChange,doFilter } = useCourseFilterForQuery();
+  const { filterForQuery, onFilterChange, doFilter } =
+    useCourseFilterForQuery();
   const { data, loading } = useCourses(pagination, filterForQuery);
   const { data: filter } = useCourseFilter();
 
-  
   return (
     <>
       <PageHeader
@@ -28,12 +27,12 @@ const CourseListPage = () => {
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={8}>
           <Card title="筛选" extra={<Button onClick={doFilter}>筛选</Button>}>
-            <CourseFullFilter
+            <CourseFilterView
               filter={filter}
               onChange={(value: CourseFilterForQuery) => {
                 onFilterChange(value);
               }}
-            ></CourseFullFilter>
+            ></CourseFilterView>
           </Card>
         </Col>
 

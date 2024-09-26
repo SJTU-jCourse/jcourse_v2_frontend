@@ -11,8 +11,13 @@ export type ReviewFilterForQuery = {
   course_id?: string;
 };
 
-export type TrainingPlanFilterForQuery = {};
+export type TrainingPlanFilterForQuery = {
+  departments?: string[];
+  degrees?: string[];
+  entry_years?: string[];
+};
 
 export type TeacherFilterForQuery = {
-  department: string;
+  departments?: string[];
+  titles?: string[];
 };

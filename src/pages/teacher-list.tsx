@@ -1,14 +1,21 @@
 import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
 
 import PageHeader from "../components/page-header";
-import TeacherFilter from "../components/teacher-filter";
+import TeacherFilterView from "../components/teacher-filter";
 import TeacherItem from "../components/teacher-item";
 import usePagination from "../libs/usePagination";
-import { useTeachers } from "../services/teacher";
+import {
+  useTeacherFilter,
+  useTeacherFilterForQuery,
+  useTeachers,
+} from "../services/teacher";
 
 const TeacherListPage = () => {
   const { pagination, handlePageChange } = usePagination();
-  const { data, loading } = useTeachers(pagination);
+  const { filterForQuery, onFilterChange, doFilter } =
+    useTeacherFilterForQuery();
+  const { data: filter } = useTeacherFilter();
+  const { data, loading } = useTeachers(pagination, filterForQuery);
 
   return (
     <>
@@ -18,8 +25,11 @@ const TeacherListPage = () => {
       ></PageHeader>
       <Row gutter={[16, 16]}>
         <Col sm={8} xs={24}>
-          <Card title="筛选" extra={<Button>筛选</Button>}>
-            <TeacherFilter></TeacherFilter>
+          <Card title="筛选" extra={<Button onClick={doFilter}>筛选</Button>}>
+            <TeacherFilterView
+              filter={filter}
+              onChange={onFilterChange}
+            ></TeacherFilterView>
           </Card>
         </Col>
 
