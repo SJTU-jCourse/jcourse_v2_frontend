@@ -1,8 +1,10 @@
-import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
+import { Button, Card, Col, Input, List, Row } from "antd";
 
 import PageHeader from "../components/page-header";
+import RatingOrderSegment from "../components/rating-order-segment";
 import TrainingPlanFilterView from "../components/training-plan-filter";
 import TrainingPlanItem from "../components/training-plan-item";
+import useListOrder from "../libs/useListOrder";
 import usePagination from "../libs/usePagination";
 import {
   useTrainingPlanFilter,
@@ -15,7 +17,9 @@ const TrainingPlanListPage = () => {
   const { filterForQuery, onFilterChange, doFilter } =
     useTrainingPlanFilterForQuery();
   const { data: filter } = useTrainingPlanFilter();
-  const { data } = useTrainingPlans(pagination, filterForQuery);
+  const { listOrder, handleOrderByChange } = useListOrder();
+
+  const { data } = useTrainingPlans(pagination, filterForQuery, listOrder);
   return (
     <>
       <PageHeader
@@ -41,7 +45,10 @@ const TrainingPlanListPage = () => {
               ></Input.Search>
             </Col>
             <Col>
-              <Segmented options={["最多点评", "最高评分"]}></Segmented>
+              <RatingOrderSegment
+                defaultOrder={listOrder.order}
+                onChange={handleOrderByChange}
+              ></RatingOrderSegment>
             </Col>
           </Row>
           <Row>

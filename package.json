@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
-    "antd": "^5.20.6",
+    "antd": "^5.21.2",
     "axios": "^1.7.7",
     "dayjs": "^1.11.13",
     "react": "^18.3.1",
@@ -24,18 +24,18 @@
     "swr": "^2.2.5"
   },
   "devDependencies": {
-    "@types/node": "^22.5.5",
+    "@types/node": "^22.7.4",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "@types/react": "^18.3.8",
+    "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^8.6.0",
-    "@typescript-eslint/parser": "^8.6.0",
-    "@vitejs/plugin-react-swc": "^3.7.0",
-    "eslint": "^9.11.0",
+    "@typescript-eslint/eslint-plugin": "^8.8.0",
+    "@typescript-eslint/parser": "^8.8.0",
+    "@vitejs/plugin-react-swc": "^3.7.1",
+    "eslint": "^9.12.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.12",
     "prettier": "^3.3.3",
     "typescript": "^5.6.2",
-    "vite": "^5.4.7"
+    "vite": "^5.4.8"
   }
 }

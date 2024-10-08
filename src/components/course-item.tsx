@@ -22,7 +22,11 @@ const CourseItem = ({ course }: { course: CourseSummaryProps }) => {
           {course.categories.length > 0 && (
             <div>
               {course.categories.map((category) => {
-                return <Tag color="green">{category}</Tag>;
+                return (
+                  <Tag color="green" key={category}>
+                    {category}
+                  </Tag>
+                );
               })}
             </div>
           )}

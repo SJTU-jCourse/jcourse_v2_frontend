@@ -1,8 +1,10 @@
-import { Button, Card, Col, Input, List, Row, Segmented } from "antd";
+import { Button, Card, Col, Input, List, Row } from "antd";
 
 import CourseFilterView from "../components/course-filter";
 import CourseItem from "../components/course-item";
 import PageHeader from "../components/page-header";
+import RatingOrderSegment from "../components/rating-order-segment";
+import useListOrder from "../libs/useListOrder";
 import usePagination from "../libs/usePagination";
 import { CourseFilterForQuery } from "../models/filter";
 import {
@@ -15,8 +17,9 @@ const CourseListPage = () => {
   const { pagination, handlePageChange } = usePagination();
   const { filterForQuery, onFilterChange, doFilter } =
     useCourseFilterForQuery();
-  const { data, loading } = useCourses(pagination, filterForQuery);
+  const { listOrder, handleOrderByChange } = useListOrder();
   const { data: filter } = useCourseFilter();
+  const { data, loading } = useCourses(pagination, filterForQuery, listOrder);
 
   return (
     <>
@@ -45,7 +48,10 @@ const CourseListPage = () => {
               ></Input.Search>
             </Col>
             <Col>
-              <Segmented options={["最多点评", "最高评分"]}></Segmented>
+              <RatingOrderSegment
+                defaultOrder={listOrder.order}
+                onChange={handleOrderByChange}
+              ></RatingOrderSegment>
             </Col>
           </Row>
           <Row>

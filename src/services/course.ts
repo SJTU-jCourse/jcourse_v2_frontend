@@ -1,9 +1,9 @@
-import { join } from "path";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import useSWR from "swr";
 
-import { Pagination, PaginationApiResult } from "../models/dto";
+import toQueryString from "../libs/queryString";
+import { ListOrder, Pagination, PaginationApiResult } from "../models/dto";
 import { CourseFilterForQuery } from "../models/filter";
 import {
   BaseCourseProps,
@@ -14,11 +14,13 @@ import { fetcher } from "./request";
 
 export const useCourses = (
   pagination: Pagination,
-  filter?: CourseFilterForQuery
+  filter?: CourseFilterForQuery,
+  order?: ListOrder
 ) => {
-  const queryString = new URLSearchParams(filter).toString();
+  const listParams = toQueryString(pagination, order);
+  const filterParams = new URLSearchParams(filter).toString();
   const { data, error } = useSWR<PaginationApiResult<CourseSummaryProps>>(
-    `/api/course?page=${pagination.page}&page_size=${pagination.page_size}&${queryString}`,
+    `/api/course?${listParams}&${filterParams}`,
     fetcher
   );
   return {

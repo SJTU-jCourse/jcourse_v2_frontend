@@ -1,17 +1,25 @@
 import useSWR from "swr";
 
-import { Pagination, PaginationApiResult, ReviewRequest } from "../models/dto";
+import toQueryString from "../libs/queryString";
+import {
+  ListOrder,
+  Pagination,
+  PaginationApiResult,
+  ReviewRequest,
+} from "../models/dto";
 import { ReviewFilterForQuery } from "../models/filter";
 import { ReviewProps } from "../models/model";
 import { fetcher, request } from "./request";
 
-export const useReviews = (pagination?: Pagination, filter?: ReviewFilterForQuery) => {
-  const paginationString = pagination
-    ? `page=${pagination?.page}&page_size=${pagination?.page_size}`
-    : "";
-  const queryString = new URLSearchParams(filter).toString();
+export const useReviews = (
+  pagination?: Pagination,
+  filter?: ReviewFilterForQuery,
+  order?: ListOrder
+) => {
+  const listParams = toQueryString(pagination, order);
+  const filterParams = new URLSearchParams(filter).toString();
   const { data, error } = useSWR<PaginationApiResult<ReviewProps>>(
-    `/api/review?${paginationString}&${queryString}`,
+    `/api/review?${listParams}&${filterParams}`,
     fetcher
   );
 
@@ -24,5 +32,5 @@ export const useReviews = (pagination?: Pagination, filter?: ReviewFilterForQuer
 
 export const writeReview = async (r: ReviewRequest) => {
   const resp = await request("/api/review", { method: "post", data: { ...r } });
-  return resp.data
+  return resp.data;
 };

@@ -37,4 +37,9 @@ export type ReviewRequest = {
   comment: string;
   is_anonymous: boolean;
   course_id: number;
-}
+};
+
+export type ListOrder = {
+  order: string;
+  ascending: boolean;
+};

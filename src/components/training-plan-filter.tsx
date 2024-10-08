@@ -41,7 +41,10 @@ const TrainingPlanFilterView = ({
                 return b.value.localeCompare(a.value);
               })
               .map((item) => (
-                <FilterItemElement item={item}></FilterItemElement>
+                <FilterItemElement
+                  key={item.value}
+                  item={item}
+                ></FilterItemElement>
               ))}
           </Row>
         </Checkbox.Group>
@@ -69,7 +72,10 @@ const TrainingPlanFilterView = ({
                 return b.value.localeCompare(a.value);
               })
               .map((item) => (
-                <FilterItemElement item={item}></FilterItemElement>
+                <FilterItemElement
+                  key={item.value}
+                  item={item}
+                ></FilterItemElement>
               ))}
           </Row>
         </Checkbox.Group>
@@ -97,7 +103,10 @@ const TrainingPlanFilterView = ({
                 return b.value.localeCompare(a.value);
               })
               .map((item) => (
-                <FilterItemElement item={item}></FilterItemElement>
+                <FilterItemElement
+                  key={item.value}
+                  item={item}
+                ></FilterItemElement>
               ))}
           </Row>
         </Checkbox.Group>

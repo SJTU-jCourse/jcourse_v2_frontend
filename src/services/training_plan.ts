@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import useSWR from "swr";
 
-import { Pagination, PaginationApiResult } from "../models/dto";
+import toQueryString from "../libs/queryString";
+import { ListOrder, Pagination, PaginationApiResult } from "../models/dto";
 import { TrainingPlanFilterForQuery } from "../models/filter";
 import {
   TrainingPlanDetailProps,
@@ -12,11 +13,13 @@ import { fetcher } from "./request";
 
 export const useTrainingPlans = (
   pagination: Pagination,
-  filter?: TrainingPlanFilterForQuery
+  filter?: TrainingPlanFilterForQuery,
+  order?: ListOrder
 ) => {
-  const queryString = new URLSearchParams(filter).toString();
+  const listParams = toQueryString(pagination, order);
+  const filterParams = new URLSearchParams(filter).toString();
   const { data, error } = useSWR<PaginationApiResult<TrainingPlanSummaryProps>>(
-    `/api/training_plan?page=${pagination.page}&page_size=${pagination.page_size}&${queryString}`,
+    `/api/training_plan?${listParams}&${filterParams}`,
     fetcher
   );
 

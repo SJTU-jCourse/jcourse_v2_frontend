@@ -2,18 +2,21 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import useSWR from "swr";
 
-import { Pagination, PaginationApiResult } from "../models/dto";
+import toQueryString from "../libs/queryString";
+import { ListOrder, Pagination, PaginationApiResult } from "../models/dto";
 import { TeacherFilterForQuery } from "../models/filter";
 import { TeacherDetailProps, TeacherSummaryProps } from "../models/model";
 import { fetcher } from "./request";
 
 export const useTeachers = (
   pagination: Pagination,
-  filter?: TeacherFilterForQuery
+  filter?: TeacherFilterForQuery,
+  order?: ListOrder
 ) => {
-  const queryString = new URLSearchParams(filter).toString();
+  const listParams = toQueryString(pagination, order);
+  const filterParams = new URLSearchParams(filter).toString();
   const { data, error } = useSWR<PaginationApiResult<TeacherSummaryProps>>(
-    `/api/teacher?page=${pagination.page}&page_size=${pagination.page_size}&${queryString}`,
+    `/api/teacher?${listParams}&${filterParams}`,
     fetcher
   );
 

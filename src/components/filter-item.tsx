@@ -4,7 +4,7 @@ import { FilterItem } from "../models/model";
 
 const FilterItemElement = ({ item }: { item: FilterItem }) => {
   return (
-    <Col span={24} key={item.value}>
+    <Col span={24}>
       <Checkbox value={item.value}>
         {item.value} <Tag>{item.count}</Tag>
       </Checkbox>
