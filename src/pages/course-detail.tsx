@@ -21,14 +21,13 @@ import { useReviews } from "../services/review";
 
 const CourseDetailPage = () => {
   const { id } = useParams();
-  const { data: course } = useCourseDetail(Number(id));
+  const { data: course } = useCourseDetail(id);
   const { pagination, handlePageChange } = usePagination();
 
   const { data: reviews } = useReviews(pagination, {
-    course_id: String(course?.id),
+    course_id: id,
   });
 
-  const myRate = 5;
   if (!course) {
     return <></>;
   }
@@ -47,7 +46,7 @@ const CourseDetailPage = () => {
         <Col>
           <RateInfoWithMyRate
             rateInfo={course.rating_info}
-            myRate={myRate}
+            myRate={course.rating_info.my_rating}
           ></RateInfoWithMyRate>
         </Col>
       </Row>

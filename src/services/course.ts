@@ -30,9 +30,9 @@ export const useCourses = (
   };
 };
 
-export const useCourseDetail = (course_id: number) => {
+export const useCourseDetail = (course_id: string) => {
   const { data, error } = useSWR<CourseDetailProps>(
-    `/api/course/${course_id}`,
+    course_id ? `/api/course/${course_id}` : null,
     fetcher
   );
 

@@ -47,6 +47,7 @@ export type RateDistItemProps = {
 };
 
 export type RatingInfoProps = {
+  my_rating: number;
   count: number;
   average: number;
   rating_dist: RateDistItemProps[];
