@@ -13,6 +13,7 @@ import {
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
+import MarkDownEditor from "../components/markdown-editor";
 import PageHeader from "../components/page-header";
 import { ReviewRequest } from "../models/dto";
 import { CourseDetailProps } from "../models/model";
@@ -131,7 +132,7 @@ const WriteReviewPage = () => {
                 },
               ]}
             >
-              <Input.TextArea></Input.TextArea>
+              <MarkDownEditor></MarkDownEditor>
             </Form.Item>
           </Form.Item>
           <Form.Item
