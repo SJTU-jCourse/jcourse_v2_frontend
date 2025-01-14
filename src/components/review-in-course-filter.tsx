@@ -1,4 +1,7 @@
 import { Button, Flex, Select } from "antd";
+import { useState } from "react";
+
+import { ReviewFilterForQuery } from "../models/filter";
 
 const orderOptions = [
   "最新回复",
@@ -9,20 +12,19 @@ const orderOptions = [
 ].map((item) => {
   return { label: item, value: item };
 });
-const semesterOptions = [
-  "2024-2025-1",
-  "2024-2025-2",
-  "2024-2025-3",
-  "2023-2024-1",
-  "2023-2024-2",
-].map((item) => {
-  return { label: item, value: item };
-});
+
 const rateOptions = ["5", "4", "3", "2", "1"].map((item) => {
   return { label: item, value: item };
 });
 
-const ReviewInCourseFilter = () => {
+const ReviewInCourseFilter = ({ semesters }: { semesters: string[] }) => {
+  const [filterForQuery, setFilterForQuery] = useState<ReviewFilterForQuery>(
+    {}
+  );
+
+  const semesterOptions = semesters.map((item) => {
+    return { label: item, value: item };
+  });
   return (
     <Flex wrap align="center" justify="flex-start" gap={8}>
       <div>
@@ -34,11 +36,16 @@ const ReviewInCourseFilter = () => {
         <Select
           popupMatchSelectWidth={false}
           options={semesterOptions}
+          value={filterForQuery.semester}
         ></Select>
       </div>
       <div>
         评分：
-        <Select popupMatchSelectWidth={false} options={rateOptions}></Select>
+        <Select
+          popupMatchSelectWidth={false}
+          options={rateOptions}
+          value={filterForQuery.rating}
+        ></Select>
       </div>
 
       <Button>筛选</Button>

@@ -9,6 +9,8 @@ export type CourseFilterForQuery = {
 export type ReviewFilterForQuery = {
   user_id?: string;
   course_id?: string;
+  rating?: string;
+  semester?: string;
 };
 
 export type TrainingPlanFilterForQuery = {
