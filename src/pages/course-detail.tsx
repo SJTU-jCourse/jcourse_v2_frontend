@@ -39,7 +39,6 @@ const CourseDetailPage = () => {
     <>
       <PageHeader
         title={`${course.code} ${course.name}（${course.main_teacher.name}）`}
-        extra={<Button>收藏</Button>}
       ></PageHeader>
       <Row align="middle">
         <Col flex="auto">
@@ -91,7 +90,6 @@ const CourseDetailPage = () => {
         </Col>
         <Col xs={24} sm={24} md={8}>
           <Space direction="vertical" style={{ width: "100%" }}>
-            <Card title="为你推荐"></Card>
             <Card title={`其他老师的 ${course.name}`}></Card>
             <Card title={`${course.main_teacher.name} 的其他课`}></Card>
           </Space>
