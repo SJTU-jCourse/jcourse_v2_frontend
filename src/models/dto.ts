@@ -32,6 +32,7 @@ export type UserProfileRequest = {
 };
 
 export type ReviewRequest = {
+  id: number;
   rating: number;
   grade: string;
   comment: string;

@@ -43,6 +43,10 @@ export const useCourseDetail = (course_id: string) => {
   };
 };
 
+export const getCourseDetail = (course_id: string) => {
+  return fetcher(`/api/course/${course_id}`);
+};
+
 export const useBaseCourseDetail = (code: string) => {
   const { data, error } = useSWR<BaseCourseProps>(
     `/api/base_course/${code}`,

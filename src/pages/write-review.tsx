@@ -10,31 +10,67 @@ import {
   Tag,
   message,
 } from "antd";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 import MarkDownEditor from "../components/markdown-editor";
 import PageHeader from "../components/page-header";
 import { ReviewRequest } from "../models/dto";
-import { CourseDetailProps } from "../models/model";
-import { writeReview } from "../services/review";
+import { CourseDetailProps, ReviewProps } from "../models/model";
+import { getCourseDetail } from "../services/course";
+import { getReviewDetail, updateReview, writeReview } from "../services/review";
+
+// 要展示的标签列表
+const tagOptions = [
+  { label: "课程内容", text: "课程内容：" },
+  { label: "上课自由度", text: "上课自由度：" },
+  { label: "考核标准", text: "考核标准：" },
+  { label: "授课质量", text: "授课质量：" },
+];
+
+const findInitTags = (text: string): string[] => {
+  if (!text) return [];
+  const lines = text.split("\n");
+
+  return tagOptions
+    .filter((option) =>
+      lines.some((line) => line.trimStart().startsWith(option.text))
+    )
+    .map((option) => option.label);
+};
 
 const WriteReviewPage = () => {
   const { state } = useLocation();
+  const [searchParams] = useSearchParams();
+  const [course, setCourse] = useState<CourseDetailProps | null>(state?.course);
+  const reviewId = searchParams.get("review_id");
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    if (reviewId) {
+      getReviewDetail(reviewId).then((data: ReviewProps) => {
+        form.setFieldsValue({
+          semester: data.semester,
+          rating: data.rating,
+          comment: data.comment,
+          is_anonymous: data.is_anonymous,
+          grade: data.grade,
+        });
+
+        getCourseDetail(String(data.course.id)).then((course) => {
+          setCourse(course);
+        });
+
+        const initTags = findInitTags(data.comment);
+        setSelectedTags(initTags);
+      });
+    }
+  }, [reviewId]);
 
   const [messageApi, contextHolder] = message.useMessage();
 
   // 记录用户点击了哪些标签
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
-  // 要展示的标签列表
-  const tagOptions = [
-    { label: "课程内容", text: "课程内容：" },
-    { label: "上课自由度", text: "上课自由度：" },
-    { label: "考核标准", text: "考核标准：" },
-    { label: "授课质量", text: "授课质量：" },
-  ];
 
   const handleTagClick = (label: string, text: string) => {
     const isSelected = selectedTags.includes(label);
@@ -60,7 +96,6 @@ const WriteReviewPage = () => {
     form.setFieldsValue({ comment: commentValue });
   };
 
-  const course: CourseDetailProps = state.course;
   if (!course) {
     return <></>;
   }
@@ -69,8 +104,16 @@ const WriteReviewPage = () => {
   });
 
   const onFinish = (v: ReviewRequest) => {
+    let func: (v: ReviewRequest) => Promise<any>;
     v.course_id = course.id;
-    writeReview(v)
+    if (reviewId) {
+      v.id = Number(reviewId);
+      func = updateReview;
+    } else {
+      func = writeReview;
+    }
+
+    func(v)
       .catch((error) => {
         messageApi.error(error);
       })

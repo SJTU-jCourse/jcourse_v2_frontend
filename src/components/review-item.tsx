@@ -3,11 +3,7 @@ import {
   EditOutlined,
   EllipsisOutlined,
   LikeOutlined,
-  MessageOutlined,
-  MessageTwoTone,
   ShareAltOutlined,
-  TransactionOutlined,
-  UserSwitchOutlined,
 } from "@ant-design/icons";
 import {
   Avatar,
@@ -21,13 +17,12 @@ import {
   Typography,
 } from "antd";
 import dayjs from "dayjs";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
+import { CommonInfoContext } from "../libs/context";
 import { CourseMinimalProps, ReviewProps } from "../models/model";
 import MarkDownPreview from "./markdown-preview";
-import ReviewReplyList from "./review-reply-list";
-import { showReviewTipModal } from "./review-tip-modal";
 
 const { Text } = Typography;
 const UserInReview = ({
@@ -92,26 +87,21 @@ const ReviewItem = ({
   review: ReviewProps;
   showCourse?: boolean;
 }) => {
+  const CommonInfo = useContext(CommonInfoContext);
+  const navigate = useNavigate();
+
   const items: MenuProps["items"] = [
     {
-      label: "编辑点评",
-      key: "1",
-      icon: <EditOutlined />,
-    },
-    {
-      label: "匿名/取消匿名",
-      key: "2",
-      icon: <UserSwitchOutlined />,
-    },
-    {
       label: "删除点评",
-      key: "3",
+      key: "2",
       icon: <DeleteOutlined />,
       danger: true,
     },
   ];
 
-  const [showReply, setShowReply] = useState<boolean>(false);
+  // const [showReply, setShowReply] = useState<boolean>(false);
+
+  const showEdit = review.user?.id == CommonInfo?.user?.id;
 
   return (
     <Space direction="vertical" style={{ width: "100%" }}>
@@ -155,7 +145,17 @@ const ReviewItem = ({
         <Button size="small" type="text" icon={<LikeOutlined />}>
           {review.likes}
         </Button>
-        <Button
+        {showEdit && (
+          <Button
+            size="small"
+            type="text"
+            icon={<EditOutlined />}
+            onClick={() => {
+              navigate(`/write-review?review_id=${review.id}`);
+            }}
+          ></Button>
+        )}
+        {/*<Button
           size="small"
           type="text"
           icon={showReply ? <MessageTwoTone /> : <MessageOutlined />}
@@ -174,14 +174,14 @@ const ReviewItem = ({
           }}
         >
           {review.replies}
-        </Button>
+        </Button>*/}
         <Button size="small" type="text" icon={<ShareAltOutlined />}></Button>
         <Dropdown menu={{ items }}>
           <Button size="small" type="text" icon={<EllipsisOutlined />}></Button>
         </Dropdown>
       </Space>
 
-      {showReply && <ReviewReplyList />}
+      {/*showReply && <ReviewReplyList />*/}
     </Space>
   );
 };

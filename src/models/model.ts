@@ -126,6 +126,7 @@ export type ReviewProps = {
   course: CourseMinimalProps;
   comment: string;
   rating: number;
+  grade: string;
   semester: string;
   created_at: number;
   updated_at: number | null;

@@ -57,9 +57,11 @@ const CourseDetailPage = () => {
             <Typography.Text strong style={{ fontSize: 18 }}>
               所有点评
             </Typography.Text>
-            <Link to="/write-review" state={{ course: course }}>
-              <Button type="primary">写点评</Button>
-            </Link>
+            {!course.rating_info.my_rating && (
+              <Link to="/write-review" state={{ course: course }}>
+                <Button type="primary">写点评</Button>
+              </Link>
+            )}
           </Flex>
 
           {/*

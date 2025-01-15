@@ -31,6 +31,15 @@ export const useReviews = (
 };
 
 export const writeReview = async (r: ReviewRequest) => {
-  const resp = await request("/api/review", { method: "post", data: { ...r } });
+  const resp = await request.post("/api/review", r);
   return resp.data;
+};
+
+export const updateReview = async (r: ReviewRequest) => {
+  const resp = await request.put(`/api/review/${r.id}`, r);
+  return resp.data;
+};
+
+export const getReviewDetail = (review_id: string) => {
+  return fetcher(`/api/review/${review_id}`);
 };
