@@ -114,11 +114,13 @@ const WriteReviewPage = () => {
     }
 
     func(v)
-      .catch((error) => {
-        messageApi.error(error);
+      .then((resp) => {
+        if (resp.status == 200) {
+          message.success("提交成功，即将回到上一页", 1, () => history.back());
+        }
       })
-      .then(() => {
-        history.back();
+      .catch((error) => {
+        messageApi.error(error.response?.data?.message);
       });
   };
 
