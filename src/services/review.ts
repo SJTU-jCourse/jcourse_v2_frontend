@@ -40,6 +40,11 @@ export const updateReview = async (r: ReviewRequest) => {
   return resp.data;
 };
 
+export const deleteReview = async (review_id: number) => {
+  const resp = await request.delete(`/api/review/${review_id}`);
+  return resp.data;
+};
+
 export const getReviewDetail = (review_id: string) => {
   return fetcher(`/api/review/${review_id}`);
 };

@@ -11,6 +11,7 @@ import CourseListPage from "./pages/course-list";
 import LoginPage from "./pages/login";
 import RankPage from "./pages/rank";
 import ReviewListPage from "./pages/review-list";
+import ReviewLocationPage from "./pages/review-location";
 import TeacherDetailPage from "./pages/teacher-detail";
 import TeacherListPage from "./pages/teacher-list";
 import TrainingPlanDetailPage from "./pages/training-plan-detail";
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "review",
         element: <ReviewListPage />,
+      },
+      {
+        path: "review/:id",
+        element: <ReviewLocationPage />,
       },
       {
         path: "base-course/:code",

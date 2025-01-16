@@ -1,20 +1,19 @@
 import {
   DeleteOutlined,
   EditOutlined,
-  EllipsisOutlined,
   LikeOutlined,
   ShareAltOutlined,
 } from "@ant-design/icons";
 import {
   Avatar,
   Button,
-  Dropdown,
   Flex,
-  MenuProps,
+  Popconfirm,
   Rate,
   Space,
   Tooltip,
   Typography,
+  message,
 } from "antd";
 import dayjs from "dayjs";
 import { useContext } from "react";
@@ -22,6 +21,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { CommonInfoContext } from "../libs/context";
 import { CourseMinimalProps, ReviewProps } from "../models/model";
+import { deleteReview } from "../services/review";
 import MarkDownPreview from "./markdown-preview";
 
 const { Text } = Typography;
@@ -87,24 +87,37 @@ const ReviewItem = ({
   review: ReviewProps;
   showCourse?: boolean;
 }) => {
+  const [messageApi, contextHolder] = message.useMessage();
   const CommonInfo = useContext(CommonInfoContext);
   const navigate = useNavigate();
-
-  const items: MenuProps["items"] = [
-    {
-      label: "删除点评",
-      key: "2",
-      icon: <DeleteOutlined />,
-      danger: true,
-    },
-  ];
 
   // const [showReply, setShowReply] = useState<boolean>(false);
 
   const showEdit = review.user?.id == CommonInfo?.user?.id;
 
+  const copyReviewUrlToClipboard = async () => {
+    const url = window.location.origin + "/course/" + review.course.id;
+    try {
+      await navigator.clipboard.writeText(url);
+      messageApi.open({
+        type: "success",
+        content: "已复制点评链接到剪贴板",
+      });
+    } catch (err) {
+      messageApi.open({
+        type: "error",
+        content: "复制点评链接失败",
+      });
+    }
+  };
+
   return (
-    <Space direction="vertical" style={{ width: "100%" }}>
+    <Space
+      id={`review-${review.id}`}
+      direction="vertical"
+      style={{ width: "100%" }}
+    >
+      {contextHolder}
       <Flex align="center" justify="space-between">
         {review.is_anonymous ? (
           <UserInReview
@@ -155,6 +168,21 @@ const ReviewItem = ({
             }}
           ></Button>
         )}
+        {showEdit && (
+          <Popconfirm
+            title="删除点评？"
+            onConfirm={() => {
+              deleteReview(review.id);
+            }}
+          >
+            <Button
+              size="small"
+              type="text"
+              danger
+              icon={<DeleteOutlined />}
+            ></Button>
+          </Popconfirm>
+        )}
         {/*<Button
           size="small"
           type="text"
@@ -174,11 +202,14 @@ const ReviewItem = ({
           }}
         >
           {review.replies}
-        </Button>*/}
-        <Button size="small" type="text" icon={<ShareAltOutlined />}></Button>
-        <Dropdown menu={{ items }}>
-          <Button size="small" type="text" icon={<EllipsisOutlined />}></Button>
-        </Dropdown>
+        </Button>
+       */}
+        <Button
+          size="small"
+          type="text"
+          icon={<ShareAltOutlined />}
+          onClick={copyReviewUrlToClipboard}
+        ></Button>
       </Space>
 
       {/*showReply && <ReviewReplyList />*/}
