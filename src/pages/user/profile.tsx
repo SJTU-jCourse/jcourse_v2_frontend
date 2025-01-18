@@ -1,6 +1,5 @@
-import { Button, Form, Input, Select, Upload, message } from "antd";
-import { useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { Button, Form, Input, Select, message } from "antd";
+import { useOutletContext } from "react-router-dom";
 
 import { UserProfileRequest } from "../../models/dto";
 import { UserDetailProps } from "../../models/model";
@@ -18,23 +17,28 @@ const convertDetailToRequest = (user: UserDetailProps): UserProfileRequest => {
   };
 };
 
+const userTypeOption = [
+  { label: "学生", value: "student" },
+  { label: "教职工", value: "faculty" },
+  { label: "校友", value: "alumni" },
+  { label: "其他", value: "other" },
+];
+
 const UserProfileSubPage = () => {
   const user = useOutletContext<UserDetailProps>();
-  const navigate = useNavigate();
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
   const onFinish = (r: UserProfileRequest) => {
     updateUserProfile(Number(user.id), r)
       .then(() => {
-        navigate(0);
         messageApi.info("更新成功");
       })
       .catch((error) => {
-        messageApi.error(error);
+        messageApi.error(error.response?.data?.message);
       });
   };
   const initialValue = convertDetailToRequest(user);
-  const [imageUrl, setImageUrl] = useState<string>();
+  // const [imageUrl, setImageUrl] = useState<string>();
   return (
     <Form
       form={form}
@@ -46,15 +50,15 @@ const UserProfileSubPage = () => {
       <Form.Item label="用户名" name="username">
         <Input></Input>
       </Form.Item>
-      <Form.Item label="头像" name="avatar">
+      {/*<Form.Item label="头像" name="avatar">
         <Upload listType="picture-circle">
           <img src={imageUrl} />
         </Upload>
-      </Form.Item>
+      </Form.Item>*/}
       <Form.Item label="身份" name="type">
-        <Select></Select>
+        <Select options={userTypeOption}></Select>
       </Form.Item>
-      <Form.Item label="学院" name="department">
+      {/*<Form.Item label="学院" name="department">
         <Select></Select>
       </Form.Item>
       <Form.Item label="专业" name="major">
@@ -62,8 +66,7 @@ const UserProfileSubPage = () => {
       </Form.Item>
       <Form.Item label="年级" name="grade">
         <Select></Select>
-      </Form.Item>
-
+      </Form.Item>*/}
       <Form.Item label="个人介绍" name="bio">
         <Input.TextArea></Input.TextArea>
       </Form.Item>

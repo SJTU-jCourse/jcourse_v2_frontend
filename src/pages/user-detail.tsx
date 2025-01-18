@@ -1,7 +1,9 @@
-import { Divider, Tabs, TabsProps } from "antd";
+import { Tabs, TabsProps } from "antd";
+import { useContext } from "react";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import UserDetailCard from "../components/user-detail-card";
+import { CommonInfoContext } from "../libs/context";
 import { useUserDetail } from "../services/user";
 
 const getActiveKey = (pathname: string) => {
@@ -10,11 +12,12 @@ const getActiveKey = (pathname: string) => {
 };
 
 const UserDetailPage = () => {
-  const location = useLocation();
-  const activeKey = getActiveKey(location.pathname);
   const { id } = useParams();
   const { data: user } = useUserDetail(Number(id));
+  const navigate = useNavigate();
 
+  const location = useLocation();
+  const activeKey = getActiveKey(location.pathname);
   const tabItems: TabsProps["items"] = [
     /*{
       key: "activity",
@@ -37,16 +40,18 @@ const UserDetailPage = () => {
       label: "安全性",
     },*/
   ];
-
-  const navigate = useNavigate();
+  const CommonInfo = useContext(CommonInfoContext);
   if (!user) {
     return <></>;
   }
+
+  if (id != CommonInfo?.user.id) {
+    return <UserDetailCard user={user}></UserDetailCard>;
+  }
+  
   return (
     <>
       <UserDetailCard user={user}></UserDetailCard>
-
-      <Divider></Divider>
 
       <Tabs
         // tabPosition={screens.sm ? "left" : "top"}

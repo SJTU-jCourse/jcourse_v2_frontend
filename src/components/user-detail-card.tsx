@@ -10,14 +10,17 @@ const UserDetailCard = ({ user }: { user: UserDetailProps }) => {
           <Avatar src={user.avatar} size={64}></Avatar>
         </Col>
         <Col>
-          <Typography.Text style={{ fontSize: 22, fontWeight: 600 }}>
-            {user.username}
-          </Typography.Text>
+          <div>
+            <Typography.Text style={{ fontSize: 22, fontWeight: 600 }}>
+              {user.username}
+            </Typography.Text>
+          </div>
+
+          <div>
+            <Typography.Text>{user.bio}</Typography.Text>
+          </div>
         </Col>
       </Row>
-      <div>
-        <Typography.Text>{user.bio}</Typography.Text>
-      </div>
     </Space>
   );
 };
