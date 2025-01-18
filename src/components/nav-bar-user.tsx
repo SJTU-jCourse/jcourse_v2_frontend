@@ -27,7 +27,7 @@ const NavBarUser = ({ user }: { user?: UserDetailProps }) => {
   ];
 
   return (
-    <Badge count={1}>
+    <Badge count={0}>
       <Dropdown menu={{ items }}>
         <Avatar icon={<UserOutlined />} />
       </Dropdown>
