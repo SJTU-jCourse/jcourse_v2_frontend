@@ -157,8 +157,9 @@ export type UserPointDetailItemProps = {
 };
 
 export type UserPointProps = {
+  current_point: number;
   total: number;
-  detail: UserPointDetailItemProps[];
+  data: UserPointDetailItemProps[];
 };
 
 export type UserActivityProps = {

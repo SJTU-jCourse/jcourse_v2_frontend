@@ -1,7 +1,11 @@
 import useSWR from "swr";
 
 import { PaginationApiResult, UserProfileRequest } from "../models/dto";
-import { UserActivityProps, UserDetailProps } from "../models/model";
+import {
+  UserActivityProps,
+  UserDetailProps,
+  UserPointProps,
+} from "../models/model";
 import { fetcher, request } from "./request";
 
 export const useUsers = () => {
@@ -22,6 +26,16 @@ export const useUserDetail = (user_id: number) => {
     `/api/user/${user_id}`,
     fetcher
   );
+
+  return {
+    data,
+    loading: !error && !data,
+    error,
+  };
+};
+
+export const useUserPoint = () => {
+  const { data, error } = useSWR<UserPointProps>(`/api/user/point`, fetcher);
 
   return {
     data,

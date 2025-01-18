@@ -7,11 +7,18 @@ import { useReviews } from "../../services/review";
 
 const UserReviewSubPage = () => {
   const { id } = useParams();
-  const { pagination } = usePagination();
+  const { pagination, handlePageChange } = usePagination();
   const { data: reviews } = useReviews(pagination, { user_id: id });
   return (
     <List
-      pagination={{ align: "center" }}
+      pagination={{
+        align: "center",
+        onChange: handlePageChange,
+        total: reviews?.total,
+        current: pagination?.page,
+        pageSize: pagination?.page_size,
+        hideOnSinglePage: true,
+      }}
       dataSource={reviews?.data}
       renderItem={(item) => {
         return (

@@ -16,10 +16,10 @@ const UserDetailPage = () => {
   const { data: user } = useUserDetail(Number(id));
 
   const tabItems: TabsProps["items"] = [
-    {
+    /*{
       key: "activity",
       label: "活动",
-    },
+    },*/
     {
       key: "review",
       label: "点评",

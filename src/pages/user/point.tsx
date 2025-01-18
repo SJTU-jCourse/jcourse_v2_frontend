@@ -1,9 +1,9 @@
 import { Descriptions, Table, Typography } from "antd";
 
-import { userPointDetail } from "../../models/mock";
+import { useUserPoint } from "../../services/user";
 
 const UserPointSubPage = () => {
-  const userPoint = userPointDetail;
+  const { data: userPoint, loading } = useUserPoint();
   const columns = [
     {
       title: "时间",
@@ -22,7 +22,7 @@ const UserPointSubPage = () => {
       <Typography.Title level={5}>概览</Typography.Title>
       <Descriptions bordered>
         <Descriptions.Item label="总积分" className="total-point">
-          {userPoint.total}
+          {userPoint?.current_point}
         </Descriptions.Item>
       </Descriptions>
       <Typography.Title level={5}>说明</Typography.Title>
@@ -38,8 +38,9 @@ const UserPointSubPage = () => {
       <Typography.Title level={5}>积分详情</Typography.Title>
 
       <Table
+        loading={loading}
         tableLayout="fixed"
-        dataSource={userPoint.detail}
+        dataSource={userPoint?.data}
         columns={columns}
         pagination={false}
       ></Table>
