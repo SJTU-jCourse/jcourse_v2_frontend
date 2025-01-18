@@ -1,5 +1,6 @@
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { Button, Col, Row, Typography } from "antd";
+import { JSX } from "react";
 
 const { Text } = Typography;
 const PageHeader = ({

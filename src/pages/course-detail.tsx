@@ -32,7 +32,7 @@ const CourseDetailPage = () => {
     return <></>;
   }
 
-  const offeredSemesters = course.offered_courses.map((item) => item.semester);
+  // const offeredSemesters = course.offered_courses.map((item) => item.semester);
 
   return (
     <>

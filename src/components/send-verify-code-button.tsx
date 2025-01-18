@@ -19,7 +19,7 @@ const SendVerifyCodeButton: React.FC<SendVerifyCodeButtonProps> = ({
 }) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [time, setTime] = useState<number>(0);
-  const timeRef = useRef<any>();
+  const timeRef = useRef<any>(null);
   const inCounter = time != 0;
 
   useEffect(() => {

@@ -1,15 +1,13 @@
 import { Button, Card, Form, Input, List } from "antd";
 
-import { reviewReplyList } from "../models/mock";
+import { ReviewReplyItemProps } from "../models/model";
 import ReviewReplyItem from "./review-reply-item";
 
 const ReviewReplyList = () => {
-  const replies = reviewReplyList;
   return (
     <Card>
       <List
-        dataSource={replies}
-        renderItem={(item) => {
+        renderItem={(item: ReviewReplyItemProps) => {
           return (
             <List.Item>
               <ReviewReplyItem reply={item}></ReviewReplyItem>

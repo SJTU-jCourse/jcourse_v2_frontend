@@ -18,9 +18,7 @@ const rateOptions = ["5", "4", "3", "2", "1"].map((item) => {
 });
 
 const ReviewInCourseFilter = ({ semesters }: { semesters: string[] }) => {
-  const [filterForQuery, setFilterForQuery] = useState<ReviewFilterForQuery>(
-    {}
-  );
+  const [filterForQuery] = useState<ReviewFilterForQuery>({});
 
   const semesterOptions = semesters.map((item) => {
     return { label: item, value: item };
