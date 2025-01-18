@@ -1,22 +1,14 @@
-import { Button, Form, Input, message } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Button, Form, Input } from "antd";
 
-import { LoginRequest } from "../models/dto";
-import { login } from "../services/auth";
-
-const LoginForm = () => {
-  const [messageApi, contextHolder] = message.useMessage();
+const LoginForm = ({
+  onFinish,
+  buttonText,
+}: {
+  onFinish?: (value: any) => void;
+  buttonText?: string;
+}) => {
   const [form] = Form.useForm();
-  const navigate = useNavigate();
-  const onFinish = (r: LoginRequest) => {
-    login(r.email, r.password)
-      .then(() => {
-        navigate("/");
-      })
-      .catch((error) => {
-        messageApi.error(error);
-      });
-  };
+
   return (
     <Form
       form={form}
@@ -26,7 +18,6 @@ const LoginForm = () => {
       size="large"
       onFinish={onFinish}
     >
-      {contextHolder}
       <Form.Item
         name="email"
         rules={[
@@ -52,7 +43,7 @@ const LoginForm = () => {
       </Form.Item>
       <Form.Item>
         <Button htmlType="submit" type="primary">
-          登录
+          {buttonText}
         </Button>
       </Form.Item>
     </Form>

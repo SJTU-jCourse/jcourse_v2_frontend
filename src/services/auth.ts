@@ -24,6 +24,18 @@ export const register = async (
   return resp.data;
 };
 
+export const resetPassword = async (
+  email: string,
+  password: string,
+  code: string
+) => {
+  const resp = await request("/api/auth/reset-password", {
+    method: "post",
+    data: { email: email, password, code },
+  });
+  return resp.data;
+};
+
 export const logout = async () => {
   const resp = await request("/api/auth/logout", {
     method: "post",

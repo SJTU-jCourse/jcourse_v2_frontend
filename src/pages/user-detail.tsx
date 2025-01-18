@@ -35,10 +35,10 @@ const UserDetailPage = () => {
       key: "profile",
       label: "个人资料",
     },
-    /*{
-      key: "auth",
+    {
+      key: "security",
       label: "安全性",
-    },*/
+    },
   ];
   const CommonInfo = useContext(CommonInfoContext);
   if (!user) {
@@ -48,7 +48,7 @@ const UserDetailPage = () => {
   if (id != CommonInfo?.user.id) {
     return <UserDetailCard user={user}></UserDetailCard>;
   }
-  
+
   return (
     <>
       <UserDetailCard user={user}></UserDetailCard>

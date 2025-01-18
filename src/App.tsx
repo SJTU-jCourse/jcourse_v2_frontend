@@ -21,6 +21,7 @@ import UserActivitySubPage from "./pages/user/activity";
 import UserPointSubPage from "./pages/user/point";
 import UserProfileSubPage from "./pages/user/profile";
 import UserReviewSubPage from "./pages/user/review";
+import UserSecurityPage from "./pages/user/security";
 import WriteReviewPage from "./pages/write-review";
 
 const router = createBrowserRouter([
@@ -49,6 +50,7 @@ const router = createBrowserRouter([
           { path: "point", element: <UserPointSubPage /> },
           { path: "profile", element: <UserProfileSubPage /> },
           { path: "review", element: <UserReviewSubPage /> },
+          { path: "security", element: <UserSecurityPage /> },
         ],
       },
       {
