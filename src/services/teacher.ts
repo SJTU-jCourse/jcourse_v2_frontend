@@ -55,6 +55,9 @@ export const useTeacherFilterForQuery = () => {
     if (value.titles) {
       searchParams.set("title", value.titles.join(","));
     }
+    if (value.search) {
+      searchParams.set("q", value.search);
+    }
 
     setSearchParams(searchParams);
   };
@@ -63,6 +66,7 @@ export const useTeacherFilterForQuery = () => {
     const filterForQuery: TeacherFilterForQuery = {
       departments: searchParams.get("department")?.split(",") || [],
       titles: searchParams.get("title")?.split(",") || [],
+      search: searchParams.get("q") || "",
     };
     setFilterForQuery(filterForQuery);
   };

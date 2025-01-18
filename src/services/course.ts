@@ -81,6 +81,9 @@ export const useCourseFilterForQuery = () => {
     if (value.credits) {
       searchParams.set("credits", value.credits.join(","));
     }
+    if (value.search) {
+      searchParams.set("q", value.search);
+    }
     setSearchParams(searchParams);
   };
 
@@ -90,6 +93,7 @@ export const useCourseFilterForQuery = () => {
       categories: searchParams.get("categories")?.split(",") || [],
       semesters: searchParams.get("semesters")?.split(",") || [],
       credits: searchParams.get("credits")?.split(",") || [],
+      search: searchParams.get("q") || "",
     };
     setFilterForQuery(filterForQuery);
   };

@@ -42,6 +42,11 @@ const TrainingPlanListPage = () => {
               <Input.Search
                 placeholder="专业名称"
                 style={{ marginBottom: 16 }}
+                defaultValue={filterForQuery?.search}
+                onChange={(e) => {
+                  onFilterChange({ ...filterForQuery, search: e.target.value });
+                }}
+                onSearch={doFilter}
               ></Input.Search>
             </Col>
             <Col>

@@ -45,6 +45,11 @@ const TeacherListPage = () => {
               <Input.Search
                 placeholder="教师名称/拼音"
                 style={{ marginBottom: 16 }}
+                defaultValue={filterForQuery?.search}
+                onChange={(e) => {
+                  onFilterChange({ ...filterForQuery, search: e.target.value });
+                }}
+                onSearch={doFilter}
               ></Input.Search>
             </Col>
             <Col>

@@ -62,6 +62,9 @@ export const useTrainingPlanFilterForQuery = () => {
     if (value.entry_years) {
       searchParams.set("entry_year", value.entry_years.join(","));
     }
+    if (value.search) {
+      searchParams.set("q", value.search);
+    }
     setSearchParams(searchParams);
   };
 
@@ -70,6 +73,7 @@ export const useTrainingPlanFilterForQuery = () => {
       departments: searchParams.get("department")?.split(",") || [],
       degrees: searchParams.get("degree")?.split(",") || [],
       entry_years: searchParams.get("entry_year")?.split(",") || [],
+      search: searchParams.get("q") || "",
     };
     setFilterForQuery(filterForQuery);
   };

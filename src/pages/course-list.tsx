@@ -45,6 +45,11 @@ const CourseListPage = () => {
               <Input.Search
                 placeholder="课程名称/课程号"
                 style={{ marginBottom: 16 }}
+                defaultValue={filterForQuery?.search}
+                onChange={(e) => {
+                  onFilterChange({ ...filterForQuery, search: e.target.value });
+                }}
+                onSearch={doFilter}
               ></Input.Search>
             </Col>
             <Col>
