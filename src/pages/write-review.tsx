@@ -39,12 +39,34 @@ const findInitTags = (text: string): string[] => {
     .map((option) => option.label);
 };
 
+const parseTagContentFromString = (comment: string): Record<string, string> => {
+  const lines = comment.split("\n");
+  const newTagContents: Record<string, string> = {};
+  tagOptions.forEach((option) => {
+    const foundLine = lines.find((line) =>
+      line.trimStart().startsWith(option.text)
+    );
+    if (foundLine) {
+      newTagContents[option.label] = foundLine.slice(
+        foundLine.indexOf(option.text) + option.text.length
+      );
+    }
+  });
+  return newTagContents;
+};
+
 const WriteReviewPage = () => {
   const { state } = useLocation();
   const [searchParams] = useSearchParams();
   const [course, setCourse] = useState<CourseDetailProps | null>(state?.course);
   const reviewId = searchParams.get("review_id");
   const [form] = Form.useForm();
+
+  const [messageApi, contextHolder] = message.useMessage();
+
+  // 记录用户点击了哪些标签
+  const [tagContents, setTagContents] = useState<Record<string, string>>({});
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   useEffect(() => {
     if (reviewId) {
@@ -61,23 +83,30 @@ const WriteReviewPage = () => {
           setCourse(course);
         });
 
+        setTagContents(parseTagContentFromString(data.comment));
+
         const initTags = findInitTags(data.comment);
         setSelectedTags(initTags);
       });
     }
   }, [reviewId]);
 
-  const [messageApi, contextHolder] = message.useMessage();
-
-  // 记录用户点击了哪些标签
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
   const handleTagClick = (label: string, text: string) => {
     const isSelected = selectedTags.includes(label);
-    let commentValue = form.getFieldValue("comment") || "";
+    let commentValue = String(form.getFieldValue("comment")) || "";
+    const lines = commentValue.split("\n");
 
     if (isSelected) {
-      const lines = commentValue.split("\n");
+      const foundLine = lines.find((line) => line.trimStart().startsWith(text));
+      if (foundLine) {
+        const userPortion = foundLine.slice(
+          foundLine.indexOf(text) + text.length
+        );
+        setTagContents((prev) => ({
+          ...prev,
+          [label]: userPortion,
+        }));
+      }
       const newLines = lines.filter((line: string) => {
         return !line.trimStart().startsWith(text);
       });
@@ -86,9 +115,9 @@ const WriteReviewPage = () => {
       const newSelectedTags = selectedTags.filter((item) => item !== label);
       setSelectedTags(newSelectedTags);
     } else {
-      commentValue = commentValue + (commentValue ? "\n" : "");
-
-      commentValue += text;
+      const userPortion = tagContents[label] || "";
+      commentValue =
+        commentValue + (commentValue ? "\n" : "") + text + userPortion;
 
       setSelectedTags([...selectedTags, label]);
     }
