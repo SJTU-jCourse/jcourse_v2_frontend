@@ -20,35 +20,43 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { CommonInfoContext } from "../libs/context";
-import { CourseMinimalProps, ReviewProps } from "../models/model";
+import {
+  CourseMinimalProps,
+  ReviewProps,
+  UserMinimalProps,
+} from "../models/model";
 import { deleteReview } from "../services/review";
 import MarkDownPreview from "./markdown-preview";
 
 const { Text } = Typography;
-const UserInReview = ({
-  username,
-  avatar,
+const ReviewTitle = ({
+  user,
   createdAt,
   updatedAt,
-
+  anonymous,
   course,
   showCourse,
 }: {
-  username: string;
-  avatar: string | null;
+  user: UserMinimalProps;
   createdAt: number;
   updatedAt: number | null;
   course?: CourseMinimalProps;
+  anonymous?: boolean;
   showCourse?: boolean;
 }) => {
   return (
     <Space>
-      <Avatar src={avatar} size={36}>
-        {username.charAt(0)}
+      <Avatar src={user.avatar} size={36}>
+        {user.username.charAt(0)}
       </Avatar>
       <div>
-        <Text strong>{username}</Text>
-
+        {anonymous ? (
+          <Text strong>{user.username}</Text>
+        ) : (
+          <Link to={`/user/${user.id}`}>
+            <Text strong>{user.username}</Text>
+          </Link>
+        )}
         {showCourse && course && (
           <>
             <span> 点评了 </span>
@@ -120,21 +128,21 @@ const ReviewItem = ({
       {contextHolder}
       <Flex align="center" justify="space-between">
         {review.is_anonymous ? (
-          <UserInReview
-            username="匿名用户"
-            avatar={null}
+          <ReviewTitle
+            user={{ id: 0, username: "匿名用户", avatar: "" }}
             createdAt={review.created_at}
             updatedAt={review.updated_at}
             course={review.course}
+            anonymous={true}
             showCourse={showCourse}
           />
         ) : (
-          <UserInReview
-            username={review.user.username}
-            avatar={review.user.avatar}
+          <ReviewTitle
+            user={review.user}
             createdAt={review.created_at}
             updatedAt={review.updated_at}
             course={review.course}
+            anonymous={false}
             showCourse={showCourse}
           />
         )}
