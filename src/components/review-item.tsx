@@ -46,7 +46,7 @@ const ReviewTitle = ({
 }) => {
   return (
     <Space>
-      <Avatar src={user.avatar} size={36}>
+      <Avatar src={user.avatar || null} size={36}>
         {user.username.charAt(0)}
       </Avatar>
       <div>
