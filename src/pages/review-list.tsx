@@ -1,4 +1,7 @@
+import EmojiData from "@emoji-mart/data";
 import { List } from "antd";
+import { init } from "emoji-mart";
+import { useEffect } from "react";
 
 import PageHeader from "../components/page-header";
 import ReviewItem from "../components/review-item";
@@ -8,6 +11,11 @@ import { useReviews } from "../services/review";
 const ReviewListPage = () => {
   const { pagination, handlePageChange } = usePagination();
   const { data } = useReviews(pagination);
+
+  useEffect(() => {
+    init({ EmojiData });
+  }, []);
+
   return (
     <>
       <PageHeader
@@ -28,7 +36,10 @@ const ReviewListPage = () => {
         renderItem={(item) => {
           return (
             <List.Item key={item.id}>
-              <ReviewItem review={item} showCourse></ReviewItem>
+              <ReviewItem
+                review={item}
+                showCourse
+              ></ReviewItem>
             </List.Item>
           );
         }}

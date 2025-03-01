@@ -116,9 +116,14 @@ export type CourseMinimalProps = {
 };
 
 export type ReviewReactionProps = {
-  name: string;
-  count: number;
+  total_reactions: ReviewReactionItemProps[];
+  my_reactions: Map<string, number>; // reaction -> id
 };
+
+export type ReviewReactionItemProps = {
+  reaction: string;
+  count: number;
+}
 
 export type ReviewProps = {
   id: number;
@@ -132,9 +137,7 @@ export type ReviewProps = {
   updated_at: number | null;
   is_anonymous: boolean;
 
-  likes: number;
-  reactions: ReviewReactionProps[];
-  replies: number;
+  reaction: ReviewReactionProps;
 };
 
 export type UserDetailProps = {

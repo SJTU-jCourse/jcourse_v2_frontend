@@ -1,14 +1,17 @@
 import {
   DeleteOutlined,
   EditOutlined,
-  LikeOutlined,
   ShareAltOutlined,
+  SmileOutlined,
 } from "@ant-design/icons";
+import EmojiData from "@emoji-mart/data";
+import EmojiPicker from "@emoji-mart/react";
 import {
   Avatar,
   Button,
   Flex,
   Popconfirm,
+  Popover,
   Rate,
   Space,
   Tooltip,
@@ -16,15 +19,17 @@ import {
   message,
 } from "antd";
 import dayjs from "dayjs";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { CommonInfoContext } from "../libs/context";
 import {
   CourseMinimalProps,
   ReviewProps,
+  ReviewReactionProps,
   UserMinimalProps,
 } from "../models/model";
+import useReviewReaction from "../services/reaction.ts";
 import { deleteReview } from "../services/review";
 import MarkDownPreview from "./markdown-preview";
 
@@ -88,6 +93,34 @@ const ReviewTitle = ({
   );
 };
 
+export const ReviewReactions = ({
+  reactions,
+  handleReaction,
+}: {
+  reactions: ReviewReactionProps;
+  handleReaction?: (reaction: string) => void;
+}) => {
+  const myReactionMap = new Map(Object.entries(reactions.my_reactions));
+
+  return (
+    <Space wrap>
+      {reactions.total_reactions.map((item) => (
+        <Button
+          key={item.reaction}
+          type={myReactionMap.has(item.reaction) ? "primary" : "default"}
+          onClick={() => {
+            if (handleReaction) handleReaction(item.reaction);
+          }}
+          size="small"
+        >
+          <em-emoji id={item.reaction}></em-emoji>
+          {item.count}
+        </Button>
+      ))}
+    </Space>
+  );
+};
+
 const ReviewItem = ({
   review,
   showCourse,
@@ -99,6 +132,9 @@ const ReviewItem = ({
   const CommonInfo = useContext(CommonInfoContext);
   const navigate = useNavigate();
 
+  const [pickerOpen, setPickerOpen] = useState<boolean>(false);
+
+  const { handleReaction } = useReviewReaction(review.id, review.reaction);
   // const [showReply, setShowReply] = useState<boolean>(false);
 
   const showEdit = review.user?.id == CommonInfo?.user?.id;
@@ -118,7 +154,6 @@ const ReviewItem = ({
       });
     }
   };
-
   return (
     <Space
       id={`review-${review.id}`}
@@ -161,11 +196,31 @@ const ReviewItem = ({
       </Flex>
 
       <MarkDownPreview src={review.comment}></MarkDownPreview>
-      <Text type="secondary">#{review.id}</Text>
+
+      <ReviewReactions
+        reactions={review.reaction}
+        handleReaction={handleReaction}
+      />
+
       <Space>
-        <Button size="small" type="text" icon={<LikeOutlined />}>
-          {review.likes}
-        </Button>
+        <Text type="secondary">#{review.id}</Text>
+        <Popover
+          open={pickerOpen}
+          content={
+            <EmojiPicker
+              data={EmojiData}
+              onEmojiSelect={(emoji) => {
+                handleReaction(emoji.id);
+                setPickerOpen(false)
+              }}
+              locale="zh"
+              skinTonePosition="none"
+            />
+          }
+        >
+          <Button size="small" type="text" icon={<SmileOutlined />} onClick={()=>{setPickerOpen(true)}}></Button>
+        </Popover>
+
         {showEdit && (
           <Button
             size="small"
@@ -191,27 +246,6 @@ const ReviewItem = ({
             ></Button>
           </Popconfirm>
         )}
-        {/*<Button
-          size="small"
-          type="text"
-          icon={showReply ? <MessageTwoTone /> : <MessageOutlined />}
-          onClick={() => {
-            setShowReply(!showReply);
-          }}
-        >
-          {review.replies}
-        </Button>
-        <Button
-          size="small"
-          type="text"
-          icon={<TransactionOutlined />}
-          onClick={() => {
-            showReviewTipModal({ userPoint: 100 });
-          }}
-        >
-          {review.replies}
-        </Button>
-       */}
         <Button
           size="small"
           type="text"
@@ -219,8 +253,6 @@ const ReviewItem = ({
           onClick={copyReviewUrlToClipboard}
         ></Button>
       </Space>
-
-      {/*showReply && <ReviewReplyList />*/}
     </Space>
   );
 };
