@@ -1,7 +1,7 @@
 import { Button, message } from "antd";
 import { useEffect, useRef, useState } from "react";
 
-import { sendVerifyCode } from "../services/auth";
+import { sendVerifyCode } from "@/services/auth";
 
 interface SendVerifyCodeButtonProps {
   /** 返回当前输入的邮箱，用于发送验证码 */

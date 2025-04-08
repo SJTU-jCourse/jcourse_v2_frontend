@@ -1,12 +1,12 @@
 import { Col, Divider, List, Row } from "antd";
 import { useParams } from "react-router-dom";
 
-import PageHeader from "../components/page-header";
-import RateInfoWithMyRate from "../components/rate-info-my-rate";
-import TrainingPlanBaseCourse from "../components/training-plan-base-course";
-import TrainingPlanBaseCourseFilter from "../components/training-plan-base-course-filter";
-import TrainingPlanDetailCard from "../components/training-plan-detail-card";
-import { useTrainingPlanDetail } from "../services/training_plan";
+import PageHeader from "@/components/page-header";
+import RateInfoWithMyRate from "@/components/rate-info-my-rate";
+import TrainingPlanBaseCourse from "@/components/training-plan-base-course";
+import TrainingPlanBaseCourseFilter from "@/components/training-plan-base-course-filter";
+import TrainingPlanDetailCard from "@/components/training-plan-detail-card";
+import { useTrainingPlanDetail } from "@/services/training_plan";
 
 const TrainingPlanDetailPage = () => {
   const { id } = useParams();

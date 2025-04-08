@@ -2,8 +2,8 @@ import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Badge, Dropdown, MenuProps } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 
-import { UserDetailProps } from "../models/model";
-import { logout } from "../services/auth";
+import { UserDetailProps } from "@/models/model";
+import { logout } from "@/services/auth";
 
 const NavBarUser = ({ user }: { user?: UserDetailProps }) => {
   const navigate = useNavigate();

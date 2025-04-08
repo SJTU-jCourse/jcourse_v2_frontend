@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 
-import { ListOrder } from "../models/dto";
+import { ListOrder } from "@/models/dto";
 
 const useListOrder = (defaultListOrder?: ListOrder) => {
   const [searchParams, setSearchParams] = useSearchParams();

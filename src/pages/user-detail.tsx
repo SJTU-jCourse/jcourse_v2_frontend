@@ -2,9 +2,9 @@ import { Tabs, TabsProps } from "antd";
 import { useContext } from "react";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 
-import UserDetailCard from "../components/user-detail-card";
-import { CommonInfoContext } from "../libs/context";
-import { useUserDetail } from "../services/user";
+import UserDetailCard from "@/components/user-detail-card";
+import { CommonInfoContext } from "@/libs/context";
+import { useUserDetail } from "@/services/user";
 
 const getActiveKey = (pathname: string) => {
   const part = pathname.split("/");

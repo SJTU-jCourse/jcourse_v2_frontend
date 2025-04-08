@@ -1,9 +1,9 @@
 import { Button, Form, Input, Select, message } from "antd";
 import { useOutletContext } from "react-router-dom";
 
-import { UserProfileRequest } from "../../models/dto";
-import { UserDetailProps } from "../../models/model";
-import { updateUserProfile } from "../../services/user";
+import { UserProfileRequest } from "@/models/dto";
+import { UserDetailProps } from "@/models/model";
+import { updateUserProfile } from "@/services/user";
 
 const convertDetailToRequest = (user: UserDetailProps): UserProfileRequest => {
   return {

@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 
-import { Pagination } from "../models/dto";
+import { Pagination } from "@/models/dto";
 
 function usePagination(defaultPage = 1, defaultPageSize = 10) {
   const [searchParams, setSearchParams] = useSearchParams();

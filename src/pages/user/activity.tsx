@@ -1,7 +1,7 @@
 import { Card, Descriptions } from "antd";
 import { useParams } from "react-router-dom";
 
-import { useUserActivity } from "../../services/user";
+import { useUserActivity } from "@/services/user";
 
 const UserActivitySubPage = () => {
   const { id } = useParams();

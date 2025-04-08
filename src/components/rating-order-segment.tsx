@@ -1,6 +1,6 @@
 import { Segmented } from "antd";
 
-import { ListOrder } from "../models/dto";
+import { ListOrder } from "@/models/dto";
 
 const RatingOrderSegment = ({
   defaultOrder,

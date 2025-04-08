@@ -1,16 +1,16 @@
 import { Button, Card, Col, Input, List, Row } from "antd";
 
-import PageHeader from "../components/page-header";
-import RatingOrderSegment from "../components/rating-order-segment";
-import TrainingPlanFilterView from "../components/training-plan-filter";
-import TrainingPlanItem from "../components/training-plan-item";
-import useListOrder from "../libs/useListOrder";
-import usePagination from "../libs/usePagination";
+import PageHeader from "@/components/page-header";
+import RatingOrderSegment from "@/components/rating-order-segment";
+import TrainingPlanFilterView from "@/components/training-plan-filter";
+import TrainingPlanItem from "@/components/training-plan-item";
+import useListOrder from "@/libs/useListOrder";
+import usePagination from "@/libs/usePagination";
 import {
   useTrainingPlanFilter,
   useTrainingPlanFilterForQuery,
   useTrainingPlans,
-} from "../services/training_plan";
+} from "@/services/training_plan";
 
 const TrainingPlanListPage = () => {
   const { pagination, handlePageChange } = usePagination();

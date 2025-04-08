@@ -1,6 +1,6 @@
 import { Tabs, TabsProps } from "antd";
 
-import PageHeader from "../components/page-header";
+import PageHeader from "@/components/page-header";
 
 const RankPage = () => {
   const items: TabsProps["items"] = [

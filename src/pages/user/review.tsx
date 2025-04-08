@@ -1,9 +1,9 @@
 import { List } from "antd";
 import { useParams } from "react-router-dom";
 
-import ReviewItem from "../../components/review-item";
-import usePagination from "../../libs/usePagination";
-import { useReviews } from "../../services/review";
+import ReviewItem from "@/components/review-item";
+import usePagination from "@/libs/usePagination";
+import { useReviews } from "@/services/review";
 
 const UserReviewSubPage = () => {
   const { id } = useParams();

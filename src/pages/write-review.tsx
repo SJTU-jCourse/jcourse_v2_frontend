@@ -13,12 +13,12 @@ import {
 import { useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 
-import MarkDownEditor from "../components/markdown-editor";
-import PageHeader from "../components/page-header";
-import { ReviewRequest } from "../models/dto";
-import { CourseDetailProps, ReviewProps } from "../models/model";
-import { getCourseDetail } from "../services/course";
-import { getReviewDetail, updateReview, writeReview } from "../services/review";
+import MarkDownEditor from "@/components/markdown-editor";
+import PageHeader from "@/components/page-header";
+import { ReviewRequest } from "@/models/dto";
+import { CourseDetailProps, ReviewProps } from "@/models/model";
+import { getCourseDetail } from "@/services/course";
+import { getReviewDetail, updateReview, writeReview } from "@/services/review";
 
 // 要展示的标签列表
 const tagOptions = [

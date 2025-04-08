@@ -3,10 +3,10 @@ import { Button, Grid, Layout, Menu, MenuProps, Popover, theme } from "antd";
 import { useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
-import { CommonInfoContext } from "../libs/context";
-import { useCommonInfo } from "../services/common";
-import MultipleSearch from "./multiple-search";
-import NavBarUser from "./nav-bar-user";
+import MultipleSearch from "@/components/multiple-search";
+import NavBarUser from "@/components/nav-bar-user";
+import { CommonInfoContext } from "@/libs/context";
+import { useCommonInfo } from "@/services/common";
 
 const { Header, Content, Footer } = Layout;
 

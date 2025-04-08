@@ -1,12 +1,12 @@
 import useSWR from "swr";
 
-import { PaginationApiResult, UserProfileRequest } from "../models/dto";
+import { PaginationApiResult, UserProfileRequest } from "@/models/dto";
 import {
   UserActivityProps,
   UserDetailProps,
   UserPointProps,
-} from "../models/model";
-import { fetcher, request } from "./request";
+} from "@/models/model";
+import { fetcher, request } from "@/services/request";
 
 export const useUsers = () => {
   const { data, error } = useSWR<PaginationApiResult<UserDetailProps>>(

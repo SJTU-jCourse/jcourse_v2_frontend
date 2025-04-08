@@ -1,7 +1,7 @@
 import { Button, Card, Form, Input, List } from "antd";
 
-import { ReviewReplyItemProps } from "../models/model";
-import ReviewReplyItem from "./review-reply-item";
+import { ReviewReplyItemProps } from "@/models/model";
+import ReviewReplyItem from "@/components/review-reply-item";
 
 const ReviewReplyList = () => {
   return (

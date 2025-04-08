@@ -1,4 +1,4 @@
-import { request } from "./request";
+import { request } from "@/services/request";
 
 export const getFullEmail = (email: string) => {
   return `${email}@${import.meta.env.VITE_EMAIL_SUFFIX}`;

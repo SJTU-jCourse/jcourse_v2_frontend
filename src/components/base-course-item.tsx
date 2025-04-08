@@ -1,7 +1,7 @@
 import { Card, Space, Typography } from "antd";
 import { Link } from "react-router-dom";
 
-import { BaseCourseProps } from "../models/model";
+import { BaseCourseProps } from "@/models/model";
 
 const { Text } = Typography;
 const BaseCourseItem = ({ baseCourse }: { baseCourse: BaseCourseProps }) => {

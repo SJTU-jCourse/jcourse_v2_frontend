@@ -2,8 +2,8 @@ import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Card, Col, Row, Space, Typography } from "antd";
 import { Link } from "react-router-dom";
 
-import { TeacherSummaryProps } from "../models/model";
-import RateInfo from "./rate-info";
+import { TeacherSummaryProps } from "@/models/model";
+import RateInfo from "@/components/rate-info";
 
 const { Text } = Typography;
 const TeacherItem = ({ teacher }: { teacher: TeacherSummaryProps }) => {

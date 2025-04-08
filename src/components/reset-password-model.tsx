@@ -1,7 +1,7 @@
 import { Modal, message } from "antd";
 
-import { resetPassword } from "../services/auth";
-import EmailCodePasswordForm from "./email-code-password-form";
+import { resetPassword } from "@/services/auth";
+import EmailCodePasswordForm from "@/components/email-code-password-form";
 
 interface ResetPasswordModalProps {
   open: boolean;

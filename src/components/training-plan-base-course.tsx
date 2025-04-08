@@ -1,7 +1,7 @@
 import { Card, Descriptions, Typography } from "antd";
 import { Link } from "react-router-dom";
 
-import { TrainingPlanBaseCourseProps } from "../models/model";
+import { TrainingPlanBaseCourseProps } from "@/models/model";
 
 const TrainingPlanBaseCourse = ({
   trainingPlanBaseCourse,

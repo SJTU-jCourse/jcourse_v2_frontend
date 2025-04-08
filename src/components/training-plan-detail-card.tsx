@@ -1,6 +1,6 @@
 import { Descriptions } from "antd";
 
-import { TrainingPlanDetailProps } from "../models/model";
+import { TrainingPlanDetailProps } from "@/models/model";
 
 const TrainingPlanDetailCard = ({
   trainingPlan,

@@ -1,7 +1,7 @@
 import { Button, Flex, Select } from "antd";
 import { useState } from "react";
 
-import { ReviewFilterForQuery } from "../models/filter";
+import { ReviewFilterForQuery } from "@/models/filter";
 
 const orderOptions = [
   "最新回复",

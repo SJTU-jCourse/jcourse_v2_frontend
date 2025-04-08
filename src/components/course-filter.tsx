@@ -1,9 +1,9 @@
 import { Checkbox, Collapse, CollapseProps, Row } from "antd";
 import { useState } from "react";
 
-import { CourseFilterForQuery } from "../models/filter";
-import { CourseFilter } from "../models/model";
-import FilterItemElement from "./filter-item";
+import { CourseFilterForQuery } from "@/models/filter";
+import { CourseFilter } from "@/models/model";
+import FilterItemElement from "@/components/filter-item";
 
 const CourseFilterView = ({
   filter,

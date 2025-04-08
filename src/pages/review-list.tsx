@@ -3,10 +3,10 @@ import { List } from "antd";
 import { init } from "emoji-mart";
 import { useEffect } from "react";
 
-import PageHeader from "../components/page-header";
-import ReviewItem from "../components/review-item";
-import usePagination from "../libs/usePagination";
-import { useReviews } from "../services/review";
+import PageHeader from "@/components/page-header";
+import ReviewItem from "@/components/review-item";
+import usePagination from "@/libs/usePagination";
+import { useReviews } from "@/services/review";
 
 const ReviewListPage = () => {
   const { pagination, handlePageChange } = usePagination();

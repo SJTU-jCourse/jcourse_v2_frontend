@@ -1,6 +1,6 @@
 import { Col, Progress, Row, Space, Typography } from "antd";
 
-import { RateDistItemProps, RatingInfoProps } from "../models/model";
+import { RateDistItemProps, RatingInfoProps } from "@/models/model";
 
 type RatePercentItemProps = {
   rate: number;
@@ -18,8 +18,8 @@ const convertRateBar = (
   });
 
   rateBars.forEach((item) => {
-    console.log(item)
-    rates[5 - item.rating].percent = item.count * 100 / total;
+    console.log(item);
+    rates[5 - item.rating].percent = (item.count * 100) / total;
   });
 
   return rates;

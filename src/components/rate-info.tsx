@@ -1,6 +1,6 @@
 import { Flex, Rate, Space, Typography } from "antd";
 
-import { RatingInfoProps } from "../models/model";
+import { RatingInfoProps } from "@/models/model";
 
 const RateInfo = ({ rateInfo }: { rateInfo: RatingInfoProps }) => {
   if (rateInfo.count == 0) {

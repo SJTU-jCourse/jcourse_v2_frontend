@@ -1,15 +1,15 @@
 import useSWR from "swr";
 
-import toQueryString from "../libs/queryString";
+import toQueryString from "@/libs/queryString";
 import {
   ListOrder,
   Pagination,
   PaginationApiResult,
   ReviewRequest,
-} from "../models/dto";
-import { ReviewFilterForQuery } from "../models/filter";
-import { ReviewProps } from "../models/model";
-import { fetcher, request } from "./request";
+} from "@/models/dto";
+import { ReviewFilterForQuery } from "@/models/filter";
+import { ReviewProps } from "@/models/model";
+import { fetcher, request } from "@/services/request";
 
 export const useReviews = (
   pagination?: Pagination,

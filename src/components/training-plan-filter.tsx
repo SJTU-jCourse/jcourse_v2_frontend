@@ -1,9 +1,9 @@
 import { Checkbox, Collapse, CollapseProps, Row } from "antd";
 import { useState } from "react";
 
-import { TrainingPlanFilterForQuery } from "../models/filter";
-import { TrainingPlanFilter } from "../models/model";
-import FilterItemElement from "./filter-item";
+import { TrainingPlanFilterForQuery } from "@/models/filter";
+import { TrainingPlanFilter } from "@/models/model";
+import FilterItemElement from "@/components/filter-item";
 
 const TrainingPlanFilterView = ({
   filter,

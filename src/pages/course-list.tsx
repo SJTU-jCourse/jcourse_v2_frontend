@@ -1,17 +1,17 @@
 import { Button, Card, Col, Input, List, Row } from "antd";
 
-import CourseFilterView from "../components/course-filter";
-import CourseItem from "../components/course-item";
-import PageHeader from "../components/page-header";
-import RatingOrderSegment from "../components/rating-order-segment";
-import useListOrder from "../libs/useListOrder";
-import usePagination from "../libs/usePagination";
-import { CourseFilterForQuery } from "../models/filter";
+import CourseFilterView from "@/components/course-filter";
+import CourseItem from "@/components/course-item";
+import PageHeader from "@/components/page-header";
+import RatingOrderSegment from "@/components/rating-order-segment";
+import useListOrder from "@/libs/useListOrder";
+import usePagination from "@/libs/usePagination";
+import { CourseFilterForQuery } from "@/models/filter";
 import {
   useCourseFilter,
   useCourseFilterForQuery,
   useCourses,
-} from "../services/course";
+} from "@/services/course";
 
 const CourseListPage = () => {
   const { pagination, handlePageChange } = usePagination();

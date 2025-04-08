@@ -1,4 +1,4 @@
-import { ListOrder, Pagination } from "../models/dto";
+import { ListOrder, Pagination } from "@/models/dto";
 
 const toQueryString = (pagination?: Pagination, order?: ListOrder): string => {
   const searchParams = new URLSearchParams();

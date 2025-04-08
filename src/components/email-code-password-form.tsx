@@ -1,6 +1,6 @@
 import { Button, Flex, Form, Input } from "antd";
 
-import SendVerifyCodeButton from "./send-verify-code-button";
+import SendVerifyCodeButton from "@/components/send-verify-code-button";
 
 interface EmailCodePasswordFormProps {
   /** 点击“提交”时触发的回调，负责与后端交互 */

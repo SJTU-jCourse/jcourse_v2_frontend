@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import { useState } from "react";
 
-import ResetPasswordModal from "../../components/reset-password-model";
+import ResetPasswordModal from "@/components/reset-password-model";
 
 const UserSecurityPage = () => {
   const [openChangeModal, setOpenChangeModal] = useState(false);

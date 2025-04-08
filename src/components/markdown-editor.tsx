@@ -1,7 +1,7 @@
 import { Col, Grid, Input, Row, Space, Switch } from "antd";
 import { useState } from "react";
 
-import MarkDownPreview from "./markdown-preview";
+import MarkDownPreview from "@/components/markdown-preview";
 
 const MarkDownEditor = ({
   value,

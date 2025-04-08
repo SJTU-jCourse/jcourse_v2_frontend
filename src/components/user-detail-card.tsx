@@ -1,6 +1,6 @@
 import { Avatar, Col, Row, Space, Typography } from "antd";
 
-import { UserDetailProps } from "../models/model";
+import { UserDetailProps } from "@/models/model";
 
 const UserDetailCard = ({ user }: { user: UserDetailProps }) => {
   return (

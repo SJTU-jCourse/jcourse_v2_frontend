@@ -1,6 +1,6 @@
 import { Descriptions, Table, Typography } from "antd";
 
-import { useUserPoint } from "../../services/user";
+import { useUserPoint } from "@/services/user";
 
 const UserPointSubPage = () => {
   const { data: userPoint, loading } = useUserPoint();

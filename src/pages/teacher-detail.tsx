@@ -2,10 +2,10 @@ import { Col, Divider, List, Row, Typography } from "antd";
 import { useParams } from "react-router-dom";
 
 import CourseItem from "../components/course-item";
-import CourseSimpleFilter from "../components/course-simple-filter";
-import RateInfoWithMyRate from "../components/rate-info-my-rate";
-import TeacherDetailCard from "../components/teacher-detail-card";
-import { useTeacherDetail } from "../services/teacher";
+import CourseSimpleFilter from "@/components/course-simple-filter";
+import RateInfoWithMyRate from "@/components/rate-info-my-rate";
+import TeacherDetailCard from "@/components/teacher-detail-card";
+import { useTeacherDetail } from "@/services/teacher";
 
 const TeacherDetailPage = () => {
   const { id } = useParams();

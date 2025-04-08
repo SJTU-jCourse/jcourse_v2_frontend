@@ -2,7 +2,7 @@ import { ArrowRightOutlined } from "@ant-design/icons";
 import { Avatar, Button, Flex, Space, Typography } from "antd";
 import dayjs from "dayjs";
 
-import { ReviewReplyItemProps, UserMinimalProps } from "../models/model";
+import { ReviewReplyItemProps, UserMinimalProps } from "@/models/model";
 
 const UserInReply = ({ user }: { user: UserMinimalProps }) => {
   return (

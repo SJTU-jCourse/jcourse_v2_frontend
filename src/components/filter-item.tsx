@@ -1,6 +1,6 @@
 import { Checkbox, Col, Tag } from "antd";
 
-import { FilterItem } from "../models/model";
+import { FilterItem } from "@/models/model";
 
 const FilterItemElement = ({ item }: { item: FilterItem }) => {
   return (

@@ -1,5 +1,5 @@
-import { ReviewReactionProps } from "../models/model.ts";
-import { request } from "./request.ts";
+import { ReviewReactionProps } from "@/models/model.ts";
+import { request } from "@/services/request.ts";
 
 function useReviewReaction(reviewId: number, existsReaction: ReviewReactionProps, callback?: () => void) {
   const handleReaction = (reaction: string) => {

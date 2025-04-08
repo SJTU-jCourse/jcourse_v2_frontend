@@ -1,16 +1,16 @@
 import { Button, Card, Col, Input, List, Row } from "antd";
 
-import PageHeader from "../components/page-header";
-import RatingOrderSegment from "../components/rating-order-segment";
-import TeacherFilterView from "../components/teacher-filter";
-import TeacherItem from "../components/teacher-item";
-import useListOrder from "../libs/useListOrder";
-import usePagination from "../libs/usePagination";
+import PageHeader from "@/components/page-header";
+import RatingOrderSegment from "@/components/rating-order-segment";
+import TeacherFilterView from "@/components/teacher-filter";
+import TeacherItem from "@/components/teacher-item";
+import useListOrder from "@/libs/useListOrder";
+import usePagination from "@/libs/usePagination";
 import {
   useTeacherFilter,
   useTeacherFilterForQuery,
   useTeachers,
-} from "../services/teacher";
+} from "@/services/teacher";
 
 const TeacherListPage = () => {
   const { pagination, handlePageChange } = usePagination();

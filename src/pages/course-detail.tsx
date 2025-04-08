@@ -11,13 +11,13 @@ import {
 } from "antd";
 import { Link, useParams } from "react-router-dom";
 
-import CourseDetailCard from "../components/course-detail-card";
-import PageHeader from "../components/page-header";
-import RateInfoWithMyRate from "../components/rate-info-my-rate";
-import ReviewItem from "../components/review-item";
-import usePagination from "../libs/usePagination";
-import { useCourseDetail } from "../services/course";
-import { useReviews } from "../services/review";
+import CourseDetailCard from "@/components/course-detail-card";
+import PageHeader from "@/components/page-header";
+import RateInfoWithMyRate from "@/components/rate-info-my-rate";
+import ReviewItem from "@/components/review-item";
+import usePagination from "@/libs/usePagination";
+import { useCourseDetail } from "@/services/course";
+import { useReviews } from "@/services/review";
 
 const CourseDetailPage = () => {
   const { id } = useParams();

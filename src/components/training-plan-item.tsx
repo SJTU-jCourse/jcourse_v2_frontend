@@ -1,8 +1,8 @@
 import { Card, Flex, Space, Typography } from "antd";
 import { Link } from "react-router-dom";
 
-import { TrainingPlanSummaryProps } from "../models/model";
-import RateInfo from "./rate-info";
+import { TrainingPlanSummaryProps } from "@/models/model";
+import RateInfo from "@/components/rate-info";
 
 const { Text } = Typography;
 const TrainingPlanItem = ({

@@ -2,11 +2,11 @@ import { Button, Grid, Layout, Tabs, TabsProps, message, theme } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import EmailCodePasswordForm from "../components/email-code-password-form";
-import LoginForm from "../components/login-form";
-import ResetPasswordModal from "../components/reset-password-model";
-import { LoginRequest, RegisterRequest } from "../models/dto";
-import { login, register } from "../services/auth";
+import EmailCodePasswordForm from "@/components/email-code-password-form";
+import LoginForm from "@/components/login-form";
+import ResetPasswordModal from "@/components/reset-password-model";
+import { LoginRequest, RegisterRequest } from "@/models/dto";
+import { login, register } from "@/services/auth";
 
 const { Header, Content, Footer } = Layout;
 

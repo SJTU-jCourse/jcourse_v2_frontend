@@ -1,6 +1,6 @@
 import { Descriptions } from "antd";
 
-import { CourseDetailProps } from "../models/model";
+import { CourseDetailProps } from "@/models/model";
 
 const CourseDetailCard = ({ course }: { course: CourseDetailProps }) => {
   return (
