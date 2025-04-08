@@ -22,16 +22,16 @@ import dayjs from "dayjs";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { CommonInfoContext } from "../libs/context";
+import MarkDownPreview from "@/components/markdown-preview";
+import { CommonInfoContext } from "@/libs/context";
 import {
   CourseMinimalProps,
   ReviewProps,
   ReviewReactionProps,
   UserMinimalProps,
-} from "../models/model";
-import useReviewReaction from "../services/reaction.ts";
-import { deleteReview } from "../services/review";
-import MarkDownPreview from "./markdown-preview";
+} from "@/models/model";
+import useReviewReaction from "@/services/reaction.ts";
+import { deleteReview } from "@/services/review";
 
 const { Text } = Typography;
 const ReviewTitle = ({
@@ -209,16 +209,23 @@ const ReviewItem = ({
           content={
             <EmojiPicker
               data={EmojiData}
-              onEmojiSelect={(emoji) => {
+              onEmojiSelect={(emoji: { id: string }) => {
                 handleReaction(emoji.id);
-                setPickerOpen(false)
+                setPickerOpen(false);
               }}
               locale="zh"
               skinTonePosition="none"
             />
           }
         >
-          <Button size="small" type="text" icon={<SmileOutlined />} onClick={()=>{setPickerOpen(true)}}></Button>
+          <Button
+            size="small"
+            type="text"
+            icon={<SmileOutlined />}
+            onClick={() => {
+              setPickerOpen(true);
+            }}
+          ></Button>
         </Popover>
 
         {showEdit && (

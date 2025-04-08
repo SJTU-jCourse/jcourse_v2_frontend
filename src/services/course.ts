@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import useSWR from "swr";
 
-import toQueryString from "../libs/queryString";
-import { ListOrder, Pagination, PaginationApiResult } from "../models/dto";
-import { CourseFilterForQuery } from "../models/filter";
+import toQueryString from "@/libs/queryString";
+import { ListOrder, Pagination, PaginationApiResult } from "@/models/dto";
+import { CourseFilterForQuery } from "@/models/filter";
 import {
   BaseCourseProps,
   CourseDetailProps,
   CourseSummaryProps,
-} from "../models/model";
-import { fetcher } from "./request";
+} from "@/models/model";
+import { fetcher } from "@/services/request";
 
 export const useCourses = (
   pagination: Pagination,
@@ -18,6 +18,7 @@ export const useCourses = (
   order?: ListOrder
 ) => {
   const listParams = toQueryString(pagination, order);
+  // @ts-expect-error no need to check
   const filterParams = new URLSearchParams(filter).toString();
   const { data, error } = useSWR<PaginationApiResult<CourseSummaryProps>>(
     `/api/course?${listParams}&${filterParams}`,
