@@ -17,10 +17,12 @@ import PageHeader from "@/components/page-header";
 import RateInfoWithMyRate from "@/components/rate-info-my-rate";
 import ReviewItem from "@/components/review-item";
 import usePagination from "@/libs/usePagination";
-import { RatingRequest } from "@/models/dto.ts";
+import { CourseSummaryResponse, RatingRequest } from "@/models/dto.ts";
 import { useCourseDetail } from "@/services/course";
+import { getCourseSummary } from "@/services/llm.ts";
 import { createRating } from "@/services/rating.ts";
 import { useReviews } from "@/services/review";
+import { useState } from "react";
 
 const CourseDetailPage = () => {
   const { id } = useParams();
@@ -30,6 +32,10 @@ const CourseDetailPage = () => {
   const { data: reviews } = useReviews(pagination, {
     course_id: id,
   });
+
+  const [courseSummary, setCourseSummary] = useState("");
+  const [summaryLoading, setSummaryLoading] = useState(false);
+  const [showSummary, setShowSummary] = useState(false);
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -43,6 +49,26 @@ const CourseDetailPage = () => {
     createRating(r)
       .then(() => messageApi.success("发表评分成功"))
       .catch(() => messageApi.error("发表评分失败"));
+  };
+
+  const handleShowSummary = () => {
+    if (!course?.id) return;
+    if (!showSummary) {
+      setSummaryLoading(true);
+
+      getCourseSummary(course.id)
+        .then((resp:CourseSummaryResponse) => {
+          setCourseSummary(resp.summary);
+        })
+        .catch(() => {
+          messageApi.error("获取课程概要失败");
+          setShowSummary(false)
+        })
+        .finally(() => {
+          setSummaryLoading(false);
+        });
+    }
+    setShowSummary(!showSummary);
   };
 
   if (!course) {
@@ -76,12 +102,27 @@ const CourseDetailPage = () => {
             <Typography.Text strong style={{ fontSize: 18 }}>
               所有点评
             </Typography.Text>
+            <Button type="default" onClick={handleShowSummary}>
+              {showSummary ? "隐藏课程概要" : "查看课程概要"}
+            </Button>
+
             {!course.rating_info.my_rating && (
               <Link to="/write-review" state={{ course: course }}>
                 <Button type="primary">写点评</Button>
               </Link>
             )}
           </Flex>
+          {showSummary && (
+            <Card
+              style={{ marginTop: 16 }}
+              title="课程概要"
+              loading={summaryLoading}
+            >
+              <Typography.Paragraph style={{ whiteSpace: "pre-wrap" }}>
+                {summaryLoading ? "正在生成课程概要..." : courseSummary}
+              </Typography.Paragraph>
+            </Card>
+          )}
 
           {/*
            <Divider></Divider>

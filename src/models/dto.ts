@@ -60,3 +60,7 @@ export type OptCourseReviewResponse = {
   suggestion: string;
   result: string;
 }
+
+export type CourseSummaryResponse = {
+  summary: string;
+}
