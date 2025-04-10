@@ -8,6 +8,7 @@ import {
   Row,
   Space,
   Typography,
+  message,
 } from "antd";
 import { Link, useParams } from "react-router-dom";
 
@@ -16,7 +17,9 @@ import PageHeader from "@/components/page-header";
 import RateInfoWithMyRate from "@/components/rate-info-my-rate";
 import ReviewItem from "@/components/review-item";
 import usePagination from "@/libs/usePagination";
+import { RatingRequest } from "@/models/dto.ts";
 import { useCourseDetail } from "@/services/course";
+import { createRating } from "@/services/rating.ts";
 import { useReviews } from "@/services/review";
 
 const CourseDetailPage = () => {
@@ -27,6 +30,20 @@ const CourseDetailPage = () => {
   const { data: reviews } = useReviews(pagination, {
     course_id: id,
   });
+
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const onRatingChange = (rating: number) => {
+    if (!course?.id) return;
+    const r: RatingRequest = {
+      rating,
+      related_id: course?.id,
+      related_type: "course",
+    };
+    createRating(r)
+      .then(() => messageApi.success("发表评分成功"))
+      .catch(() => messageApi.error("发表评分失败"));
+  };
 
   if (!course) {
     return <></>;
@@ -44,9 +61,11 @@ const CourseDetailPage = () => {
           <CourseDetailCard course={course}></CourseDetailCard>
         </Col>
         <Col>
+          {contextHolder}
           <RateInfoWithMyRate
             rateInfo={course.rating_info}
             myRate={course.rating_info.my_rating}
+            onChange={onRatingChange}
           ></RateInfoWithMyRate>
         </Col>
       </Row>

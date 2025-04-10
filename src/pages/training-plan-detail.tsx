@@ -1,4 +1,4 @@
-import { Col, Divider, List, Row } from "antd";
+import { Col, Divider, List, message, Row } from "antd";
 import { useParams } from "react-router-dom";
 
 import PageHeader from "@/components/page-header";
@@ -7,11 +7,24 @@ import TrainingPlanBaseCourse from "@/components/training-plan-base-course";
 import TrainingPlanBaseCourseFilter from "@/components/training-plan-base-course-filter";
 import TrainingPlanDetailCard from "@/components/training-plan-detail-card";
 import { useTrainingPlanDetail } from "@/services/training_plan";
+import { RatingRequest } from "@/models/dto.ts";
+import { createRating } from "@/services/rating.ts";
 
 const TrainingPlanDetailPage = () => {
   const { id } = useParams();
   const { data: trainingPlan } = useTrainingPlanDetail(Number(id));
-  const myRate = 5;
+  const [messageApi, contextHolder] = message.useMessage();
+  const onRatingChange = (rating: number) => {
+    if (!trainingPlan?.id) return;
+    const r: RatingRequest = {
+      rating,
+      related_id: trainingPlan?.id,
+      related_type: "training_plan",
+    };
+    createRating(r)
+      .then(() => messageApi.success("发表评分成功"))
+      .catch(() => messageApi.error("发表评分失败"));
+  };
   if (!trainingPlan) {
     return <></>;
   }
@@ -25,9 +38,11 @@ const TrainingPlanDetailPage = () => {
           ></TrainingPlanDetailCard>
         </Col>
         <Col>
+          {contextHolder}
           <RateInfoWithMyRate
             rateInfo={trainingPlan.rating_info}
-            myRate={myRate}
+            myRate={trainingPlan.rating_info.my_rating}
+            onChange={onRatingChange}
           ></RateInfoWithMyRate>
         </Col>
       </Row>

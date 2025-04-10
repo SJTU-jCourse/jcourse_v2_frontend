@@ -44,3 +44,9 @@ export type ListOrder = {
   order: string;
   ascending: boolean;
 };
+
+export type RatingRequest = {
+  related_type: string;
+  related_id: number;
+  rating: number;
+};
