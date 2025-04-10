@@ -50,3 +50,13 @@ export type RatingRequest = {
   related_id: number;
   rating: number;
 };
+
+export type OptCourseReviewRequest = {
+  course_name: string;
+  review_content: string;
+}
+
+export type OptCourseReviewResponse = {
+  suggestion: string;
+  result: string;
+}

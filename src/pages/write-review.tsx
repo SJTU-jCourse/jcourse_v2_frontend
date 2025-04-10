@@ -13,11 +13,17 @@ import {
 import { useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 
+import AIReviewEnhancer from "@/components/ai-review-enhancer";
 import MarkDownEditor from "@/components/markdown-editor";
 import PageHeader from "@/components/page-header";
-import { ReviewRequest } from "@/models/dto";
+import {
+  OptCourseReviewRequest,
+  OptCourseReviewResponse,
+  ReviewRequest,
+} from "@/models/dto";
 import { CourseDetailProps, ReviewProps } from "@/models/model";
 import { getCourseDetail } from "@/services/course";
+import { optReviewContent } from "@/services/llm.ts";
 import { getReviewDetail, updateReview, writeReview } from "@/services/review";
 
 // 要展示的标签列表
@@ -67,6 +73,42 @@ const WriteReviewPage = () => {
   // 记录用户点击了哪些标签
   const [tagContents, setTagContents] = useState<Record<string, string>>({});
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  // 在WriteReviewPage组件中添加以下状态
+  const [showAIEnhancement, setShowAIEnhancement] = useState(false);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiResponse, setAiResponse] = useState<OptCourseReviewResponse>({
+    result: "",
+    suggestion: "",
+  });
+
+  const handleAIEnhance = () => {
+    const currentComment = form.getFieldValue("comment");
+    if (!currentComment || currentComment.trim() === "") {
+      messageApi.warning("请先添加评论内容再使用AI润色");
+      return;
+    }
+
+    setAiLoading(true);
+    setShowAIEnhancement(true);
+
+    const request: OptCourseReviewRequest = {
+      course_name: course!.name, // 使用课程名称而非ID
+      review_content: currentComment, // 字段名变更为review_content
+    };
+
+    optReviewContent(request)
+      .then((result: OptCourseReviewResponse) => {
+        setAiResponse(result);
+      })
+      .catch(() => {
+        messageApi.error("AI润色失败，请稍后重试");
+        setShowAIEnhancement(false);
+      })
+      .finally(() => {
+        setAiLoading(false);
+      });
+  };
 
   useEffect(() => {
     if (reviewId) {
@@ -180,6 +222,22 @@ const WriteReviewPage = () => {
           <Form.Item label="成绩" name="grade">
             <Input></Input>
           </Form.Item>
+
+          <Form.Item
+            label="评分"
+            name="rating"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Rate></Rate>
+          </Form.Item>
+          <Form.Item label="匿名" name="is_anonymous" initialValue={false}>
+            <Switch></Switch>
+          </Form.Item>
+
           <Form.Item label="详细点评" required>
             <div style={{ marginBottom: 8 }}>
               <Space size={[8, 8]} wrap>
@@ -209,29 +267,30 @@ const WriteReviewPage = () => {
               <MarkDownEditor></MarkDownEditor>
             </Form.Item>
           </Form.Item>
-          <Form.Item
-            label="评分"
-            name="rating"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Rate></Rate>
-          </Form.Item>
-          <Form.Item label="匿名" name="is_anonymous" initialValue={false}>
-            <Switch></Switch>
-          </Form.Item>
+
           <Form.Item label="">
             <Space>
-              <Button>AI 润色</Button>
+              <Button onClick={handleAIEnhance}>AI 润色</Button>
               <Button type="primary" htmlType="submit">
                 提交点评
               </Button>
             </Space>
           </Form.Item>
         </Form>
+
+        <AIReviewEnhancer
+          open={showAIEnhancement}
+          originalContent={form.getFieldValue("comment")}
+          enhancedContent={aiResponse.result}
+          suggestion={aiResponse.suggestion}
+          isLoading={aiLoading}
+          onAccept={(content: string) => {
+            form.setFieldsValue({ comment: content });
+          }}
+          onCancel={() => {
+            setShowAIEnhancement(false);
+          }}
+        />
       </Card>
     </>
   );
