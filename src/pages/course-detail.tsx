@@ -10,19 +10,21 @@ import {
   Typography,
   message,
 } from "antd";
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import CourseDetailCard from "@/components/course-detail-card";
+import CourseItem from "@/components/course-item.tsx";
 import PageHeader from "@/components/page-header";
 import RateInfoWithMyRate from "@/components/rate-info-my-rate";
 import ReviewItem from "@/components/review-item";
 import usePagination from "@/libs/usePagination";
 import { CourseSummaryResponse, RatingRequest } from "@/models/dto.ts";
+import { CourseSummaryProps } from "@/models/model.ts";
 import { useCourseDetail } from "@/services/course";
 import { getCourseSummary } from "@/services/llm.ts";
 import { createRating } from "@/services/rating.ts";
 import { useReviews } from "@/services/review";
-import { useState } from "react";
 
 const CourseDetailPage = () => {
   const { id } = useParams();
@@ -57,12 +59,12 @@ const CourseDetailPage = () => {
       setSummaryLoading(true);
 
       getCourseSummary(course.id)
-        .then((resp:CourseSummaryResponse) => {
+        .then((resp: CourseSummaryResponse) => {
           setCourseSummary(resp.summary);
         })
         .catch(() => {
           messageApi.error("获取课程概要失败");
-          setShowSummary(false)
+          setShowSummary(false);
         })
         .finally(() => {
           setSummaryLoading(false);
@@ -151,8 +153,26 @@ const CourseDetailPage = () => {
         </Col>
         <Col xs={24} sm={24} md={8}>
           <Space direction="vertical" style={{ width: "100%" }}>
-            <Card title={`其他老师的 ${course.name}`}></Card>
-            <Card title={`${course.main_teacher.name} 的其他课`}></Card>
+            <Card title={`其他老师的 ${course.name}`}>
+              <List
+                dataSource={course?.related_courses?.courses_with_other_teachers}
+                renderItem={(item: CourseSummaryProps) => (
+                  <List.Item key={item.id}>
+                    <CourseItem course={item}></CourseItem>
+                  </List.Item>
+                )}
+              ></List>
+            </Card>
+            <Card title={`${course.main_teacher.name} 的其他课`}>
+              <List
+                dataSource={course?.related_courses?.courses_under_same_teacher}
+                renderItem={(item: CourseSummaryProps) => (
+                  <List.Item key={item.id}>
+                    <CourseItem course={item}></CourseItem>
+                  </List.Item>
+                )}
+              ></List>
+            </Card>
           </Space>
         </Col>
       </Row>

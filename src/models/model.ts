@@ -64,7 +64,14 @@ export type CourseDetailProps = {
   department: string;
   categories: string[];
   rating_info: RatingInfoProps;
+
+  related_courses: RelatedCourseProps;
 };
+
+export type RelatedCourseProps = {
+  courses_under_same_teacher: CourseSummaryProps[];
+  courses_with_other_teachers: CourseSummaryProps[];
+}
 
 export type OfferedCourseProps = {
   id: number;
